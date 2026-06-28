@@ -2275,11 +2275,8 @@ MODULES.forEach(m=>{
 // 1) Másold ide a saját Firebase web-konfigod (Firebase console → Project settings → Web app).
 // 2) Realtime Database kell hozzá (a databaseURL legyen kitöltve).
 const firebaseConfig = {
-  apiKey: "PASTE_API_KEY",
-  authDomain: "PASTE_PROJECT.firebaseapp.com",
-  databaseURL: "https://PASTE_PROJECT-default-rtdb.firebaseio.com",
-  projectId: "PASTE_PROJECT",
-  appId: "PASTE_APP_ID"
+  databaseURL: "https://b2-angol-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "b2-angol"
 };
 
 function applyState(){
@@ -2336,7 +2333,7 @@ function disconnectSync(){
   updateSyncUI(false);
 }
 try{
-  if(typeof firebase!=="undefined" && firebaseConfig.apiKey.indexOf("PASTE")===-1){
+  if(typeof firebase!=="undefined" && firebaseConfig.databaseURL && firebaseConfig.databaseURL.indexOf("PASTE")===-1){
     firebase.initializeApp(firebaseConfig);
     fbDB=firebase.database(); fbReady=true;
     document.getElementById("authNote").style.display="none";
