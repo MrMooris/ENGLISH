@@ -1,0 +1,2362 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Euroexam B2 Angol – Tananyag útvonal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F4EF; --paper-2:#EFEDE5; --ink:#1B2A33; --ink-soft:#3A4A53;
+    --muted:#6B7780; --teal:#1E7A6F; --teal-dark:#155E55; --ochre:#D9783A;
+    --line:#DCD8CD; --line-soft:#E7E3D9; --card:#FFFFFF;
+    --radius:14px; --shadow:0 1px 2px rgba(27,42,51,.05), 0 8px 24px -16px rgba(27,42,51,.28);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(circle at 1px 1px, rgba(27,42,51,.04) 1px, transparent 0);
+    background-size:26px 26px;
+  }
+  .topbar{position:sticky;top:0;z-index:50;backdrop-filter:saturate(1.4) blur(8px);
+    background:rgba(245,244,239,.82);border-bottom:1px solid var(--line);}
+  .topbar-inner{max-width:900px;margin:0 auto;padding:12px 22px;display:flex;align-items:center;gap:16px;}
+  .brand{font-family:"Space Mono",monospace;font-weight:700;font-size:.74rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--teal);white-space:nowrap;}
+  .prog-wrap{flex:1;display:flex;align-items:center;gap:12px;min-width:0;}
+  .prog-track{flex:1;height:8px;border-radius:99px;background:var(--paper-2);overflow:hidden;border:1px solid var(--line-soft);}
+  .prog-fill{height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,var(--teal),var(--teal-dark));
+    transition:width .45s cubic-bezier(.4,0,.2,1);}
+  .prog-num{font-family:"Space Mono",monospace;font-weight:700;font-size:.82rem;color:var(--ink);
+    white-space:nowrap;min-width:42px;text-align:right;}
+
+  .hamburger{display:flex;flex-direction:column;justify-content:center;gap:4px;width:36px;height:34px;
+    border:1px solid var(--line);background:var(--card);border-radius:9px;cursor:pointer;padding:0 8px;flex-shrink:0;}
+  .hamburger:hover{border-color:var(--teal);}
+  .hamburger:focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+  .hamburger span{display:block;height:2px;width:100%;background:var(--ink);border-radius:2px;
+    transition:transform .25s ease,opacity .2s ease;}
+  .hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+  .drawer{position:fixed;top:0;left:0;bottom:0;width:300px;max-width:85vw;background:var(--card);
+    border-right:1px solid var(--line);box-shadow:2px 0 34px -12px rgba(27,42,51,.35);
+    transform:translateX(-100%);transition:transform .32s cubic-bezier(.4,0,.2,1);z-index:120;
+    display:flex;flex-direction:column;}
+  .drawer.open{transform:translateX(0);}
+  .drawer-head{display:flex;align-items:center;justify-content:space-between;padding:18px 18px 14px;
+    border-bottom:1px solid var(--line);}
+  .drawer-title{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.08rem;color:var(--ink);}
+  .drawer-sub{font-family:"Space Mono",monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ochre);margin-top:2px;}
+  .drawer-close{background:none;border:none;font-size:1.2rem;line-height:1;color:var(--muted);cursor:pointer;padding:4px 6px;border-radius:7px;}
+  .drawer-close:hover{color:var(--ink);background:var(--paper-2);}
+  .drawer-nav{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:3px;}
+
+  .drawer-auth{border-top:1px solid var(--line);padding:14px 16px;}
+  .auth-note{font-size:.76rem;color:var(--muted);line-height:1.45;margin:0;}
+  .auth-label{font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ochre);margin:0 0 8px;}
+  .drawer-auth input{width:100%;box-sizing:border-box;margin-bottom:7px;padding:8px 10px;border:1px solid var(--line);
+    border-radius:8px;font-size:.85rem;font-family:inherit;background:var(--paper);color:var(--ink);}
+  .drawer-auth input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 2px rgba(30,122,111,.18);}
+  .auth-btns{display:flex;gap:7px;}
+  .auth-b{flex:1;padding:8px;border:1px solid var(--line);background:var(--card);border-radius:8px;cursor:pointer;
+    font-size:.82rem;font-weight:600;font-family:inherit;color:var(--ink);transition:filter .12s;}
+  .auth-b.primary{background:var(--teal);color:#fff;border-color:var(--teal);}
+  .auth-b:hover{filter:brightness(.96);}
+  .auth-msg{font-size:.77rem;margin:7px 0 0;color:var(--muted);min-height:1em;}
+  .auth-email{font-size:.86rem;margin:0 0 3px;color:var(--ink);font-weight:600;word-break:break-all;}
+  .auth-status{font-size:.78rem;color:var(--teal-dark);margin:0 0 10px;}
+  .nav-item{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:none;border:none;
+    padding:10px;border-radius:9px;cursor:pointer;transition:background .12s ease;}
+  .nav-item:hover{background:var(--paper-2);}
+  .nav-item:focus-visible{outline:2px solid var(--teal);outline-offset:-2px;}
+  .nav-item.current{background:rgba(30,122,111,.1);}
+  .nav-item.current .nav-text{color:var(--teal-dark);font-weight:600;}
+  .nav-home{margin-bottom:4px;border-bottom:1px solid var(--line-soft);border-radius:9px 9px 0 0;}
+  .nav-num{font-family:"Space Mono",monospace;font-weight:700;font-size:.72rem;color:#fff;background:var(--muted);
+    width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .nav-item.done .nav-num{background:var(--teal);}
+  .nav-text{flex:1;font-size:.9rem;color:var(--ink);font-weight:500;line-height:1.2;}
+  .nav-count{font-family:"Space Mono",monospace;font-size:.66rem;color:var(--muted);flex-shrink:0;}
+
+  .overlay{position:fixed;inset:0;background:rgba(27,42,51,.42);opacity:0;visibility:hidden;
+    transition:opacity .3s ease,visibility .3s ease;z-index:110;}
+  .overlay.open{opacity:1;visibility:visible;}
+
+  .back-btn{display:none;align-items:center;justify-content:center;gap:6px;height:34px;padding:0 12px;
+    border:1px solid var(--line);background:var(--card);border-radius:9px;cursor:pointer;flex-shrink:0;
+    font-family:"Inter",sans-serif;font-weight:600;font-size:.84rem;color:var(--ink);}
+  .back-btn:hover{border-color:var(--teal);}
+  body.focus-mode .back-btn{display:inline-flex;}
+  /* single-module focus view */
+  body.focus-mode .hero,
+  body.focus-mode .controls,
+  body.focus-mode .tts-hint,
+  body.focus-mode .footer{display:none;}
+  body.focus-mode #road{margin-top:18px;}
+  body.focus-mode #road .module{display:none;}
+  body.focus-mode #road .module.active{display:block;padding-left:0;}
+  body.focus-mode #road .module.active::before{display:none;}
+  body.focus-mode #road .module.active .node{display:none;}
+
+  .hero{max-width:900px;margin:0 auto;padding:64px 22px 30px;}
+  .eyebrow{font-family:"Space Mono",monospace;font-size:.72rem;font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ochre);margin:0 0 14px;}
+  h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(2.1rem,6vw,3.6rem);
+    line-height:1.02;letter-spacing:-.02em;margin:0 0 18px;color:var(--ink);}
+  h1 .accent{color:var(--teal);}
+  .lead{font-size:1.06rem;color:var(--ink-soft);max-width:62ch;margin:0 0 26px;}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:6px;}
+  .chip{font-family:"Space Mono",monospace;font-size:.72rem;font-weight:700;background:var(--card);
+    border:1px solid var(--line);padding:7px 12px;border-radius:99px;color:var(--ink-soft);
+    display:inline-flex;align-items:center;gap:7px;}
+  .chip b{color:var(--teal);}
+
+  .controls{max-width:900px;margin:0 auto;padding:8px 22px 6px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+  .btn{font-family:"Inter",sans-serif;font-weight:600;font-size:.86rem;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);padding:9px 15px;border-radius:10px;cursor:pointer;
+    transition:transform .12s ease, border-color .12s ease;}
+  .btn:hover{border-color:var(--teal);transform:translateY(-1px);}
+  .btn:active{transform:translateY(0);}
+  .btn.ghost{background:transparent;color:var(--muted);}
+  .btn.ghost:hover{color:var(--ochre);border-color:var(--ochre);}
+
+  .road{max-width:900px;margin:24px auto 80px;padding:0 22px;position:relative;}
+  .module{position:relative;padding-left:64px;margin-bottom:14px;scroll-margin-top:66px;}
+  .module::before{content:"";position:absolute;left:24px;top:0;bottom:-14px;width:2px;background:var(--line);}
+  .module:last-child::before{bottom:auto;height:30px;}
+  .node{position:absolute;left:7px;top:14px;width:36px;height:36px;border-radius:50%;background:var(--card);
+    border:2px solid var(--line);display:flex;align-items:center;justify-content:center;z-index:2;
+    font-family:"Space Mono",monospace;font-weight:700;font-size:.78rem;color:var(--muted);transition:all .3s ease;}
+  .module.done .node{background:var(--teal);border-color:var(--teal);color:#fff;box-shadow:0 0 0 5px rgba(30,122,111,.14);}
+  .module.done .node .num{display:none;}
+  .module.done .node::after{content:"\2713";font-size:1rem;}
+
+  .mod-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+  .mod-head{display:flex;align-items:center;gap:14px;padding:16px 18px;cursor:pointer;user-select:none;}
+  .mod-head:focus-visible{outline:2px solid var(--teal);outline-offset:-2px;}
+  .mod-title-wrap{flex:1;min-width:0;}
+  .mod-title{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.12rem;
+    letter-spacing:-.01em;color:var(--ink);margin:0;line-height:1.2;}
+  .mod-sub{font-size:.85rem;color:var(--muted);margin-top:2px;}
+  .mod-count{font-family:"Space Mono",monospace;font-size:.74rem;font-weight:700;color:var(--ink-soft);
+    background:var(--paper-2);border:1px solid var(--line-soft);padding:5px 9px;border-radius:8px;white-space:nowrap;}
+  .module.done .mod-count{background:rgba(30,122,111,.1);color:var(--teal-dark);border-color:rgba(30,122,111,.25);}
+  .chev{color:var(--muted);transition:transform .25s ease;flex-shrink:0;}
+  .module.open .chev{transform:rotate(90deg);}
+
+  .mini-track{height:4px;background:var(--paper-2);}
+  .mini-fill{height:100%;width:0%;background:var(--teal);transition:width .4s ease;}
+
+  .mod-body{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1);}
+  .module.open .mod-body{max-height:60000px;}
+  .mod-intro{padding:14px 18px 4px;font-size:.9rem;color:var(--ink-soft);border-top:1px solid var(--line-soft);}
+  ul.topics{list-style:none;margin:8px 0 12px;padding:6px 12px 12px;}
+
+  .topic{border-radius:9px;}
+  .topic-main{display:flex;align-items:flex-start;gap:12px;padding:9px 8px;cursor:pointer;border-radius:9px;
+    transition:background .12s ease;}
+  .topic-main:hover{background:var(--paper-2);}
+  .box{flex-shrink:0;width:20px;height:20px;border-radius:6px;margin-top:1px;border:2px solid var(--line);
+    background:var(--card);display:flex;align-items:center;justify-content:center;transition:all .15s ease;}
+  .box::after{content:"";width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;
+    transform:rotate(45deg) scale(0);transition:transform .15s ease;margin-top:-2px;}
+  .box:focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+  .topic.checked .box{background:var(--teal);border-color:var(--teal);}
+  .topic.checked .box::after{transform:rotate(45deg) scale(1);}
+  .topic-label{flex:1;font-size:.95rem;color:var(--ink);}
+  .topic.checked .topic-label{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line);}
+  .t-expand{color:var(--muted);transition:transform .25s ease;flex-shrink:0;margin-top:3px;}
+  .topic.open-c .t-expand{transform:rotate(90deg);}
+  .topic.has-content .topic-label{font-weight:500;}
+
+  .topic-content{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .topic.open-c .topic-content{max-height:12000px;}
+  .tc-inner{padding:0 8px 14px 40px;font-size:.9rem;color:var(--ink-soft);}
+  .tc-inner p{margin:6px 0;}
+  .tc-inner ul{margin:6px 0;padding-left:18px;}
+  .tc-inner li{margin:5px 0;}
+  .tc-inner strong{color:var(--ink);}
+  .tc-inner em{color:var(--teal-dark);font-style:normal;font-family:"Space Mono",monospace;font-size:.85em;}
+  .note-line{background:var(--paper-2);border-left:3px solid var(--ochre);border-radius:0 8px 8px 0;
+    padding:8px 12px;margin:10px 0 2px !important;font-size:.86rem;}
+
+  .quiz{margin-top:12px;padding:12px 13px;background:var(--paper-2);border-radius:10px;border:1px solid var(--line-soft);}
+  .quiz-head{font-family:"Space Mono",monospace;font-size:.66rem;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ochre);margin-bottom:9px;}
+  .quiz-q{margin-bottom:13px;}
+  .quiz-q:last-child{margin-bottom:0;}
+  .qtext{font-size:.88rem;color:var(--ink) !important;margin:0 0 7px !important;font-weight:500;}
+  .qopts{display:flex;flex-wrap:wrap;gap:6px;}
+  .qopt{font-family:"Inter",sans-serif;font-size:.82rem;background:var(--card);border:1px solid var(--line);
+    color:var(--ink);padding:6px 12px;border-radius:8px;cursor:pointer;transition:all .12s ease;}
+  .qopt:hover:not(:disabled){border-color:var(--teal);transform:translateY(-1px);}
+  .qopt:disabled{cursor:default;}
+  .qopt.correct{background:rgba(30,122,111,.14);border-color:var(--teal);color:var(--teal-dark);font-weight:600;}
+  .qopt.wrong{background:rgba(217,120,58,.16);border-color:var(--ochre);color:#b05a20;text-decoration:line-through;}
+
+  .tts{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-left:5px;
+    width:21px;height:21px;padding:0;border:1px solid var(--line);background:var(--card);border-radius:6px;
+    cursor:pointer;font-size:.72rem;line-height:1;transition:all .12s ease;flex-shrink:0;}
+  .tts:hover{border-color:var(--teal);background:rgba(30,122,111,.09);transform:translateY(-1px);}
+  .tts:focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+  .tts.speaking{border-color:var(--teal);background:rgba(30,122,111,.2);}
+  .tts-hint{max-width:900px;margin:4px auto 0;padding:0 22px;font-size:.8rem;color:var(--muted);
+    display:flex;align-items:center;gap:7px;}
+
+  .passage{background:var(--paper-2);border:1px solid var(--line-soft);border-radius:10px;
+    padding:13px 14px 13px;margin:10px 0;font-size:.93rem;line-height:1.7;color:var(--ink);position:relative;}
+  .passage .tts{position:absolute;top:9px;right:9px;margin:0;}
+  .passage .src{display:block;margin-top:7px;font-size:.74rem;color:var(--muted);font-style:italic;}
+  .steps{counter-reset:step;list-style:none;padding-left:0;margin:8px 0;}
+  .steps li{position:relative;padding:4px 0 4px 30px;margin:4px 0;}
+  .steps li::before{counter-increment:step;content:counter(step);position:absolute;left:0;top:3px;
+    width:21px;height:21px;border-radius:50%;background:var(--teal);color:#fff;font-family:"Space Mono",monospace;
+    font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;}
+
+  .soon{font-family:"Space Mono",monospace;font-size:.64rem;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);background:var(--paper-2);border:1px solid var(--line-soft);
+    padding:2px 7px;border-radius:6px;margin-left:8px;flex-shrink:0;align-self:center;}
+
+  .footer{max-width:900px;margin:0 auto;padding:0 22px 60px;color:var(--muted);font-size:.82rem;}
+  .footer hr{border:none;border-top:1px solid var(--line);margin:0 0 18px;}
+
+  @media (max-width:560px){
+    .module{padding-left:54px;} .module::before{left:18px;}
+    .node{left:1px;width:34px;height:34px;} .hero{padding-top:44px;}
+    .tc-inner{padding-left:8px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none !important;scroll-behavior:auto;}}
+  @media (min-width:640px){
+    #m2 .tc-inner > ul{column-count:2;column-gap:30px;}
+    #m2 .tc-inner > ul > li{break-inside:avoid;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <button class="hamburger" id="hamburger" aria-label="Modulok menü" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <button class="back-btn" id="backBtn" aria-label="Vissza az áttekintéshez">← Áttekintés</button>
+    <span class="brand">EUROEXAM · B2</span>
+    <div class="prog-wrap">
+      <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+      <span class="prog-num" id="progNum">0%</span>
+    </div>
+  </div>
+</div>
+
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <div>
+      <div class="drawer-title">Modulok</div>
+      <div class="drawer-sub">Ugrás a tananyaghoz</div>
+    </div>
+    <button class="drawer-close" id="drawerClose" aria-label="Bezárás">✕</button>
+  </div>
+  <nav class="drawer-nav" id="drawerNav"></nav>
+  <div class="drawer-auth">
+    <p class="auth-note" id="authNote">A haladás mentéséhez/szinkronjához másold be a saját Firebase-konfigodat a kódban (<code>firebaseConfig</code>). Addig a haladás helyben (localStorage) mentődik.</p>
+    <div id="syncBox" style="display:none">
+      <div id="syncDisconnected">
+        <p class="auth-label">Szinkron-azonosító</p>
+        <input id="syncId" type="text" placeholder="pl. a neved" autocomplete="off">
+        <button id="syncConnect" class="auth-b primary" style="width:100%">Csatlakozás</button>
+        <p class="auth-msg" id="syncMsg">Add meg ugyanazt az azonosítót minden eszközön — nincs jelszó.</p>
+      </div>
+      <div id="syncConnected" style="display:none">
+        <p class="auth-label">Szinkron aktív</p>
+        <p class="auth-email" id="syncIdShown"></p>
+        <p class="auth-status" id="syncStatus">Szinkronizálva ✓</p>
+        <button id="syncDisconnect" class="auth-b">Leválasztás</button>
+      </div>
+    </div>
+  </div>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<header class="hero">
+  <p class="eyebrow">Tananyag útvonal · Euroexam angol B2</p>
+  <h1>Euroexam B2 angol<br><span class="accent">tanulási sorrendben</span></h1>
+  <p class="lead">A teljes anyag modulokra bontva, abban a sorrendben, ahogy érdemes haladni: az alapozástól a nyelvtanon és szókincsen át a négy készségig (Olvasás, Írás, Hallás, Beszéd) és a záró vizsgafelkészülésig. A feladattípusok a Euroexam vizsgához igazítva. Pipáld ki, amit elvégeztél — a haladásod elmentődik.</p>
+  <div class="meta-row">
+    <span class="chip">📚 <b id="modCount">8</b> modul</span>
+    <span class="chip">✅ <b id="topicCount">0</b> tétel</span>
+    <span class="chip">📖 szótár <b>engedélyezett</b></span>
+  </div>
+</header>
+
+<div class="controls">
+  <button class="btn" id="expandAll">Mind kinyit</button>
+  <button class="btn" id="collapseAll">Mind becsuk</button>
+  <button class="btn ghost" id="resetBtn">Haladás törlése</button>
+</div>
+<p class="tts-hint">🔊 Kattints a hangszóró ikonra bármelyik angol példánál a kiejtés meghallgatásához.</p>
+
+<main class="road" id="road"></main>
+
+<footer class="footer">
+  <hr>
+  A <strong>00-ás modul</strong> már tartalommal van feltöltve (nyisd ki a témákat a nyílra kattintva). A többi modul váza készen áll — sorban töltjük fel őket. Szólj, ha mehet a 01 — Nyelvtan.
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+<script>
+/* ====== TANANYAG — Euroexam B2, tanulási sorrendben ====== */
+const MODULES = [
+  {
+    id:"m0", num:"00", title:"Felmérés és alapozás", sub:"Hol tartasz + mit vár a Euroexam",
+    intro:"Mielőtt belevágsz: tisztázzuk a kiindulópontot és a vizsga elvárásait. Ez a modul már fel van töltve — nyisd ki a témákat.",
+    topics:[
+      { t:"A B2 (Euroexam középfok) követelményei röviden", c:`
+        <p>Mit kell tudnod B2-n? A „can-do" lista röviden:</p>
+        <ul>
+          <li>Megértesz hosszabb beszédeket, előadásokat ismerős témában.</li>
+          <li>Követed a tévéhíreket, aktuális műsorokat és a legtöbb filmet.</li>
+          <li>Elolvasol véleményt vagy nézőpontot képviselő cikkeket, beszámolókat.</li>
+          <li>Folyékonyan, természetesen elbeszélgetsz anyanyelvi beszélővel, különösebb erőfeszítés nélkül.</li>
+          <li>Világos, részletes szöveget írsz sokféle témáról, és érvekkel támasztod alá a véleményed.</li>
+        </ul>
+        <p class="note-line">B2 = „felső középhaladó". Ezt várják a felvételin a pluszpontokért és sok diplomához.</p>` },
+      { t:"Euroexam B2 vizsga felépítése (4 készség)", c:`
+        <p><strong>4 vizsgarész</strong> — nincs külön nyelvtanteszt, a nyelvtudást a készségeken át mérik:</p>
+        <ul>
+          <li><strong>Olvasásértés</strong> — 3 feladat: áttekintő (skimming), kereső (scanning) és részletes olvasás. Az egyik: 6 bekezdés + 8 cím párosítása (2-t ki kell zárni).</li>
+          <li><strong>Íráskészség</strong> — a 2025 októberében megújult Writing Checklist szempontjai szerint értékelnek.</li>
+          <li><strong>Hallásértés</strong> — 3 feladat: párbeszédek témájának felismerése, jegyzetkészítés konkrét infókról, részletes kérdéssor.</li>
+          <li><strong>Beszédkészség</strong> — egyénileg vagy párban (te választasz): szerepjáték-kártyák, képtörténet és vita.</li>
+        </ul>
+        <p class="note-line">Jó hír: az írásbelin <strong>nyomtatott szótárt használhatsz</strong>. A vizsga az utóbbi években rövidült és egyszerűsödött. Komplex vagy részvizsga (írásbeli/szóbeli külön) is tehető.</p>` },
+      { t:"Szintfelmérő – hol állsz most", c:`
+        <p>Mérd fel őszintén magad. Gondold át, melyik kijelentés igaz rád:</p>
+        <ul>
+          <li>El tudok olvasni egy újságcikket szótár nélkül, és értem a lényegét.</li>
+          <li>Meg tudok írni egy 150–200 szavas levelet/esszét nyelvtani hibák nélkül.</li>
+          <li>Értek egy angol podcastet vagy videót felirat nélkül.</li>
+          <li>Néhány percig folyamatosan tudok beszélni egy témáról akadozás nélkül.</li>
+          <li>Magabiztosan használom a feltételes mondatokat és a szenvedő szerkezetet.</li>
+        </ul>
+        <p class="note-line">Ahol „nem" a válasz, ott lesz a fókusz. Ingyenes szintfelmérő mintafeladatokat a Euroexam MyEE fiókban találsz.</p>` },
+      { t:"Alapigeidők átismétlése", c:`
+        <p>A leggyakoribb igeidők — ezekre épül minden:</p>
+        <ul>
+          <li><strong>Present Simple</strong> — szokás, tény. <em>I work / she works.</em></li>
+          <li><strong>Present Continuous</strong> — most zajlik. <em>I am working.</em></li>
+          <li><strong>Past Simple</strong> — befejezett múlt. <em>I worked / I went.</em></li>
+          <li><strong>Present Perfect</strong> — múlt–jelen kapcsolat. <em>I have just finished.</em></li>
+          <li><strong>Future</strong> — <em>will</em> (most döntöd el, jóslat) vs <em>going to</em> (terv, szándék).</li>
+        </ul>
+        <p class="note-line">A teljes igeidő-rendszer az <strong>01 — Nyelvtan</strong> modulban jön. Itt csak a ráhangolódás a cél.</p>` },
+      { t:"Névelők, többes szám, névmások felfrissítése", c:`
+        <ul>
+          <li><strong>a / an</strong> — egy (nem konkrét); <strong>the</strong> — konkrét, már ismert; <strong>névelő nélkül</strong> — általános vagy megszámlálhatatlan (<em>I like music</em>).</li>
+          <li><strong>Rendhagyó többes</strong>: child → children, man → men, foot → feet, person → people.</li>
+          <li><strong>Névmások</strong>: I/me, he/him, they/them; birtokos: my/mine, your/yours.</li>
+        </ul>` },
+      { t:"Tanulási terv és heti ütemezés", c:`
+        <p>Javasolt ritmus (igazítsd a vizsgaidőpontodhoz):</p>
+        <ul>
+          <li><strong>Minden nap</strong> 15–20 perc: egy nyelvtani téma + 10 új szó.</li>
+          <li><strong>Heti 2×</strong>: egy készség gyakorlása (olvasás / hallás / írás / beszéd váltakozva).</li>
+          <li><strong>Heti 1×</strong>: egy megírt szöveg (levél/esszé) + önellenőrzés a Writing Checklisttel.</li>
+          <li><strong>Utolsó 3–4 hét</strong>: teljes próbavizsgák időre (lásd 07-es modul).</li>
+        </ul>
+        <p class="note-line">Haladj sorban: a nyelvtan és szókincs (01–02) az alap, erre épül a 4 készség (03–06).</p>` }
+    ]
+  },
+  {
+    id:"m1", num:"01", title:"Nyelvtan (Grammar)", sub:"A tudás gerince – itt töltsd a legtöbb időt",
+    intro:"Bár a Euroexamen nincs külön nyelvtanteszt, a pontos nyelvtan minden készségben pontot ér. Haladj fentről lefelé — nyisd ki a témákat, és a magyarázat után próbáld ki a mini kvízt.",
+    topics:[
+      { t:"Jelen idők (simple / continuous / perfect / perfect continuous)", c:`
+        <p>A magyarban egy jelen idő van, az angolban négy — a kulcs a jelszavak és a beszélő szándéka.</p>
+        <ul>
+          <li><strong>Present Simple</strong> — szokás, általános igazság, menetrend. Képzés: alany + ige (E/3-ban +s/es); tagadás/kérdés <em>do/does</em>. Jelszavak: always, usually, often, never, every day. <em>She works in a bank.</em> <em>Water boils at 100 degrees.</em></li>
+          <li><strong>Present Continuous</strong> — épp most vagy átmeneti időszakban zajlik. Képzés: am/is/are + ige+ing. Jelszavak: now, at the moment, currently, this week. <em>She is working from home this week.</em> ⚠️ Állapotigékkel (know, like, want, believe) nem használjuk: nem „I am knowing", hanem <em>I know.</em></li>
+          <li><strong>Present Perfect</strong> — múltbeli cselekvés, aminek a jelenre van hatása; élettapasztalat; nem konkrét idő. Képzés: have/has + 3. alak. Jelszavak: just, already, yet, ever, never, since, for. <em>I have lived here for five years.</em> <em>Have you ever been to London?</em> ⚠️ Konkrét múltidővel (yesterday, in 2010) nem áll: <em>I saw him yesterday.</em></li>
+          <li><strong>Present Perfect Continuous</strong> — egy ideje tart és talán még folyik; a folyamat időtartamán a hangsúly. Képzés: have/has been + ige+ing. <em>I have been waiting for an hour.</em> <em>It has been raining all day.</em></li>
+        </ul>`,
+        q:[
+          { q:"I ___ English since 2019.", a:["learn","am learning","have been learning"], correct:2 },
+          { q:"Listen! Someone ___ the door.", a:["knocks","is knocking","has knocked"], correct:1 },
+          { q:"She ___ to work by bus every day.", a:["goes","is going","has gone"], correct:0 },
+          { q:"Water ___ at 100 degrees.", a:["boils","is boiling","has boiled"], correct:0 },
+          { q:"I ___ this book for two weeks and I'm still reading it.", a:["read","have been reading","am reading"], correct:1 },
+          { q:"She usually ___ coffee, but today she's having tea.", a:["drinks","is drinking","drink"], correct:0 }
+        ] },
+      { t:"Múlt idők rendszere + 'used to' / 'would'", c:`
+        <ul>
+          <li><strong>Past Simple</strong> — befejezett múltbeli esemény, konkrét időponttal. Szabályos: +ed; rendhagyó: 2. alak (go→went, see→saw). Jelszavak: yesterday, last week, in 2018, ago. <em>I visited Rome in 2018.</em></li>
+          <li><strong>Past Continuous</strong> — múltban egy adott pillanatban zajló folyamat; gyakran háttércselekvés, amit egy másik (Past Simple) megszakít. Képzés: was/were + ing. <em>I was cooking when he called.</em> <em>While I was reading, the phone rang.</em></li>
+          <li><strong>Past Perfect</strong> — két múltbeli esemény közül a korábbi. Képzés: had + 3. alak. <em>The train had left before we arrived.</em> ⚠️ Csak akkor kell, ha a sorrendet hangsúlyozod.</li>
+          <li><strong>used to</strong> + ige — múltbeli szokás vagy állapot, ami már nincs. <em>I used to play football.</em> <strong>would</strong> + ige — ismétlődő múltbeli cselekvés (állapotra nem!). <em>Every summer we would go to the lake.</em></li>
+        </ul>`,
+        q:[
+          { q:"By the time we got there, the shop ___.", a:["closed","had closed","was closing"], correct:1 },
+          { q:"I ___ TV when the power went out.", a:["watched","was watching","had watched"], correct:1 },
+          { q:"There ___ a cinema here, but it closed.", a:["used to be","would be","was being"], correct:0 },
+          { q:"While we ___ dinner, the lights went out.", a:["had","were having","have had"], correct:1 },
+          { q:"I had never ___ sushi before that trip.", a:["ate","eaten","eat"], correct:1 },
+          { q:"When I was a child, we ___ go to the seaside every summer.", a:["would","use to","are used to"], correct:0 }
+        ] },
+      { t:"Jövő idő kifejezése (will / going to / present forms)", c:`
+        <ul>
+          <li><strong>will</strong> + ige — spontán döntés a beszéd pillanatában, jóslat vélemény alapján, ígéret, ajánlat. <em>I'll help you with that.</em> <em>I think it will rain.</em></li>
+          <li><strong>be going to</strong> + ige — előre eltervezett szándék; jelenből látható jelből jóslat. <em>I'm going to study medicine.</em> <em>Look at the clouds — it's going to rain.</em></li>
+          <li><strong>Present Continuous</strong> — fix, megbeszélt jövőbeli program (időpont és hely adott). <em>I'm meeting Tom at six tomorrow.</em></li>
+          <li><strong>Present Simple</strong> — menetrend, hivatalos program. <em>The train leaves at nine.</em></li>
+          <li><strong>Future Continuous</strong> — egy jövőbeli időpontban épp zajló cselekvés. <em>This time tomorrow I'll be flying to Rome.</em></li>
+        </ul>
+        <p>⚠️ Magyar buktató: a „fogok" nem mindig <em>will</em> — eltervezett szándéknál <em>going to</em>, megbeszélt programnál present continuous.</p>`,
+        q:[
+          { q:"Look at those clouds! It ___ rain.", a:["will","is going to","rains"], correct:1 },
+          { q:"The plane ___ at 7:45 (menetrend).", a:["is going to leave","leaves","will leave"], correct:1 },
+          { q:"—The phone's ringing! —OK, I ___ it.", a:["'m going to get","'ll get","get"], correct:1 },
+          { q:"I've decided — I ___ a new laptop next month.", a:["'m going to buy","buy","will have bought"], correct:0 },
+          { q:"Hurry up! The film ___ at 8 and it's already 7:55.", a:["starts","will start","would start"], correct:0 },
+          { q:"I think our team ___ tonight.", a:["will win","wins","is winning"], correct:0 }
+        ] },
+      { t:"Feltételes mondatok (0–3. típus + kevert)", c:`
+        <ul>
+          <li><strong>0. típus</strong> (általános igazság): If/When + Present, Present. <em>If you heat ice, it melts.</em></li>
+          <li><strong>1. típus</strong> (reális jövő): If + Present, will + ige. <em>If it rains, I'll stay home.</em> ⚠️ Az <em>if</em> utáni tagmondatban nincs will.</li>
+          <li><strong>2. típus</strong> (valószínűtlen jelen/jövő): If + Past Simple, would + ige. <em>If I had money, I would travel.</em> Minden személyben lehet <em>were</em>: <em>If I were you…</em></li>
+          <li><strong>3. típus</strong> (múltbeli, már lehetetlen): If + Past Perfect, would have + 3. alak. <em>If I had studied, I would have passed.</em></li>
+          <li><strong>Kevert</strong> (múltbeli feltétel → jelen következmény): If + Past Perfect, would + ige. <em>If I had taken the job, I would be richer now.</em></li>
+          <li><strong>unless</strong> = if not. <em>I won't go unless you come.</em></li>
+        </ul>`,
+        q:[
+          { q:"If I ___ you, I would apologise.", a:["am","was","were"], correct:2 },
+          { q:"If she had left earlier, she ___ the train.", a:["would catch","would have caught","caught"], correct:1 },
+          { q:"Water boils if you ___ it to 100°C.", a:["heat","will heat","would heat"], correct:0 },
+          { q:"If it ___ tomorrow, we'll cancel the trip.", a:["rains","will rain","would rain"], correct:0 },
+          { q:"I would have helped you if you ___ me.", a:["asked","had asked","would ask"], correct:1 },
+          { q:"I won't pass ___ I study harder.", a:["unless","if","when"], correct:0 }
+        ] },
+      { t:"Szenvedő szerkezet (passive voice)", c:`
+        <ul>
+          <li><strong>Mikor</strong>: ha a cselekvő ismeretlen, lényegtelen, magától értetődő, vagy a tárgyra/eredményre tesszük a hangsúlyt.</li>
+          <li><strong>Képzés</strong>: a tárgyból lesz az alany + megfelelő idejű <em>be</em> + past participle (3. alak). <em>They built the house in 1990.</em> → <em>The house was built in 1990.</em></li>
+          <li><strong>by</strong> + cselekvő, ha lényeges. <em>The book was written by Orwell.</em></li>
+          <li><strong>Igeidőnként</strong>: <em>is made</em> / <em>was made</em> / <em>has been made</em> / <em>will be made</em> / <em>is being made</em> / <em>must be done</em>.</li>
+        </ul>
+        <p>⚠️ Csak tárgyas igét lehet passzívba tenni.</p>`,
+        q:[
+          { q:"The Mona Lisa ___ by Leonardo.", a:["painted","was painted","is painting"], correct:1 },
+          { q:"English ___ all over the world.", a:["speaks","is spoken","is speaking"], correct:1 },
+          { q:"The bridge ___ at the moment.", a:["is repaired","is being repaired","repairs"], correct:1 },
+          { q:"These cars ___ in Japan.", a:["are made","are making","make"], correct:0 },
+          { q:"The window ___ by the storm last night.", a:["broke","was broken","is breaking"], correct:1 },
+          { q:"A new hospital ___ next year.", a:["will be built","will build","is building"], correct:0 }
+        ] },
+      { t:"Függő beszéd (reported speech)", c:`
+        <ul>
+          <li><strong>Időeltolás (backshift)</strong> egy lépés „hátra": present simple→past simple, present continuous→past continuous, present perfect/past simple→past perfect, will→would, can→could, may→might, must→had to. <em>I am tired.</em> → <em>He said he was tired.</em></li>
+          <li><strong>Idő/hely cseréje</strong>: now→then, today→that day, tomorrow→the next day, yesterday→the day before, here→there, this→that.</li>
+          <li><strong>Kérdés</strong>: ask (+ if/whether eldöntendőnél, kérdőszó kiegészítendőnél) + kijelentő szórend, segédige nélkül. <em>Where do you live?</em> → <em>She asked where I lived.</em> <em>Are you ok?</em> → <em>He asked if I was ok.</em></li>
+          <li><strong>Felszólítás</strong>: tell sy to do / not to do. <em>Sit down.</em> → <em>He told me to sit down.</em></li>
+          <li><strong>say vs tell</strong>: tell + személy (tell me), say (+ to me).</li>
+        </ul>`,
+        q:[
+          { q:'"I will call you," he said. → He said he ___ call me.', a:["will","would","wouldn't"], correct:1 },
+          { q:"She asked me where I ___.", a:["live","lived","do live"], correct:1 },
+          { q:'"I can swim," he said. → He said he ___ swim.', a:["can","could","will"], correct:1 },
+          { q:'"I have finished," she said. → She said she ___ finished.', a:["has","had","have"], correct:1 },
+          { q:'"I am leaving," he said. → He said he ___ leaving.', a:["is","was","will be"], correct:1 },
+          { q:"She ___ me that she was tired.", a:["told","said","asked"], correct:0 }
+        ] },
+      { t:"Módbeli segédigék + perfect modals", c:`
+        <ul>
+          <li><strong>Alak</strong>: modal + alapige (to nélkül), nincs E/3 -s, a kérdés/tagadás segédige nélkül megy.</li>
+          <li><strong>must</strong> — erős (belső) kötelesség vagy erős logikai következtetés. <em>You must wear a helmet.</em> <em>She's not here — she must be ill.</em></li>
+          <li><strong>have to</strong> — kötelesség külső szabályból. ⚠️ <em>mustn't</em> = tilos; <em>don't have to</em> = nem kötelező (nem ugyanaz!).</li>
+          <li><strong>should / ought to</strong> — tanács, elvárás. <em>You should see a doctor.</em> <strong>can/could</strong> — képesség, engedély; <strong>may/might</strong> — lehetőség (formálisabb).</li>
+          <li><strong>Perfect modals</strong> (modal + have + 3. alak) a múltra: <em>must have done</em> (biztosan megtette), <em>can't have done</em> (biztosan nem), <em>should have done</em> (kellett volna, de nem), <em>could have done</em> (megtörténhetett volna), <em>might have done</em> (talán megtette).</li>
+        </ul>`,
+        q:[
+          { q:"You ___ smoke here, it's forbidden.", a:["don't have to","mustn't","shouldn't"], correct:1 },
+          { q:"She's not answering — she ___ asleep.", a:["must be","must have been","can be"], correct:0 },
+          { q:"I'm sorry, I ___ have called you earlier.", a:["should","must","can"], correct:0 },
+          { q:"It's a secret — you ___ tell anyone.", a:["mustn't","don't have to","needn't"], correct:0 },
+          { q:"Everything is fine, you ___ worry.", a:["don't have to","mustn't","can't"], correct:0 },
+          { q:"He ___ have left already; his car is gone.", a:["must","can","should"], correct:0 }
+        ] },
+      { t:"Vonatkozó mellékmondatok (relative clauses)", c:`
+        <ul>
+          <li><strong>Névmások</strong>: who (személy), which (dolog/állat), that (személy v. dolog, csak defining), whose (birtokos), where (hely), when (idő), why (ok).</li>
+          <li><strong>Defining</strong> (meghatározó): a főnevet azonosítja, nélküle hiányos a mondat — nincs vessző; <em>that</em> használható; tárgyként a névmás elhagyható. <em>The man who called is my boss.</em> <em>The book (that) I read was great.</em></li>
+          <li><strong>Non-defining</strong> (kiegészítő): extra, elhagyható info — vessző közé; <em>that</em> nem használható; a névmás nem hagyható el. <em>My brother, who lives in London, is a doctor.</em></li>
+        </ul>
+        <p>⚠️ A magyar „ami/aki/amely" itt who/which/that-re bomlik szét, és a vesszőhasználat is más, mint a magyarban.</p>`,
+        q:[
+          { q:"That's the woman ___ car was stolen.", a:["who","which","whose"], correct:2 },
+          { q:"Paris, ___ is the capital of France, is lovely.", a:["that","which","what"], correct:1 },
+          { q:"The hotel ___ we stayed was cheap.", a:["which","where","who"], correct:1 },
+          { q:"This is the house ___ I grew up.", a:["which","where","who"], correct:1 },
+          { q:"The film, ___ won three awards, is brilliant.", a:["that","which","what"], correct:1 },
+          { q:"Do you know the girl ___ is talking to Tom?", a:["who","which","whose"], correct:0 }
+        ] },
+      { t:"Gerund és infinitive használata", c:`
+        <ul>
+          <li><strong>Gerund</strong> (ige+ing főnévként): elöljárószó után (good at swimming), bizonyos igék után (enjoy, avoid, finish, mind, suggest, keep, practise, can't help), alanyként. <em>I enjoy reading.</em> <em>Swimming is good for you.</em></li>
+          <li><strong>to + infinitive</strong>: cél kifejezése, bizonyos igék után (want, decide, hope, plan, promise, agree, manage, would like), melléknév után (easy/hard to do), kérdőszó után. <em>I want to go.</em> <em>It's hard to say.</em></li>
+          <li><strong>Mindkettő, jelentésváltozással</strong>: <em>stop doing</em> (abbahagy) vs <em>stop to do</em> (megáll, hogy); <em>remember doing</em> (emlékszik a múltra) vs <em>remember to do</em> (eszébe jut megtenni); <em>try doing</em> (kipróbál) vs <em>try to do</em> (megpróbál).</li>
+          <li><strong>like/love/hate</strong> után -ing és to is állhat, hasonló jelentéssel.</li>
+        </ul>`,
+        q:[
+          { q:"I enjoy ___ to music.", a:["listen","to listen","listening"], correct:2 },
+          { q:"She decided ___ abroad.", a:["studying","to study","study"], correct:1 },
+          { q:"Remember ___ the door when you leave.", a:["locking","to lock","lock"], correct:1 },
+          { q:"He's good at ___.", a:["cook","cooking","to cook"], correct:1 },
+          { q:"I'd like ___ you something.", a:["ask","asking","to ask"], correct:2 },
+          { q:"On the way home I stopped ___ some milk.", a:["to buy","buying","buy"], correct:0 }
+        ] },
+      { t:"Fokozás és összehasonlítás", c:`
+        <ul>
+          <li><strong>1 szótag</strong>: -er / -est. <em>big → bigger → biggest.</em> Rövid magánhangzó után a mássalhangzó kettőződik (hot → hotter).</li>
+          <li><strong>2 szótag -y végződéssel</strong>: y → i + er/est. <em>happy → happier → happiest.</em></li>
+          <li><strong>Hosszú melléknév</strong> (2+ szótag): more / most. <em>expensive → more expensive → most expensive.</em></li>
+          <li><strong>Rendhagyó</strong>: good→better→best, bad→worse→worst, far→further/farther→furthest, much/many→more→most.</li>
+          <li><strong>as + alapfok + as</strong> (ugyanannyira), <strong>not as/so … as</strong> (nem annyira), <strong>középfok + than</strong>. <em>She is as tall as me.</em> <em>It's bigger than I thought.</em></li>
+          <li><strong>the + középfok …, the + középfok …</strong>: <em>The more you practise, the better you get.</em></li>
+        </ul>`,
+        q:[
+          { q:"This test is ___ than the last one.", a:["easier","more easy","easiest"], correct:0 },
+          { q:"It's the ___ film I've ever seen.", a:["better","best","most good"], correct:1 },
+          { q:"My bag isn't ___ heavy ___ yours.", a:["so / that","as / as","more / than"], correct:1 },
+          { q:"Today is ___ than yesterday.", a:["hotter","more hot","hottest"], correct:0 },
+          { q:"This is the ___ restaurant in town.", a:["most good","best","better"], correct:1 },
+          { q:"The film wasn't ___ I expected.", a:["as good as","so good than","gooder than"], correct:0 }
+        ] },
+      { t:"Kötőszavak és mondatszerkezet (linking words)", c:`
+        <ul>
+          <li><strong>Ellentét</strong>: but, yet, however (vessző után); although/though/even though (+ alany+állítmány); despite/in spite of (+ főnév vagy -ing). <em>Although it was cold, we went out.</em> <em>Despite the cold, we went out.</em></li>
+          <li><strong>Ok</strong>: because, since, as (+ mondat); because of / due to (+ főnév).</li>
+          <li><strong>Következmény</strong>: so, therefore, as a result, that's why.</li>
+          <li><strong>Cél</strong>: to / in order to / so as to (+ ige); so that (+ mondat).</li>
+          <li><strong>Hozzáadás</strong>: and, also, in addition, moreover, furthermore, besides.</li>
+          <li><strong>Sorrend</strong>: first(ly), then, after that, next, finally.</li>
+        </ul>
+        <p>⚠️ Klasszikus hiba: <em>despite</em> + mondat — helyette <em>although</em> + mondat, vagy <em>despite the fact that</em>.</p>`,
+        q:[
+          { q:"___ the rain, we enjoyed the trip.", a:["Although","Despite","However"], correct:1 },
+          { q:"It was late, ___ we went home.", a:["because","although","so"], correct:2 },
+          { q:"___ he was tired, he kept working.", a:["Despite","Although","However"], correct:1 },
+          { q:"He passed the exam ___ he hadn't studied much.", a:["although","despite","because"], correct:0 },
+          { q:"It was raining; ___, we decided to stay in.", a:["however","although","despite"], correct:0 },
+          { q:"She was tired ___ the long journey.", a:["because of","because","although"], correct:0 }
+        ] }
+    ]
+  },
+  {
+    id:"m2", num:"02", title:"Szókincs (Vocabulary)", sub:"Euroexam témakörök + szóképzés",
+    intro:"A Euroexam megadott témakörökből dolgozik. Egyszerre egy téma: tanuld a szavakat kollokációkkal együtt, és a 🔊 gombbal hallgasd meg a kiejtést.",
+    topics:[
+      { t:"Család és kapcsolatok", c:`
+        <p><strong>Emberek, főnevek:</strong></p>
+        <ul>
+          <li><em>relative</em> — rokon</li>
+          <li><em>sibling</em> — testvér</li>
+          <li><em>spouse</em> — házastárs</li>
+          <li><em>in-laws</em> — házasság útján rokonok</li>
+          <li><em>only child</em> — egyke</li>
+          <li><em>ancestor</em> — ős</li>
+          <li><em>descendant</em> — leszármazott</li>
+          <li><em>offspring</em> — utód(ok)</li>
+          <li><em>toddler</em> — totyogós kisgyerek</li>
+          <li><em>infant</em> — csecsemő</li>
+          <li><em>godparent</em> — keresztszülő</li>
+          <li><em>godchild</em> — keresztgyerek</li>
+          <li><em>widow</em> — özvegyasszony</li>
+          <li><em>widower</em> — özvegy férfi</li>
+          <li><em>bride</em> — menyasszony</li>
+          <li><em>groom</em> — vőlegény</li>
+          <li><em>fiancé / fiancée</em> — vőlegény / menyasszony</li>
+          <li><em>partner</em> — élettárs</li>
+          <li><em>stepmother</em> — mostohaanya</li>
+          <li><em>stepfather</em> — mostohaapa</li>
+          <li><em>stepchild</em> — mostohagyerek</li>
+          <li><em>half-brother</em> — féltestvér (fiú)</li>
+          <li><em>half-sister</em> — féltestvér (lány)</li>
+          <li><em>twin</em> — iker</li>
+          <li><em>cousin</em> — unokatestvér</li>
+          <li><em>nephew</em> — unokaöcs</li>
+          <li><em>niece</em> — unokahúg</li>
+          <li><em>guardian</em> — gyám</li>
+          <li><em>household</em> — háztartás</li>
+          <li><em>generation</em> — generáció</li>
+          <li><em>upbringing</em> — neveltetés</li>
+          <li><em>bond</em> — kötelék</li>
+          <li><em>marriage</em> — házasság</li>
+          <li><em>divorce</em> — válás</li>
+          <li><em>wedding</em> — esküvő</li>
+          <li><em>engagement</em> — eljegyzés</li>
+          <li><em>honeymoon</em> — nászút</li>
+          <li><em>heir</em> — örökös</li>
+          <li><em>breadwinner</em> — családfenntartó</li>
+          <li><em>next of kin</em> — legközelebbi hozzátartozó</li>
+          <li><em>single parent</em> — egyedülálló szülő</li>
+          <li><em>nuclear family</em> — mag(család)</li>
+          <li><em>extended family</em> — kiterjedt rokonság</li>
+          <li><em>family tree</em> — családfa</li>
+          <li><em>foster parent</em> — nevelőszülő</li>
+          <li><em>foster child</em> — nevelt gyerek</li>
+          <li><em>maiden name</em> — leánykori név</li>
+          <li><em>surname</em> — vezetéknév</li>
+          <li><em>newlyweds</em> — friss házasok</li>
+          <li><em>relatives</em> — rokonság</li>
+          <li><em>ancestry</em> — származás</li>
+        </ul>
+        <p><strong>Melléknevek:</strong></p>
+        <ul>
+          <li><em>close-knit</em> — összetartó</li>
+          <li><em>supportive</em> — támogató</li>
+          <li><em>strict</em> — szigorú</li>
+          <li><em>caring</em> — gondoskodó</li>
+          <li><em>loving</em> — szerető</li>
+          <li><em>protective</em> — óvó</li>
+          <li><em>distant</em> — távolságtartó</li>
+          <li><em>estranged</em> — elhidegült</li>
+          <li><em>affectionate</em> — gyengéd</li>
+          <li><em>overprotective</em> — túlóvó</li>
+          <li><em>dependent</em> — függő</li>
+          <li><em>independent</em> — önálló</li>
+          <li><em>dysfunctional</em> — működésképtelen (család)</li>
+          <li><em>married</em> — házas</li>
+          <li><em>divorced</em> — elvált</li>
+          <li><em>widowed</em> — özvegy</li>
+          <li><em>engaged</em> — eljegyzett</li>
+          <li><em>related</em> — rokon (vkivel)</li>
+          <li><em>adopted</em> — örökbe fogadott</li>
+          <li><em>biological</em> — vér szerinti</li>
+          <li><em>elderly</em> — idős</li>
+          <li><em>spoilt</em> — elkényeztetett</li>
+          <li><em>devoted</em> — odaadó</li>
+          <li><em>understanding</em> — megértő</li>
+          <li><em>respectful</em> — tisztelettudó</li>
+          <li><em>rebellious</em> — lázadó</li>
+        </ul>
+        <p><strong>Igék, kifejezések:</strong></p>
+        <ul>
+          <li><em>to get on (well) with</em> — jól kijön valakivel</li>
+          <li><em>to fall out with</em> — összeveszik valakivel</li>
+          <li><em>to take after</em> — hasonlít valakire</li>
+          <li><em>to bring up / raise</em> — felnevel</li>
+          <li><em>to look after</em> — vigyáz valakire</li>
+          <li><em>to get married</em> — összeházasodik</li>
+          <li><em>to get engaged</em> — eljegyzi magát</li>
+          <li><em>to get divorced</em> — elválik</li>
+          <li><em>to settle down</em> — révbe ér, családot alapít</li>
+          <li><em>to look up to</em> — felnéz valakire</li>
+          <li><em>to grow apart</em> — eltávolodnak</li>
+          <li><em>to make up</em> — kibékül</li>
+          <li><em>to split up</em> — szakít</li>
+          <li><em>to move in with</em> — összeköltözik valakivel</li>
+          <li><em>to move out</em> — elköltözik (otthonról)</li>
+          <li><em>to start a family</em> — családot alapít</li>
+          <li><em>to give birth (to)</em> — szül</li>
+          <li><em>to be expecting</em> — gyermeket vár</li>
+          <li><em>to adopt</em> — örökbe fogad</li>
+          <li><em>to inherit</em> — örököl</li>
+          <li><em>to be named after</em> — valakiről kap nevet</li>
+          <li><em>to run in the family</em> — családi vonás</li>
+          <li><em>to tie the knot</em> — összeházasodik (szleng)</li>
+          <li><em>to drift apart</em> — eltávolodnak</li>
+          <li><em>to confide in</em> — megbízik / kiönti a szívét</li>
+          <li><em>to fall in love with</em> — beleszeret valakibe</li>
+          <li><em>to propose to</em> — megkéri a kezét</li>
+          <li><em>to babysit</em> — gyerekre vigyáz</li>
+          <li><em>to spoil</em> — elkényeztet</li>
+          <li><em>to nag</em> — nyaggat</li>
+          <li><em>to support</em> — eltart, támogat</li>
+        </ul>
+        <p class="note-line">Kollokációk: <em>a distant relative</em>, <em>an extended family</em>, <em>a strong bond</em>, <em>a close relationship</em>.</p>`,
+        q:[
+          { q:"I ___ my mother — we both love art.", a:["take after","get on with","fall out with"], correct:0 },
+          { q:"My brother and I ___ over money last year.", a:["took after","fell out","got on"], correct:1 },
+          { q:"An ___ has no brothers or sisters.", a:["only child","in-law","sibling"], correct:0 },
+          { q:"I'm an only child, so I have no ___.", a:["siblings","in-laws","ancestors"], correct:0 },
+          { q:"My grandparents ___ me when my parents worked abroad.", a:["brought up","fell out","took after"], correct:0 },
+          { q:"They got ___ last June in a small church.", a:["married","divorced","engaged"], correct:0 }
+        ] },
+      { t:"Munka és karrier", c:`
+        <p><strong>Főnevek:</strong></p>
+        <ul>
+          <li><em>employee</em> — alkalmazott</li>
+          <li><em>employer</em> — munkáltató</li>
+          <li><em>colleague</em> — kolléga</li>
+          <li><em>co-worker</em> — munkatárs</li>
+          <li><em>salary</em> — fizetés (havi)</li>
+          <li><em>wage</em> — bér (órabér)</li>
+          <li><em>staff</em> — személyzet</li>
+          <li><em>workforce</em> — munkaerő</li>
+          <li><em>promotion</em> — előléptetés</li>
+          <li><em>candidate</em> — jelölt</li>
+          <li><em>applicant</em> — pályázó</li>
+          <li><em>application</em> — jelentkezés</li>
+          <li><em>CV</em> — önéletrajz</li>
+          <li><em>job interview</em> — állásinterjú</li>
+          <li><em>workload</em> — munkateher</li>
+          <li><em>deadline</em> — határidő</li>
+          <li><em>overtime</em> — túlóra</li>
+          <li><em>benefits</em> — juttatások</li>
+          <li><em>pension</em> — nyugdíj</li>
+          <li><em>redundancy</em> — leépítés</li>
+          <li><em>dismissal</em> — elbocsátás</li>
+          <li><em>resignation</em> — felmondás</li>
+          <li><em>vacancy</em> — betöltetlen állás</li>
+          <li><em>trainee</em> — gyakornok</li>
+          <li><em>apprentice</em> — tanonc</li>
+          <li><em>internship</em> — szakmai gyakorlat</li>
+          <li><em>manager</em> — vezető</li>
+          <li><em>supervisor</em> — felettes</li>
+          <li><em>subordinate</em> — beosztott</li>
+          <li><em>workplace</em> — munkahely</li>
+          <li><em>career path</em> — karrierút</li>
+          <li><em>profession</em> — szakma</li>
+          <li><em>occupation</em> — foglalkozás</li>
+          <li><em>qualification</em> — képesítés</li>
+          <li><em>skill</em> — készség</li>
+          <li><em>teamwork</em> — csapatmunka</li>
+          <li><em>bonus</em> — jutalom</li>
+          <li><em>commission</em> — jutalék</li>
+          <li><em>shift</em> — műszak</li>
+          <li><em>contract</em> — szerződés</li>
+          <li><em>recruitment</em> — toborzás</li>
+          <li><em>reference</em> — ajánlás</li>
+          <li><em>appraisal</em> — értékelés</li>
+          <li><em>notice period</em> — felmondási idő</li>
+          <li><em>probation</em> — próbaidő</li>
+          <li><em>department</em> — részleg</li>
+          <li><em>headquarters</em> — központ</li>
+          <li><em>freelancer</em> — szabadúszó</li>
+          <li><em>entrepreneur</em> — vállalkozó</li>
+          <li><em>perk</em> — extra juttatás</li>
+          <li><em>layoff</em> — elbocsátás</li>
+          <li><em>opening</em> — megüresedett állás</li>
+        </ul>
+        <p><strong>Melléknevek:</strong></p>
+        <ul>
+          <li><em>demanding</em> — megterhelő</li>
+          <li><em>rewarding</em> — kifizetődő</li>
+          <li><em>challenging</em> — kihívást jelentő</li>
+          <li><em>stressful</em> — stresszes</li>
+          <li><em>well-paid</em> — jól fizetett</li>
+          <li><em>underpaid</em> — alulfizetett</li>
+          <li><em>permanent</em> — állandó</li>
+          <li><em>temporary</em> — ideiglenes</li>
+          <li><em>full-time</em> — teljes munkaidős</li>
+          <li><em>part-time</em> — részmunkaidős</li>
+          <li><em>self-employed</em> — vállalkozó</li>
+          <li><em>unemployed</em> — munkanélküli</li>
+          <li><em>skilled</em> — képzett</li>
+          <li><em>unskilled</em> — szakképzetlen</li>
+          <li><em>hard-working</em> — szorgalmas</li>
+          <li><em>reliable</em> — megbízható</li>
+          <li><em>motivated</em> — motivált</li>
+          <li><em>ambitious</em> — becsvágyó</li>
+          <li><em>efficient</em> — hatékony</li>
+          <li><em>flexible</em> — rugalmas</li>
+          <li><em>competent</em> — hozzáértő</li>
+          <li><em>dedicated</em> — elhivatott</li>
+          <li><em>punctual</em> — pontos</li>
+          <li><em>overworked</em> — túlhajszolt</li>
+          <li><em>qualified</em> — szakképzett</li>
+          <li><em>competitive</em> — versengő</li>
+        </ul>
+        <p><strong>Igék, kifejezések:</strong></p>
+        <ul>
+          <li><em>to apply for a job</em> — megpályáz egy állást</li>
+          <li><em>to get promoted</em> — előléptetik</li>
+          <li><em>to be made redundant</em> — leépítik</li>
+          <li><em>to get the sack</em> — kirúgják (szleng)</li>
+          <li><em>to be self-employed</em> — vállalkozó</li>
+          <li><em>to work shifts</em> — műszakban dolgozik</li>
+          <li><em>to meet a deadline</em> — tartja a határidőt</li>
+          <li><em>to hand in your notice</em> — felmond</li>
+          <li><em>to take on (staff)</em> — felvesz (embert)</li>
+          <li><em>to work from home</em> — otthonról dolgozik</li>
+          <li><em>to be off sick</em> — betegszabadságon van</li>
+          <li><em>to take a day off</em> — kivesz egy szabadnapot</li>
+          <li><em>to be in charge of</em> — felel valamiért</li>
+          <li><em>to deal with</em> — kezel, intéz</li>
+          <li><em>to earn a living</em> — megkeresi a kenyerét</li>
+          <li><em>to work overtime</em> — túlórázik</li>
+          <li><em>to get a raise</em> — fizetésemelést kap</li>
+          <li><em>to retire</em> — nyugdíjba megy</li>
+          <li><em>to commute</em> — ingázik</li>
+          <li><em>to multitask</em> — párhuzamosan dolgozik több dolgon</li>
+          <li><em>to recruit</em> — toboroz</li>
+          <li><em>to fire</em> — kirúg</li>
+          <li><em>to hire</em> — felvesz</li>
+          <li><em>to resign</em> — felmond</li>
+          <li><em>to network</em> — kapcsolatokat épít</li>
+          <li><em>to delegate</em> — delegál</li>
+          <li><em>to negotiate</em> — tárgyal</li>
+          <li><em>to clock in / out</em> — beüt / kiüt (munkaidőt)</li>
+          <li><em>to be promoted</em> — előléptetik</li>
+          <li><em>to head a team</em> — csapatot vezet</li>
+        </ul>
+        <p class="note-line">Kollokációk: <em>a permanent contract</em>, <em>a steady job</em>, <em>to climb the career ladder</em>.</p>`,
+        q:[
+          { q:"She ___ the manager position.", a:["applied for","promoted","retired"], correct:0 },
+          { q:"After ten years he finally got ___.", a:["promoted","redundant","employed"], correct:0 },
+          { q:"I work for myself — I'm ___.", a:["self-employed","unemployed","redundant"], correct:0 },
+          { q:"He decided to ___ his notice after years of stress.", a:["hand in","take on","apply for"], correct:0 },
+          { q:"A ___ contract gives you more security than a temporary one.", a:["permanent","part-time","redundant"], correct:0 },
+          { q:"She works for herself as a ___.", a:["freelancer","trainee","candidate"], correct:0 }
+        ] },
+      { t:"Oktatás és tanulás", c:`
+        <p><strong>Főnevek:</strong></p>
+        <ul>
+          <li><em>degree</em> — diploma</li>
+          <li><em>undergraduate</em> — alapszakos hallgató</li>
+          <li><em>postgraduate</em> — mesterszakos hallgató</li>
+          <li><em>tuition fees</em> — tandíj</li>
+          <li><em>scholarship</em> — ösztöndíj</li>
+          <li><em>grant</em> — támogatás</li>
+          <li><em>lecture</em> — előadás</li>
+          <li><em>seminar</em> — szeminárium</li>
+          <li><em>tutorial</em> — konzultáció</li>
+          <li><em>term</em> — trimeszter</li>
+          <li><em>semester</em> — félév</li>
+          <li><em>assignment</em> — beadandó</li>
+          <li><em>coursework</em> — évközi munka</li>
+          <li><em>curriculum</em> — tanterv</li>
+          <li><em>syllabus</em> — tematika</li>
+          <li><em>qualification</em> — képesítés</li>
+          <li><em>subject</em> — tantárgy</li>
+          <li><em>module</em> — modul</li>
+          <li><em>lecturer</em> — oktató</li>
+          <li><em>professor</em> — professzor</li>
+          <li><em>tutor</em> — korrepetáló</li>
+          <li><em>pupil</em> — tanuló</li>
+          <li><em>undergraduate</em> — egyetemista</li>
+          <li><em>graduation</em> — ballagás / diplomaosztó</li>
+          <li><em>diploma</em> — oklevél</li>
+          <li><em>exam</em> — vizsga</li>
+          <li><em>revision</em> — ismétlés</li>
+          <li><em>knowledge</em> — tudás</li>
+          <li><em>research</em> — kutatás</li>
+          <li><em>thesis</em> — szakdolgozat</li>
+          <li><em>dissertation</em> — disszertáció</li>
+          <li><em>deadline</em> — leadási határidő</li>
+          <li><em>grade</em> — jegy</li>
+          <li><em>mark</em> — pontszám / jegy</li>
+          <li><em>attendance</em> — jelenlét</li>
+          <li><em>certificate</em> — bizonyítvány</li>
+          <li><em>nursery</em> — óvoda</li>
+          <li><em>boarding school</em> — bentlakásos iskola</li>
+          <li><em>primary school</em> — általános iskola</li>
+          <li><em>secondary school</em> — középiskola</li>
+          <li><em>tuition</em> — oktatás / tanítás</li>
+          <li><em>headteacher</em> — igazgató</li>
+          <li><em>classmate</em> — osztálytárs</li>
+          <li><em>textbook</em> — tankönyv</li>
+          <li><em>homework</em> — házi feladat</li>
+          <li><em>project</em> — projekt</li>
+          <li><em>essay</em> — esszé</li>
+          <li><em>deadline</em> — határidő</li>
+          <li><em>scholar</em> — tudós</li>
+          <li><em>campus</em> — egyetemi kampusz</li>
+          <li><em>library</em> — könyvtár</li>
+          <li><em>laboratory</em> — laboratórium</li>
+          <li><em>workshop</em> — műhelyfoglalkozás</li>
+          <li><em>apprenticeship</em> — tanonckodás</li>
+          <li><em>distance learning</em> — távoktatás</li>
+        </ul>
+        <p><strong>Melléknevek:</strong></p>
+        <ul>
+          <li><em>compulsory</em> — kötelező</li>
+          <li><em>optional</em> — választható</li>
+          <li><em>demanding</em> — igényes</li>
+          <li><em>gifted</em> — tehetséges</li>
+          <li><em>academic</em> — tudományos</li>
+          <li><em>practical</em> — gyakorlati</li>
+          <li><em>theoretical</em> — elméleti</li>
+          <li><em>intensive</em> — intenzív</li>
+          <li><em>strict</em> — szigorú</li>
+          <li><em>motivated</em> — motivált</li>
+          <li><em>hard-working</em> — szorgalmas</li>
+          <li><em>clever</em> — okos</li>
+          <li><em>knowledgeable</em> — tájékozott</li>
+          <li><em>literate</em> — írni-olvasni tudó</li>
+          <li><em>numerate</em> — számolni tudó</li>
+          <li><em>educational</em> — oktatási</li>
+          <li><em>challenging</em> — kihívást jelentő</li>
+          <li><em>rewarding</em> — hasznos, megéri</li>
+          <li><em>bored</em> — unatkozó</li>
+          <li><em>curious</em> — kíváncsi</li>
+          <li><em>disciplined</em> — fegyelmezett</li>
+        </ul>
+        <p><strong>Igék, kifejezések:</strong></p>
+        <ul>
+          <li><em>to revise</em> — átismétel</li>
+          <li><em>to sit / take an exam</em> — vizsgázik</li>
+          <li><em>to pass</em> — átmegy (vizsgán)</li>
+          <li><em>to fail</em> — megbukik</li>
+          <li><em>to resit</em> — pótvizsgázik</li>
+          <li><em>to graduate</em> — diplomázik</li>
+          <li><em>to enrol in</em> — beiratkozik</li>
+          <li><em>to hand in</em> — bead (feladatot)</li>
+          <li><em>to do research</em> — kutat</li>
+          <li><em>to drop out</em> — kimarad</li>
+          <li><em>to catch up</em> — behozza a lemaradást</li>
+          <li><em>to keep up with</em> — lépést tart</li>
+          <li><em>to revise for</em> — készül (vizsgára)</li>
+          <li><em>to take notes</em> — jegyzetel</li>
+          <li><em>to study hard</em> — keményen tanul</li>
+          <li><em>to attend</em> — részt vesz (órán)</li>
+          <li><em>to skip a class</em> — lóg egy óráról</li>
+          <li><em>to cheat</em> — puskázik</li>
+          <li><em>to learn by heart</em> — fejből megtanul</li>
+          <li><em>to make progress</em> — fejlődik</li>
+          <li><em>to teach</em> — tanít</li>
+          <li><em>to explain</em> — elmagyaráz</li>
+          <li><em>to memorise</em> — memorizál</li>
+          <li><em>to fall behind</em> — lemarad</li>
+          <li><em>to get a degree</em> — diplomát szerez</li>
+          <li><em>to apply to a university</em> — egyetemre jelentkezik</li>
+        </ul>
+        <p class="note-line">Kollokációk: <em>to take an exam</em>, <em>a demanding course</em>, <em>to get a place at university</em>.</p>`,
+        q:[
+          { q:"I need to ___ for my exam tonight.", a:["revise","graduate","fail"], correct:0 },
+          { q:"She won a ___ to study abroad.", a:["scholarship","degree","fee"], correct:0 },
+          { q:"Maths is ___ at this school — everyone studies it.", a:["compulsory","optional","free"], correct:0 },
+          { q:"I have to ___ a big assignment by Friday.", a:["hand in","drop out","revise"], correct:0 },
+          { q:"He won a ___ that covers his tuition fees.", a:["scholarship","deadline","lecture"], correct:0 },
+          { q:"If you fail, you can ___ the exam in autumn.", a:["resit","graduate","enrol"], correct:0 }
+        ] },
+      { t:"Egészség és életmód", c:`
+        <p><strong>Főnevek:</strong></p>
+        <ul>
+          <li><em>well-being</em> — jóllét</li>
+          <li><em>symptom</em> — tünet</li>
+          <li><em>injury</em> — sérülés</li>
+          <li><em>treatment</em> — kezelés</li>
+          <li><em>prescription</em> — recept (gyógyszerre)</li>
+          <li><em>diet</em> — étrend</li>
+          <li><em>check-up</em> — kivizsgálás</li>
+          <li><em>disease</em> — betegség</li>
+          <li><em>illness</em> — betegség</li>
+          <li><em>vaccine</em> — oltóanyag</li>
+          <li><em>stress</em> — stressz</li>
+          <li><em>recovery</em> — felépülés</li>
+          <li><em>surgery</em> — műtét / rendelő</li>
+          <li><em>pain</em> — fájdalom</li>
+          <li><em>cure</em> — gyógymód</li>
+          <li><em>medicine</em> — gyógyszer</li>
+          <li><em>painkiller</em> — fájdalomcsillapító</li>
+          <li><em>antibiotic</em> — antibiotikum</li>
+          <li><em>allergy</em> — allergia</li>
+          <li><em>infection</em> — fertőzés</li>
+          <li><em>fever</em> — láz</li>
+          <li><em>cough</em> — köhögés</li>
+          <li><em>flu</em> — influenza</li>
+          <li><em>headache</em> — fejfájás</li>
+          <li><em>wound</em> — seb</li>
+          <li><em>bruise</em> — zúzódás</li>
+          <li><em>blood pressure</em> — vérnyomás</li>
+          <li><em>immune system</em> — immunrendszer</li>
+          <li><em>nutrition</em> — táplálkozás</li>
+          <li><em>calorie</em> — kalória</li>
+          <li><em>exercise</em> — testmozgás</li>
+          <li><em>workout</em> — edzés</li>
+          <li><em>rest</em> — pihenés</li>
+          <li><em>sleep</em> — alvás</li>
+          <li><em>addiction</em> — függőség</li>
+          <li><em>obesity</em> — elhízás</li>
+          <li><em>therapy</em> — terápia</li>
+          <li><em>first aid</em> — elsősegély</li>
+          <li><em>emergency</em> — vészhelyzet</li>
+          <li><em>ward</em> — kórterem</li>
+          <li><em>doctor</em> — orvos</li>
+          <li><em>nurse</em> — ápoló</li>
+          <li><em>patient</em> — beteg</li>
+          <li><em>hospital</em> — kórház</li>
+          <li><em>clinic</em> — klinika</li>
+          <li><em>appointment</em> — időpont</li>
+          <li><em>operation</em> — műtét</li>
+          <li><em>vaccination</em> — oltás</li>
+          <li><em>bandage</em> — kötés</li>
+          <li><em>plaster</em> — sebtapasz</li>
+          <li><em>dose</em> — adag</li>
+          <li><em>side effect</em> — mellékhatás</li>
+          <li><em>blood test</em> — vérvizsgálat</li>
+          <li><em>dentist</em> — fogorvos</li>
+          <li><em>X-ray</em> — röntgen</li>
+        </ul>
+        <p><strong>Melléknevek:</strong></p>
+        <ul>
+          <li><em>fit</em> — fitt</li>
+          <li><em>healthy</em> — egészséges</li>
+          <li><em>unhealthy</em> — egészségtelen</li>
+          <li><em>sedentary</em> — ülő (életmód)</li>
+          <li><em>contagious</em> — fertőző</li>
+          <li><em>nutritious</em> — tápláló</li>
+          <li><em>painful</em> — fájdalmas</li>
+          <li><em>sore</em> — fájó (pl. torok)</li>
+          <li><em>dizzy</em> — szédülős</li>
+          <li><em>exhausted</em> — kimerült</li>
+          <li><em>addictive</em> — függőséget okozó</li>
+          <li><em>overweight</em> — túlsúlyos</li>
+          <li><em>underweight</em> — alulsúlyos</li>
+          <li><em>allergic</em> — allergiás</li>
+          <li><em>ill / sick</em> — beteg</li>
+          <li><em>infectious</em> — fertőző</li>
+          <li><em>chronic</em> — krónikus</li>
+          <li><em>serious</em> — súlyos</li>
+          <li><em>minor</em> — enyhe</li>
+          <li><em>balanced</em> — kiegyensúlyozott</li>
+          <li><em>active</em> — aktív</li>
+        </ul>
+        <p><strong>Igék, kifejezések:</strong></p>
+        <ul>
+          <li><em>to keep fit</em> — formában maradni</li>
+          <li><em>to work out</em> — edzeni</li>
+          <li><em>to put on weight</em> — hízni</li>
+          <li><em>to lose weight</em> — fogyni</li>
+          <li><em>to recover from</em> — felépülni</li>
+          <li><em>to be addicted to</em> — függő valamitől</li>
+          <li><em>to catch a cold</em> — megfázik</li>
+          <li><em>to come down with</em> — elkap (betegséget)</li>
+          <li><em>to cut down on</em> — visszafog (vmit)</li>
+          <li><em>to give up</em> — leszokik</li>
+          <li><em>to feel run-down</em> — kimerültnek érzi magát</li>
+          <li><em>to suffer from</em> — szenved (betegségtől)</li>
+          <li><em>to treat</em> — kezel</li>
+          <li><em>to heal</em> — gyógyul</li>
+          <li><em>to prescribe</em> — felír (gyógyszert)</li>
+          <li><em>to faint</em> — elájul</li>
+          <li><em>to sneeze</em> — tüsszent</li>
+          <li><em>to throw up</em> — hány</li>
+          <li><em>to look after yourself</em> — vigyáz magára</li>
+          <li><em>to get over (an illness)</em> — túljut (betegségen)</li>
+          <li><em>to book an appointment</em> — időpontot foglal</li>
+          <li><em>to take medicine</em> — gyógyszert szed</li>
+          <li><em>to rest</em> — pihen</li>
+          <li><em>to stay in shape</em> — formában marad</li>
+          <li><em>to relieve stress</em> — oldja a stresszt</li>
+        </ul>
+        <p class="note-line">Kollokációk: <em>a balanced diet</em>, <em>to lead a healthy lifestyle</em>.</p>`,
+        q:[
+          { q:"I go running to ___.", a:["keep fit","catch a cold","fall ill"], correct:0 },
+          { q:"It took weeks to ___ the flu.", a:["recover from","keep fit","work out"], correct:0 },
+          { q:"A fever is a common ___ of flu.", a:["symptom","injury","diet"], correct:0 },
+          { q:"You should ___ on sugar to feel better.", a:["cut down","put on","work out"], correct:0 },
+          { q:"I think I'm ___ a cold; my throat hurts.", a:["coming down with","recovering from","keeping fit"], correct:0 },
+          { q:"A ___ diet includes fruit, vegetables and protein.", a:["balanced","sedentary","contagious"], correct:0 }
+        ] },
+      { t:"Környezet és természet", c:`
+        <p><strong>Főnevek:</strong></p>
+        <ul>
+          <li><em>climate change</em> — éghajlatváltozás</li>
+          <li><em>global warming</em> — globális felmelegedés</li>
+          <li><em>pollution</em> — szennyezés</li>
+          <li><em>greenhouse gases</em> — üvegházhatású gázok</li>
+          <li><em>carbon footprint</em> — szénlábnyom</li>
+          <li><em>renewable energy</em> — megújuló energia</li>
+          <li><em>fossil fuels</em> — fosszilis tüzelőanyagok</li>
+          <li><em>emissions</em> — kibocsátás</li>
+          <li><em>waste</em> — hulladék</li>
+          <li><em>drought</em> — aszály</li>
+          <li><em>flood</em> — árvíz</li>
+          <li><em>wildlife</em> — vadvilág</li>
+          <li><em>habitat</em> — élőhely</li>
+          <li><em>endangered species</em> — veszélyeztetett faj</li>
+          <li><em>deforestation</em> — erdőirtás</li>
+          <li><em>ozone layer</em> — ózonréteg</li>
+          <li><em>ecosystem</em> — ökoszisztéma</li>
+          <li><em>biodiversity</em> — biodiverzitás</li>
+          <li><em>rainforest</em> — esőerdő</li>
+          <li><em>glacier</em> — gleccser</li>
+          <li><em>sea level</em> — tengerszint</li>
+          <li><em>natural disaster</em> — természeti katasztrófa</li>
+          <li><em>earthquake</em> — földrengés</li>
+          <li><em>wildfire</em> — bozóttűz</li>
+          <li><em>landfill</em> — szeméttelep</li>
+          <li><em>recycling</em> — újrahasznosítás</li>
+          <li><em>solar power</em> — napenergia</li>
+          <li><em>wind power</em> — szélenergia</li>
+          <li><em>conservation</em> — természetvédelem</li>
+          <li><em>litter</em> — szemét (utcán)</li>
+          <li><em>smog</em> — szmog</li>
+          <li><em>toxic waste</em> — mérgező hulladék</li>
+          <li><em>species</em> — faj</li>
+          <li><em>extinction</em> — kihalás</li>
+          <li><em>resources</em> — erőforrások</li>
+          <li><em>sustainability</em> — fenntarthatóság</li>
+          <li><em>pesticide</em> — növényvédő szer</li>
+          <li><em>overpopulation</em> — túlnépesedés</li>
+          <li><em>water shortage</em> — vízhiány</li>
+          <li><em>plastic</em> — műanyag</li>
+          <li><em>environment</em> — környezet</li>
+          <li><em>nature</em> — természet</li>
+          <li><em>forest</em> — erdő</li>
+          <li><em>ocean</em> — óceán</li>
+          <li><em>atmosphere</em> — légkör</li>
+          <li><em>temperature</em> — hőmérséklet</li>
+          <li><em>energy</em> — energia</li>
+          <li><em>power plant</em> — erőmű</li>
+          <li><em>recycling bin</em> — szelektív kuka</li>
+          <li><em>packaging</em> — csomagolás</li>
+          <li><em>environmentalist</em> — környezetvédő</li>
+          <li><em>greenhouse effect</em> — üvegházhatás</li>
+          <li><em>carbon dioxide</em> — szén-dioxid</li>
+          <li><em>sea life</em> — tengeri élővilág</li>
+          <li><em>ecology</em> — ökológia</li>
+        </ul>
+        <p><strong>Melléknevek:</strong></p>
+        <ul>
+          <li><em>sustainable</em> — fenntartható</li>
+          <li><em>eco-friendly</em> — környezetbarát</li>
+          <li><em>renewable</em> — megújuló</li>
+          <li><em>toxic</em> — mérgező</li>
+          <li><em>polluted</em> — szennyezett</li>
+          <li><em>organic</em> — bio / szerves</li>
+          <li><em>biodegradable</em> — lebomló</li>
+          <li><em>harmful</em> — káros</li>
+          <li><em>endangered</em> — veszélyeztetett</li>
+          <li><em>extinct</em> — kihalt</li>
+          <li><em>recyclable</em> — újrahasznosítható</li>
+          <li><em>environmental</em> — környezeti</li>
+          <li><em>green</em> — zöld (környezettudatos)</li>
+          <li><em>natural</em> — természetes</li>
+          <li><em>clean</em> — tiszta</li>
+          <li><em>clean</em> — tiszta</li>
+          <li><em>dirty</em> — piszkos</li>
+          <li><em>wasteful</em> — pazarló</li>
+          <li><em>efficient</em> — hatékony</li>
+          <li><em>renewable</em> — megújuló</li>
+          <li><em>disposable</em> — eldobható</li>
+        </ul>
+        <p><strong>Igék, kifejezések:</strong></p>
+        <ul>
+          <li><em>to recycle</em> — újrahasznosít</li>
+          <li><em>to reduce / cut emissions</em> — csökkenti a kibocsátást</li>
+          <li><em>to cut down (trees)</em> — kivág (fát)</li>
+          <li><em>to pollute</em> — szennyez</li>
+          <li><em>to conserve</em> — megóv</li>
+          <li><em>to throw away</em> — kidob</li>
+          <li><em>to save energy</em> — energiát takarít meg</li>
+          <li><em>to protect the environment</em> — védi a környezetet</li>
+          <li><em>to waste</em> — pazarol</li>
+          <li><em>to dump</em> — lerak (hulladékot)</li>
+          <li><em>to contaminate</em> — beszennyez</li>
+          <li><em>to preserve</em> — megőriz</li>
+          <li><em>to destroy</em> — elpusztít</li>
+          <li><em>to harm</em> — károsít</li>
+          <li><em>to release (gases)</em> — kibocsát (gázokat)</li>
+          <li><em>to run out of</em> — kifogy (vmiből)</li>
+          <li><em>to switch off</em> — lekapcsol</li>
+          <li><em>to plant trees</em> — fát ültet</li>
+          <li><em>to go green</em> — környezettudatossá válik</li>
+          <li><em>to raise awareness</em> — tudatosságot növel</li>
+          <li><em>to litter</em> — szemetel</li>
+          <li><em>to reuse</em> — újra felhasznál</li>
+          <li><em>to emit</em> — kibocsát</li>
+          <li><em>to flood</em> — eláraszt</li>
+          <li><em>to ban</em> — betilt</li>
+          <li><em>to clean up</em> — kitakarít</li>
+        </ul>
+        <p class="note-line">Kollokációk: <em>environmental damage</em>, <em>a natural disaster</em>.</p>`,
+        q:[
+          { q:"We should ___ paper and plastic.", a:["recycle","pollute","waste"], correct:0 },
+          { q:"Solar power is a ___ energy source.", a:["renewable","fossil","endangered"], correct:0 },
+          { q:"Pandas are an ___ species.", a:["endangered","renewable","recycled"], correct:0 },
+          { q:"Factories should reduce their ___ to fight climate change.", a:["emissions","habitats","glaciers"], correct:0 },
+          { q:"We can ___ energy by switching off the lights.", a:["save","pollute","waste"], correct:0 },
+          { q:"Plastic bottles are ___, so use the right bin.", a:["recyclable","toxic","extinct"], correct:0 }
+        ] },
+      { t:"Tudomány és technológia", c:`
+        <p><strong>Főnevek:</strong></p>
+        <ul>
+          <li><em>device</em> — eszköz</li>
+          <li><em>gadget</em> — kütyü</li>
+          <li><em>software</em> — szoftver</li>
+          <li><em>hardware</em> — hardver</li>
+          <li><em>app</em> — alkalmazás</li>
+          <li><em>artificial intelligence</em> — mesterséges intelligencia</li>
+          <li><em>data</em> — adat</li>
+          <li><em>breakthrough</em> — áttörés</li>
+          <li><em>experiment</em> — kísérlet</li>
+          <li><em>invention</em> — találmány</li>
+          <li><em>password</em> — jelszó</li>
+          <li><em>update</em> — frissítés</li>
+          <li><em>network</em> — hálózat</li>
+          <li><em>server</em> — szerver</li>
+          <li><em>browser</em> — böngésző</li>
+          <li><em>file</em> — fájl</li>
+          <li><em>folder</em> — mappa</li>
+          <li><em>screen</em> — képernyő</li>
+          <li><em>keyboard</em> — billentyűzet</li>
+          <li><em>touchscreen</em> — érintőképernyő</li>
+          <li><em>battery</em> — akkumulátor</li>
+          <li><em>charger</em> — töltő</li>
+          <li><em>cable</em> — kábel</li>
+          <li><em>memory</em> — memória</li>
+          <li><em>storage</em> — tárhely</li>
+          <li><em>cloud</em> — felhő</li>
+          <li><em>virus</em> — vírus</li>
+          <li><em>hacker</em> — hacker</li>
+          <li><em>cybersecurity</em> — kiberbiztonság</li>
+          <li><em>privacy</em> — adatvédelem</li>
+          <li><em>algorithm</em> — algoritmus</li>
+          <li><em>robot</em> — robot</li>
+          <li><em>drone</em> — drón</li>
+          <li><em>smartphone</em> — okostelefon</li>
+          <li><em>laptop</em> — laptop</li>
+          <li><em>router</em> — router</li>
+          <li><em>settings</em> — beállítások</li>
+          <li><em>backup</em> — biztonsági mentés</li>
+          <li><em>interface</em> — felület</li>
+          <li><em>technology</em> — technológia</li>
+          <li><em>internet</em> — internet</li>
+          <li><em>website</em> — weboldal</li>
+          <li><em>email</em> — e-mail</li>
+          <li><em>account</em> — fiók</li>
+          <li><em>username</em> — felhasználónév</li>
+          <li><em>processor</em> — processzor</li>
+          <li><em>microchip</em> — mikrochip</li>
+          <li><em>software update</em> — szoftverfrissítés</li>
+          <li><em>bug</em> — hiba (programban)</li>
+          <li><em>source code</em> — forráskód</li>
+          <li><em>download speed</em> — letöltési sebesség</li>
+          <li><em>e-book</em> — e-könyv</li>
+          <li><em>subscription</em> — előfizetés</li>
+          <li><em>streaming</em> — streamelés</li>
+          <li><em>automation</em> — automatizálás</li>
+        </ul>
+        <p><strong>Melléknevek:</strong></p>
+        <ul>
+          <li><em>user-friendly</em> — felhasználóbarát</li>
+          <li><em>cutting-edge</em> — élvonalbeli</li>
+          <li><em>outdated</em> — elavult</li>
+          <li><em>wireless</em> — vezeték nélküli</li>
+          <li><em>innovative</em> — innovatív</li>
+          <li><em>digital</em> — digitális</li>
+          <li><em>portable</em> — hordozható</li>
+          <li><em>automatic</em> — automatikus</li>
+          <li><em>efficient</em> — hatékony</li>
+          <li><em>reliable</em> — megbízható</li>
+          <li><em>complex</em> — összetett</li>
+          <li><em>high-tech</em> — csúcstechnológiás</li>
+          <li><em>virtual</em> — virtuális</li>
+          <li><em>smart</em> — okos</li>
+          <li><em>compatible</em> — kompatibilis</li>
+          <li><em>modern</em> — modern</li>
+          <li><em>advanced</em> — fejlett</li>
+          <li><em>secure</em> — biztonságos</li>
+          <li><em>artificial</em> — mesterséges</li>
+          <li><em>online</em> — online</li>
+          <li><em>offline</em> — offline</li>
+        </ul>
+        <p><strong>Igék, kifejezések:</strong></p>
+        <ul>
+          <li><em>to download</em> — letölt</li>
+          <li><em>to upload</em> — feltölt</li>
+          <li><em>to back up</em> — biztonsági mentést készít</li>
+          <li><em>to log in / out</em> — be- / kijelentkezik</li>
+          <li><em>to carry out research</em> — kutatást végez</li>
+          <li><em>to charge</em> — tölt</li>
+          <li><em>to install</em> — telepít</li>
+          <li><em>to update</em> — frissít</li>
+          <li><em>to crash</em> — lefagy</li>
+          <li><em>to browse</em> — böngészik</li>
+          <li><em>to switch on / off</em> — be- / kikapcsol</li>
+          <li><em>to plug in</em> — bedug (áramba)</li>
+          <li><em>to type</em> — gépel</li>
+          <li><em>to click</em> — kattint</li>
+          <li><em>to scroll</em> — görget</li>
+          <li><em>to hack</em> — feltör</li>
+          <li><em>to delete</em> — töröl</li>
+          <li><em>to save</em> — ment</li>
+          <li><em>to reboot</em> — újraindít</li>
+          <li><em>to connect to</em> — csatlakozik</li>
+          <li><em>to upgrade</em> — fejleszt (verziót)</li>
+          <li><em>to program / code</em> — programoz</li>
+          <li><em>to debug</em> — hibát javít (kódban)</li>
+          <li><em>to stream</em> — streamel</li>
+          <li><em>to sync</em> — szinkronizál</li>
+          <li><em>to log out</em> — kijelentkezik</li>
+        </ul>
+        <p class="note-line">Kollokációk: <em>a scientific discovery</em>, <em>to run a program</em>.</p>`,
+        q:[
+          { q:"Always ___ your files in case the computer crashes.", a:["back up","download","upload"], correct:0 },
+          { q:"This app is very ___; even kids can use it.", a:["user-friendly","endangered","redundant"], correct:0 },
+          { q:"Scientists ___ an experiment to test the theory.", a:["carried out","backed up","applied for"], correct:0 },
+          { q:"My phone is dead; I need to ___ it.", a:["charge","download","crash"], correct:0 },
+          { q:"You have to ___ before you can see your account.", a:["log in","back up","switch off"], correct:0 },
+          { q:"This software is ___; it's three versions old.", a:["outdated","wireless","user-friendly"], correct:0 }
+        ] },
+      { t:"Utazás és turizmus", c:`
+        <p><strong>Főnevek:</strong></p>
+        <ul>
+          <li><em>destination</em> — úti cél</li>
+          <li><em>accommodation</em> — szállás</li>
+          <li><em>itinerary</em> — útiterv</li>
+          <li><em>luggage</em> — poggyász</li>
+          <li><em>baggage</em> — csomag</li>
+          <li><em>delay</em> — késés</li>
+          <li><em>departure</em> — indulás</li>
+          <li><em>arrival</em> — érkezés</li>
+          <li><em>boarding pass</em> — beszállókártya</li>
+          <li><em>customs</em> — vám</li>
+          <li><em>sightseeing</em> — városnézés</li>
+          <li><em>landmark</em> — nevezetesség</li>
+          <li><em>journey</em> — utazás</li>
+          <li><em>trip</em> — kirándulás</li>
+          <li><em>flight</em> — repülőút</li>
+          <li><em>souvenir</em> — emléktárgy</li>
+          <li><em>guidebook</em> — útikönyv</li>
+          <li><em>passport</em> — útlevél</li>
+          <li><em>visa</em> — vízum</li>
+          <li><em>ticket</em> — jegy</li>
+          <li><em>fare</em> — viteldíj</li>
+          <li><em>currency</em> — pénznem</li>
+          <li><em>travel insurance</em> — utasbiztosítás</li>
+          <li><em>tourist</em> — turista</li>
+          <li><em>guide</em> — idegenvezető</li>
+          <li><em>resort</em> — üdülőhely</li>
+          <li><em>hostel</em> — ifjúsági szállás</li>
+          <li><em>check-in</em> — becsekkolás</li>
+          <li><em>departure lounge</em> — váróterem</li>
+          <li><em>layover</em> — átszállás</li>
+          <li><em>excursion</em> — kirándulás</li>
+          <li><em>backpacker</em> — hátizsákos turista</li>
+          <li><em>destination</em> — célállomás</li>
+          <li><em>seasick</em> — tengeribeteg</li>
+          <li><em>jet lag</em> — időeltolódás okozta fáradtság</li>
+          <li><em>border</em> — határ</li>
+          <li><em>terminal</em> — terminál</li>
+          <li><em>aisle seat</em> — folyosó melletti ülés</li>
+          <li><em>window seat</em> — ablak melletti ülés</li>
+          <li><em>crew</em> — személyzet</li>
+          <li><em>airport</em> — reptér</li>
+          <li><em>airline</em> — légitársaság</li>
+          <li><em>flight attendant</em> — légiutas-kísérő</li>
+          <li><em>gate</em> — kapu (reptér)</li>
+          <li><em>runway</em> — kifutópálya</li>
+          <li><em>baggage claim</em> — csomagkiadó</li>
+          <li><em>travel agency</em> — utazási iroda</li>
+          <li><em>brochure</em> — prospektus</li>
+          <li><em>map</em> — térkép</li>
+          <li><em>compass</em> — iránytű</li>
+          <li><em>cruise</em> — tengeri hajóút</li>
+          <li><em>ferry</em> — komp</li>
+          <li><em>road trip</em> — autós túra</li>
+          <li><em>sunscreen</em> — fényvédő</li>
+          <li><em>passport control</em> — útlevél-ellenőrzés</li>
+        </ul>
+        <p><strong>Melléknevek:</strong></p>
+        <ul>
+          <li><em>breathtaking</em> — lélegzetelállító</li>
+          <li><em>crowded</em> — zsúfolt</li>
+          <li><em>remote</em> — eldugott</li>
+          <li><em>scenic</em> — festői</li>
+          <li><em>affordable</em> — megfizethető</li>
+          <li><em>luxurious</em> — luxus</li>
+          <li><em>exotic</em> — egzotikus</li>
+          <li><em>picturesque</em> — festői</li>
+          <li><em>bustling</em> — nyüzsgő</li>
+          <li><em>relaxing</em> — pihentető</li>
+          <li><em>adventurous</em> — kalandos</li>
+          <li><em>delayed</em> — késő</li>
+          <li><em>overbooked</em> — túlfoglalt</li>
+          <li><em>guided</em> — vezetett (túra)</li>
+          <li><em>all-inclusive</em> — minden költséget tartalmazó</li>
+          <li><em>foreign</em> — külföldi</li>
+          <li><em>local</em> — helyi</li>
+          <li><em>seasonal</em> — szezonális</li>
+          <li><em>comfortable</em> — kényelmes</li>
+          <li><em>memorable</em> — emlékezetes</li>
+          <li><em>budget</em> — költségkímélő</li>
+        </ul>
+        <p><strong>Igék, kifejezések:</strong></p>
+        <ul>
+          <li><em>to book</em> — lefoglal</li>
+          <li><em>to check in / out</em> — be- / kijelentkezik</li>
+          <li><em>to get away</em> — elutazik (kikapcsolódni)</li>
+          <li><em>to set off</em> — útnak indul</li>
+          <li><em>to catch a flight</em> — eléri a gépet</li>
+          <li><em>to miss a flight</em> — lekési a gépet</li>
+          <li><em>to pack</em> — csomagol</li>
+          <li><em>to go on holiday</em> — nyaralni megy</li>
+          <li><em>to board</em> — beszáll</li>
+          <li><em>to take off</em> — felszáll (gép)</li>
+          <li><em>to land</em> — leszáll (gép)</li>
+          <li><em>to explore</em> — felfedez</li>
+          <li><em>to wander around</em> — kószál</li>
+          <li><em>to extend a stay</em> — meghosszabbítja az ott-tartózkodást</li>
+          <li><em>to travel light</em> — kevés csomaggal utazik</li>
+          <li><em>to sightsee</em> — várost néz</li>
+          <li><em>to get lost</em> — eltéved</li>
+          <li><em>to make a reservation</em> — foglal</li>
+          <li><em>to cancel</em> — lemond</li>
+          <li><em>off the beaten track</em> — kevésbé ismert helyek</li>
+          <li><em>to travel abroad</em> — külföldre utazik</li>
+          <li><em>to rent a car</em> — autót bérel</li>
+          <li><em>to check the schedule</em> — megnézi a menetrendet</li>
+          <li><em>to queue</em> — sorban áll</li>
+          <li><em>to tip</em> — borravalót ad</li>
+          <li><em>to commute</em> — ingázik</li>
+        </ul>
+        <p class="note-line">Kollokációk: <em>a package holiday</em>, <em>a guided tour</em>, <em>a tourist attraction</em>.</p>`,
+        q:[
+          { q:"We ___ a hotel near the beach.", a:["booked","checked","delayed"], correct:0 },
+          { q:"Our flight had a two-hour ___.", a:["delay","luggage","itinerary"], correct:0 },
+          { q:"I love ___ when I visit a new city.", a:["sightseeing","accommodation","luggage"], correct:0 },
+          { q:"We need to ___ at the hotel before 3 p.m.", a:["check in","set off","take off"], correct:0 },
+          { q:"Don't forget to ___ your suitcase the night before.", a:["pack","board","cancel"], correct:0 },
+          { q:"The plane couldn't ___ because of the fog.", a:["take off","check in","book"], correct:0 }
+        ] },
+      { t:"Média és szórakozás", c:`
+        <p><strong>Főnevek:</strong></p>
+        <ul>
+          <li><em>broadcast</em> — közvetítés</li>
+          <li><em>subscription</em> — előfizetés</li>
+          <li><em>subscriber</em> — feliratkozó</li>
+          <li><em>headline</em> — főcím</li>
+          <li><em>advertisement</em> — reklám</li>
+          <li><em>audience</em> — közönség</li>
+          <li><em>celebrity</em> — híresség</li>
+          <li><em>current affairs</em> — közélet</li>
+          <li><em>documentary</em> — dokumentumfilm</li>
+          <li><em>episode</em> — epizód</li>
+          <li><em>review</em> — kritika</li>
+          <li><em>journalist</em> — újságíró</li>
+          <li><em>content creator</em> — tartalomgyártó</li>
+          <li><em>livestream</em> — élő közvetítés</li>
+          <li><em>channel</em> — csatorna</li>
+          <li><em>podcast</em> — podcast</li>
+          <li><em>news</em> — hír(ek)</li>
+          <li><em>press</em> — sajtó</li>
+          <li><em>media</em> — média</li>
+          <li><em>article</em> — cikk</li>
+          <li><em>editor</em> — szerkesztő</li>
+          <li><em>influencer</em> — influenszer</li>
+          <li><em>viewer</em> — néző</li>
+          <li><em>hashtag</em> — hashtag</li>
+          <li><em>trend</em> — trend</li>
+          <li><em>clickbait</em> — kattintásvadász cím</li>
+          <li><em>censorship</em> — cenzúra</li>
+          <li><em>propaganda</em> — propaganda</li>
+          <li><em>coverage</em> — tudósítás</li>
+          <li><em>interview</em> — interjú</li>
+          <li><em>series</em> — sorozat</li>
+          <li><em>sitcom</em> — szituációs komédia</li>
+          <li><em>commercial</em> — reklámblokk</li>
+          <li><em>front page</em> — címlap</li>
+          <li><em>tabloid</em> — bulvárlap</li>
+          <li><em>broadcast</em> — adás</li>
+          <li><em>feed</em> — hírfolyam</li>
+          <li><em>post</em> — bejegyzés</li>
+          <li><em>comment</em> — hozzászólás</li>
+          <li><em>notification</em> — értesítés</li>
+          <li><em>broadcaster</em> — műsorszolgáltató</li>
+          <li><em>network</em> — csatorna(hálózat)</li>
+          <li><em>press conference</em> — sajtótájékoztató</li>
+          <li><em>breaking news</em> — rendkívüli hír</li>
+          <li><em>talk show</em> — beszélgetős műsor</li>
+          <li><em>game show</em> — vetélkedő</li>
+          <li><em>soap opera</em> — szappanopera</li>
+          <li><em>subscriber count</em> — feliratkozók száma</li>
+          <li><em>thumbnail</em> — borítókép</li>
+          <li><em>algorithm</em> — algoritmus</li>
+          <li><em>ratings</em> — nézettség</li>
+          <li><em>scandal</em> — botrány</li>
+          <li><em>rumour</em> — pletyka</li>
+          <li><em>fan base</em> — rajongótábor</li>
+          <li><em>merchandise</em> — ajándéktárgyak</li>
+        </ul>
+        <p><strong>Melléknevek:</strong></p>
+        <ul>
+          <li><em>biased</em> — elfogult</li>
+          <li><em>entertaining</em> — szórakoztató</li>
+          <li><em>gripping</em> — magával ragadó</li>
+          <li><em>mainstream</em> — fősodratú</li>
+          <li><em>reliable</em> — megbízható</li>
+          <li><em>misleading</em> — megtévesztő</li>
+          <li><em>sensational</em> — botrányhajhász</li>
+          <li><em>informative</em> — informatív</li>
+          <li><em>popular</em> — népszerű</li>
+          <li><em>controversial</em> — vitatott</li>
+          <li><em>addictive</em> — függőséget okozó</li>
+          <li><em>interactive</em> — interaktív</li>
+          <li><em>up-to-date</em> — naprakész</li>
+          <li><em>trending</em> — felkapott</li>
+          <li><em>famous</em> — híres</li>
+          <li><em>viral</em> — vírusszerűen terjedő</li>
+          <li><em>live</em> — élő</li>
+          <li><em>recorded</em> — felvett</li>
+          <li><em>objective</em> — tárgyilagos</li>
+          <li><em>subjective</em> — szubjektív</li>
+          <li><em>engaging</em> — lebilincselő</li>
+        </ul>
+        <p><strong>Igék, kifejezések:</strong></p>
+        <ul>
+          <li><em>to stream</em> — streamel</li>
+          <li><em>to go viral</em> — vírusként terjed</li>
+          <li><em>to broadcast</em> — sugároz</li>
+          <li><em>to subscribe to</em> — feliratkozik</li>
+          <li><em>to scroll through</em> — végiggörget</li>
+          <li><em>to keep up with the news</em> — követi a híreket</li>
+          <li><em>to post</em> — posztol</li>
+          <li><em>to upload</em> — feltölt</li>
+          <li><em>to follow</em> — követ</li>
+          <li><em>to share</em> — megoszt</li>
+          <li><em>to like</em> — lájkol</li>
+          <li><em>to comment</em> — hozzászól</li>
+          <li><em>to advertise</em> — hirdet</li>
+          <li><em>to download</em> — letölt</li>
+          <li><em>to tune in</em> — bekapcsol (műsort)</li>
+          <li><em>to report</em> — tudósít</li>
+          <li><em>to publish</em> — közzétesz</li>
+          <li><em>to log on</em> — bejelentkezik</li>
+          <li><em>to switch channels</em> — csatornát vált</li>
+          <li><em>to binge-watch</em> — sorozatot darál</li>
+          <li><em>to go live</em> — élőben adásba megy</li>
+          <li><em>to edit</em> — vág, szerkeszt</li>
+          <li><em>to record</em> — rögzít</li>
+          <li><em>to broadcast live</em> — élőben közvetít</li>
+          <li><em>to monetise</em> — bevételt termel (tartalomból)</li>
+          <li><em>to unsubscribe</em> — leiratkozik</li>
+        </ul>
+        <p class="note-line">Kollokációk: <em>breaking news</em>, <em>a social media platform</em>, <em>prime time</em>.</p>`,
+        q:[
+          { q:"The video ___ overnight — millions of views.", a:["went viral","broadcast","streamed"], correct:0 },
+          { q:"I have a monthly ___ to that service.", a:["subscription","headline","audience"], correct:0 },
+          { q:"That newspaper is very ___ in its reporting.", a:["biased","viral","current"], correct:0 },
+          { q:"Millions of people ___ to her channel.", a:["subscribe","broadcast","edit"], correct:0 },
+          { q:"I don't trust that paper; its reporting is ___.", a:["biased","live","interactive"], correct:0 },
+          { q:"He spends hours ___ social media every day.", a:["scrolling through","going viral","broadcasting"], correct:0 }
+        ] },
+      { t:"Pénz és vásárlás", c:`
+        <p><strong>Főnevek:</strong></p>
+        <ul>
+          <li><em>income</em> — jövedelem</li>
+          <li><em>expense</em> — kiadás</li>
+          <li><em>bargain</em> — jó vétel</li>
+          <li><em>discount</em> — kedvezmény</li>
+          <li><em>refund</em> — visszatérítés</li>
+          <li><em>receipt</em> — nyugta</li>
+          <li><em>budget</em> — költségvetés</li>
+          <li><em>savings</em> — megtakarítás</li>
+          <li><em>loan</em> — kölcsön</li>
+          <li><em>debt</em> — adósság</li>
+          <li><em>currency</em> — pénznem</li>
+          <li><em>bill</em> — számla</li>
+          <li><em>change</em> — visszajáró</li>
+          <li><em>instalment</em> — részlet</li>
+          <li><em>cash</em> — készpénz</li>
+          <li><em>credit card</em> — hitelkártya</li>
+          <li><em>bank account</em> — bankszámla</li>
+          <li><em>interest</em> — kamat</li>
+          <li><em>mortgage</em> — jelzáloghitel</li>
+          <li><em>rent</em> — bérleti díj</li>
+          <li><em>salary</em> — fizetés</li>
+          <li><em>fee</em> — díj</li>
+          <li><em>tax</em> — adó</li>
+          <li><em>fortune</em> — vagyon</li>
+          <li><em>wealth</em> — gazdagság</li>
+          <li><em>investment</em> — befektetés</li>
+          <li><em>profit</em> — nyereség</li>
+          <li><em>loss</em> — veszteség</li>
+          <li><em>deposit</em> — letét / előleg</li>
+          <li><em>withdrawal</em> — pénzfelvétel</li>
+          <li><em>transaction</em> — tranzakció</li>
+          <li><em>overdraft</em> — folyószámlahitel</li>
+          <li><em>pocket money</em> — zsebpénz</li>
+          <li><em>allowance</em> — juttatás</li>
+          <li><em>price tag</em> — árcédula</li>
+          <li><em>sale</em> — akció</li>
+          <li><em>voucher</em> — utalvány</li>
+          <li><em>inflation</em> — infláció</li>
+          <li><em>exchange rate</em> — árfolyam</li>
+          <li><em>coin</em> — érme</li>
+          <li><em>wallet</em> — pénztárca</li>
+          <li><em>salary slip</em> — fizetési papír</li>
+          <li><em>bank statement</em> — bankszámlakivonat</li>
+          <li><em>savings account</em> — megtakarítási számla</li>
+          <li><em>pension fund</em> — nyugdíjpénztár</li>
+          <li><em>stock</em> — részvény</li>
+          <li><em>share</em> — részvény</li>
+          <li><em>dividend</em> — osztalék</li>
+          <li><em>bargain hunter</em> — akcióvadász</li>
+          <li><em>cashier</em> — pénztáros</li>
+          <li><em>checkout</em> — pénztár (bolt)</li>
+          <li><em>shopping list</em> — bevásárlólista</li>
+          <li><em>refund policy</em> — visszatérítési szabályzat</li>
+          <li><em>price</em> — ár</li>
+          <li><em>cost of living</em> — megélhetési költség</li>
+        </ul>
+        <p><strong>Melléknevek:</strong></p>
+        <ul>
+          <li><em>affordable</em> — megfizethető</li>
+          <li><em>expensive</em> — drága</li>
+          <li><em>cheap</em> — olcsó</li>
+          <li><em>broke</em> — leégett</li>
+          <li><em>valuable</em> — értékes</li>
+          <li><em>worthless</em> — értéktelen</li>
+          <li><em>priceless</em> — felbecsülhetetlen</li>
+          <li><em>wealthy</em> — gazdag</li>
+          <li><em>poor</em> — szegény</li>
+          <li><em>economical</em> — gazdaságos</li>
+          <li><em>overpriced</em> — túlárazott</li>
+          <li><em>free</em> — ingyenes</li>
+          <li><em>generous</em> — nagylelkű</li>
+          <li><em>stingy</em> — fukar</li>
+          <li><em>financial</em> — pénzügyi</li>
+          <li><em>rich</em> — gazdag</li>
+          <li><em>luxurious</em> — luxus</li>
+          <li><em>reasonable</em> — elfogadható (ár)</li>
+          <li><em>pricey</em> — borsos</li>
+          <li><em>thrifty</em> — takarékos</li>
+          <li><em>bankrupt</em> — csődbe ment</li>
+        </ul>
+        <p><strong>Igék, kifejezések:</strong></p>
+        <ul>
+          <li><em>to afford</em> — megengedhet magának</li>
+          <li><em>to save up</em> — félretesz</li>
+          <li><em>to spend</em> — költ</li>
+          <li><em>to waste</em> — pazarol</li>
+          <li><em>to pay in instalments</em> — részletre fizet</li>
+          <li><em>to be on sale</em> — akciós</li>
+          <li><em>to lend</em> — kölcsönad</li>
+          <li><em>to borrow</em> — kölcsönvesz</li>
+          <li><em>to owe</em> — tartozik</li>
+          <li><em>to get a refund</em> — visszatérítést kap</li>
+          <li><em>to rip (sb) off</em> — átveri (árban)</li>
+          <li><em>to earn</em> — keres (pénzt)</li>
+          <li><em>to invest</em> — befektet</li>
+          <li><em>to withdraw</em> — pénzt vesz fel</li>
+          <li><em>to deposit</em> — befizet</li>
+          <li><em>to charge</em> — felszámít</li>
+          <li><em>to bargain</em> — alkudozik</li>
+          <li><em>to go bankrupt</em> — csődbe megy</li>
+          <li><em>to budget</em> — beosztja a pénzt</li>
+          <li><em>to make ends meet</em> — kijön a fizetéséből</li>
+          <li><em>to shop around</em> — körülnéz az árak közt</li>
+          <li><em>to haggle</em> — alkudozik</li>
+          <li><em>to pay off (a debt)</em> — törleszt</li>
+          <li><em>to top up</em> — feltölt (egyenleget)</li>
+          <li><em>to splash out</em> — sokat költ</li>
+          <li><em>to save money</em> — pénzt spórol</li>
+        </ul>
+        <p class="note-line">Kollokációk: <em>value for money</em>, <em>to make ends meet</em>, <em>to be in debt</em>.</p>`,
+        q:[
+          { q:"I can't ___ a new phone right now.", a:["afford","save","refund"], correct:0 },
+          { q:"If it's faulty, you can get a ___.", a:["refund","receipt","bargain"], correct:0 },
+          { q:"I'm ___ for a holiday next year.", a:["saving up","broke","spending"], correct:0 },
+          { q:"I'm trying to ___ for a new car.", a:["save up","rip off","owe"], correct:0 },
+          { q:"If you shop around, you might find a ___.", a:["bargain","debt","bill"], correct:0 },
+          { q:"She can barely ___ the rent each month.", a:["afford","lend","invest"], correct:0 }
+        ] },
+      { t:"Bűnözés és társadalom", c:`
+        <p><strong>Főnevek:</strong></p>
+        <ul>
+          <li><em>crime</em> — bűncselekmény</li>
+          <li><em>criminal</em> — bűnöző</li>
+          <li><em>offender</em> — elkövető</li>
+          <li><em>burglary</em> — betörés</li>
+          <li><em>theft</em> — lopás</li>
+          <li><em>robbery</em> — rablás</li>
+          <li><em>shoplifting</em> — bolti lopás</li>
+          <li><em>fraud</em> — csalás</li>
+          <li><em>witness</em> — szemtanú</li>
+          <li><em>suspect</em> — gyanúsított</li>
+          <li><em>evidence</em> — bizonyíték</li>
+          <li><em>trial</em> — tárgyalás</li>
+          <li><em>jury</em> — esküdtszék</li>
+          <li><em>sentence</em> — ítélet</li>
+          <li><em>fine</em> — bírság</li>
+          <li><em>prison</em> — börtön</li>
+          <li><em>jail</em> — fogda</li>
+          <li><em>victim</em> — áldozat</li>
+          <li><em>murder</em> — gyilkosság</li>
+          <li><em>kidnapping</em> — emberrablás</li>
+          <li><em>smuggling</em> — csempészet</li>
+          <li><em>vandalism</em> — rongálás</li>
+          <li><em>bribery</em> — megvesztegetés</li>
+          <li><em>arson</em> — gyújtogatás</li>
+          <li><em>blackmail</em> — zsarolás</li>
+          <li><em>forgery</em> — hamisítás</li>
+          <li><em>detective</em> — nyomozó</li>
+          <li><em>judge</em> — bíró</li>
+          <li><em>lawyer</em> — ügyvéd</li>
+          <li><em>court</em> — bíróság</li>
+          <li><em>law</em> — törvény</li>
+          <li><em>arrest</em> — letartóztatás</li>
+          <li><em>punishment</em> — büntetés</li>
+          <li><em>guard</em> — őr</li>
+          <li><em>cell</em> — cella</li>
+          <li><em>alibi</em> — alibi</li>
+          <li><em>gang</em> — banda</li>
+          <li><em>hostage</em> — túsz</li>
+          <li><em>verdict</em> — ítélet (döntés)</li>
+          <li><em>offence</em> — jogsértés</li>
+          <li><em>police officer</em> — rendőr</li>
+          <li><em>crime scene</em> — tetthely</li>
+          <li><em>fingerprint</em> — ujjlenyomat</li>
+          <li><em>weapon</em> — fegyver</li>
+          <li><em>handcuffs</em> — bilincs</li>
+          <li><em>interrogation</em> — kihallgatás</li>
+          <li><em>confession</em> — beismerő vallomás</li>
+          <li><em>appeal</em> — fellebbezés</li>
+          <li><em>probation</em> — feltételes szabadlábra helyezés</li>
+          <li><em>parole</em> — feltételes szabadon bocsátás</li>
+          <li><em>theft</em> — tolvajlás</li>
+          <li><em>trespassing</em> — birtokháborítás</li>
+          <li><em>CCTV</em> — térfigyelő kamera</li>
+          <li><em>law enforcement</em> — rendvédelem</li>
+          <li><em>security</em> — biztonság</li>
+        </ul>
+        <p><strong>Melléknevek:</strong></p>
+        <ul>
+          <li><em>guilty</em> — bűnös</li>
+          <li><em>innocent</em> — ártatlan</li>
+          <li><em>illegal</em> — illegális</li>
+          <li><em>legal</em> — törvényes</li>
+          <li><em>violent</em> — erőszakos</li>
+          <li><em>suspicious</em> — gyanús</li>
+          <li><em>dangerous</em> — veszélyes</li>
+          <li><em>armed</em> — felfegyverzett</li>
+          <li><em>corrupt</em> — korrupt</li>
+          <li><em>convicted</em> — elítélt</li>
+          <li><em>notorious</em> — hírhedt</li>
+          <li><em>ruthless</em> — könyörtelen</li>
+          <li><em>anonymous</em> — névtelen</li>
+          <li><em>organised</em> — szervezett (bűnözés)</li>
+          <li><em>petty</em> — kisstílű (bűn)</li>
+          <li><em>criminal</em> — bűnügyi</li>
+          <li><em>lawful</em> — törvényes</li>
+          <li><em>unlawful</em> — törvénytelen</li>
+          <li><em>aggressive</em> — agresszív</li>
+          <li><em>guilty</em> — vétkes</li>
+          <li><em>wanted</em> — körözött</li>
+        </ul>
+        <p><strong>Igék, kifejezések:</strong></p>
+        <ul>
+          <li><em>to commit a crime</em> — bűncselekményt követ el</li>
+          <li><em>to arrest</em> — letartóztat</li>
+          <li><em>to break the law</em> — törvényt szeg</li>
+          <li><em>to investigate</em> — nyomoz</li>
+          <li><em>to charge (sb with)</em> — megvádol</li>
+          <li><em>to convict</em> — elítél</li>
+          <li><em>to get away with</em> — megússza</li>
+          <li><em>to report a crime</em> — feljelentést tesz</li>
+          <li><em>to steal</em> — lop</li>
+          <li><em>to rob</em> — kirabol</li>
+          <li><em>to burgle</em> — betör</li>
+          <li><em>to accuse</em> — megvádol</li>
+          <li><em>to sentence</em> — elítél (büntetésre)</li>
+          <li><em>to fine</em> — megbírságol</li>
+          <li><em>to release</em> — szabadon enged</li>
+          <li><em>to escape</em> — megszökik</li>
+          <li><em>to witness</em> — tanúja vminek</li>
+          <li><em>to suspect</em> — gyanúsít</li>
+          <li><em>to prosecute</em> — vádat emel</li>
+          <li><em>to plead guilty</em> — bűnösnek vallja magát</li>
+          <li><em>to break in</em> — betör</li>
+          <li><em>to commit fraud</em> — csalást követ el</li>
+          <li><em>to give evidence</em> — tanúskodik</li>
+          <li><em>to serve a sentence</em> — letölti a büntetést</li>
+          <li><em>to be on the run</em> — menekülésben van</li>
+          <li><em>to catch a thief</em> — tolvajt elkap</li>
+        </ul>
+        <p class="note-line">Kollokációk: <em>community service</em>, <em>a life sentence</em>, <em>to serve time</em>.</p>`,
+        q:[
+          { q:"The police ___ the suspect last night.", a:["arrested","committed","witnessed"], correct:0 },
+          { q:"He was found ___ and sent to prison.", a:["guilty","innocent","fine"], correct:0 },
+          { q:"Speeding is illegal — you'll get a ___.", a:["fine","trial","theft"], correct:0 },
+          { q:"There wasn't enough ___ to convict him.", a:["evidence","sentence","jury"], correct:0 },
+          { q:"The thief managed to ___ the crime.", a:["get away with","report","witness"], correct:0 },
+          { q:"He was sent to ___ for five years.", a:["prison","fine","trial"], correct:0 }
+        ] },
+      { t:"Phrasal verbs (gyakori vonzatos igék)", c:`
+        <p>Ige + partikula; a jelentés gyakran nem kikövetkeztethető — tanuld őket egész kifejezésként.</p>
+        <ul>
+          <li><em>to give up</em> — feladni, abbahagyni</li>
+          <li><em>to look after</em> — vigyázni valakire</li>
+          <li><em>to put off</em> — elhalasztani</li>
+          <li><em>to find out</em> — kideríteni</li>
+          <li><em>to get over</em> — túltenni magát valamin</li>
+          <li><em>to turn down</em> — elutasítani; lehalkítani</li>
+          <li><em>to look forward to</em> — előre örülni valaminek (+ -ing)</li>
+          <li><em>to run out of</em> — kifogyni valamiből</li>
+          <li><em>to take up</em> — belekezdeni (hobbiba)</li>
+          <li><em>to bring up</em> — felnevelni; szóba hozni</li>
+          <li><em>to carry on</em> — folytatni</li>
+          <li><em>to come across</em> — véletlenül rátalálni</li>
+          <li><em>to deal with</em> — kezelni, foglalkozni valamivel</li>
+          <li><em>to get along with</em> — jól kijönni valakivel</li>
+          <li><em>to look up</em> — kikeresni (szót, infót)</li>
+          <li><em>to make up</em> — kitalálni; kibékülni</li>
+          <li><em>to point out</em> — rámutatni, felhívni a figyelmet</li>
+          <li><em>to put up with</em> — eltűrni, elviselni</li>
+          <li><em>to set up</em> — felállítani, létrehozni</li>
+          <li><em>to work out</em> — kitalálni; edzeni</li>
+        </ul>`,
+        q:[
+          { q:"I'm trying to ___ smoking.", a:["give up","look after","put off"], correct:0 },
+          { q:"We ___ milk — can you buy some?", a:["ran out of","found out","took up"], correct:0 },
+          { q:"She ___ the job offer because the pay was low.", a:["turned down","brought up","got over"], correct:0 },
+          { q:"Could you ___ my dog while I'm away?", a:["look after","look up","look forward"], correct:0 },
+          { q:"I need to ___ this word in the dictionary.", a:["look up","put off","give up"], correct:0 },
+          { q:"We had to ___ the meeting until Monday.", a:["put off","run out","bring up"], correct:0 }
+        ] },
+      { t:"Kollokációk (gyakori szókapcsolatok)", c:`
+        <p>A kollokáció szavak természetes párosítása. B2-n sokat számít a <em>make</em> / <em>do</em> / <em>take</em> / <em>have</em> helyes választása.</p>
+        <ul>
+          <li><strong>make</strong>: <em>make a decision</em>, <em>make a mistake</em>, <em>make progress</em>, <em>make an effort</em>, <em>make money</em>, <em>make friends</em>, <em>make noise</em>, <em>make an appointment</em></li>
+          <li><strong>do</strong>: <em>do homework</em>, <em>do the housework</em>, <em>do business</em>, <em>do research</em>, <em>do your best</em>, <em>do someone a favour</em>, <em>do the shopping</em></li>
+          <li><strong>take</strong>: <em>take a risk</em>, <em>take a break</em>, <em>take place</em>, <em>take part</em>, <em>take a photo</em>, <em>take care</em>, <em>take advantage of</em></li>
+          <li><strong>have</strong>: <em>have fun</em>, <em>have a shower</em>, <em>have a rest</em>, <em>have a look</em>, <em>have a chat</em>, <em>have breakfast</em></li>
+          <li><strong>melléknév + főnév</strong>: <em>heavy rain</em>, <em>strong coffee</em>, <em>a keen interest</em>, <em>a narrow escape</em>, <em>a deep sleep</em>, <em>bitterly cold</em>, <em>highly likely</em></li>
+        </ul>`,
+        q:[
+          { q:"Be careful not to ___ a mistake.", a:["make","do","take"], correct:0 },
+          { q:"I really need to ___ a break.", a:["take","make","do"], correct:0 },
+          { q:"We're trying to ___ progress on the project.", a:["make","do","have"], correct:0 },
+          { q:"Don't forget to ___ a photo of the view.", a:["take","make","do"], correct:0 },
+          { q:"I have to ___ my homework before dinner.", a:["do","make","take"], correct:0 },
+          { q:"Try to ___ an effort to be on time.", a:["make","do","have"], correct:0 }
+        ] },
+      { t:"Idiómák és állandósult kifejezések", c:`
+        <p>Az idióma jelentése nem a szavak összegéből jön. A vizsgán a megértés a cél.</p>
+        <ul>
+          <li><em>a piece of cake</em> — pofonegyszerű</li>
+          <li><em>once in a blue moon</em> — nagyon ritkán</li>
+          <li><em>to cost an arm and a leg</em> — egy vagyonba kerül</li>
+          <li><em>under the weather</em> — gyengélkedik</li>
+          <li><em>to hit the books</em> — nekiül tanulni</li>
+          <li><em>to break the ice</em> — feloldja a feszültséget</li>
+          <li><em>to get cold feet</em> — beparázik, meghátrál</li>
+          <li><em>the last straw</em> — az utolsó csepp a pohárban</li>
+          <li><em>over the moon</em> — a fellegekben jár (boldog)</li>
+          <li><em>to be in the same boat</em> — egy cipőben járnak</li>
+          <li><em>to pull someone's leg</em> — ugratni valakit</li>
+          <li><em>to be on cloud nine</em> — nagyon boldog</li>
+          <li><em>to bite the bullet</em> — összeszedi magát és belevág</li>
+          <li><em>to call it a day</em> — mára befejezi</li>
+          <li><em>to keep an eye on</em> — szemmel tart</li>
+          <li><em>to make up your mind</em> — dönt</li>
+        </ul>`,
+        q:[
+          { q:"The exam was ___ — really easy.", a:["a piece of cake","under the weather","cold feet"], correct:0 },
+          { q:"That car costs ___.", a:["an arm and a leg","a piece of cake","cold feet"], correct:0 },
+          { q:"I feel a bit ___ today, maybe I'm getting ill.", a:["under the weather","over the moon","a piece of cake"], correct:0 },
+          { q:"I'm ___ — I just won the competition!", a:["over the moon","under the weather","in hot water"], correct:0 },
+          { q:"Stop ___ my leg, that can't be true!", a:["pulling","breaking","hitting"], correct:0 },
+          { q:"Let's ___ it a day; we're all tired.", a:["call","make","take"], correct:0 }
+        ] },
+      { t:"Szóképzés (prefixum, szuffixum)", c:`
+        <p>Egy szótőből toldalékokkal több szófaj — íráskor és a vizsgán is hasznos.</p>
+        <ul>
+          <li><strong>Tagadó/módosító prefixumok</strong>: <em>un-</em> (unhappy), <em>im-/in-/il-/ir-</em> (impossible, illegal, irregular), <em>dis-</em> (disagree), <em>re-</em> (rewrite), <em>over-</em> (overwork), <em>under-</em> (underestimate), <em>mis-</em> (misunderstand), <em>pre-</em> (preview), <em>anti-</em> (antisocial).</li>
+          <li><strong>Főnévképzők</strong>: -tion/-sion (decision), -ment (development), -ness (happiness), -ity (ability), -ship (friendship), -hood (childhood), -er/-or (teacher, actor), -ist (artist), -ism (tourism).</li>
+          <li><strong>Melléknévképzők</strong>: -ful (useful), -less (careless), -able/-ible (comfortable), -ive (creative), -ous (famous), -al (natural), -y (cloudy).</li>
+          <li><strong>Határozó</strong>: -ly (quickly). <strong>Igeképzők</strong>: -ise/-ize (modernise), -en (strengthen), -ify (simplify).</li>
+          <li><strong>Szócsaládok</strong>: <em>care — careful — careless — carefully — caring</em>; <em>act — action — active — actively — react</em>.</li>
+        </ul>`,
+        q:[
+          { q:"The opposite of 'possible' is ___.", a:["impossible","unpossible","dispossible"], correct:0 },
+          { q:"Noun form of 'happy': ___.", a:["happiness","happily","unhappy"], correct:0 },
+          { q:"Adjective from 'use': ___.", a:["useful","usefully","user"], correct:0 },
+          { q:"Adverb form of 'careful': ___.", a:["carefully","careless","caring"], correct:0 },
+          { q:"The opposite of 'legal' (add a prefix): ___.", a:["illegal","unlegal","dislegal"], correct:0 },
+          { q:"Verb from 'strong': ___.", a:["strengthen","strongly","strongness"], correct:0 }
+        ] }
+    ]
+  },
+  {
+    id:"m3", num:"03", title:"Olvasásértés (Reading)", sub:"3 feladat, 3 olvasási technika",
+    intro:"A Euroexam olvasásrésze 3 feladatból áll, mindegyik más technikát kíván. Szótár használható — de okosan. A 🔊 gombbal a gyakorló szövegeket is meghallgathatod.",
+    topics:[
+      { t:"Skimming – áttekintő olvasás (1. feladat)", c:`
+        <p><strong>Mi ez?</strong> Gyors átfutás a fő gondolatért — nem minden szóért. Cél: 1–2 perc alatt megérteni, miről szól a szöveg és hogyan épül fel.</p>
+        <p><strong>Hogyan csináld:</strong></p>
+        <ol class="steps">
+          <li>Olvasd el a címet és az alcímeket.</li>
+          <li>Olvasd el az első és az utolsó bekezdést.</li>
+          <li>Minden bekezdésből olvasd el az első mondatot (a „topic sentence").</li>
+          <li>Figyelj a kiemelt szavakra és a számokra.</li>
+          <li>Ne állj meg ismeretlen szónál — haladj tovább.</li>
+        </ol>
+        <p>Útjelző szavak: <em>firstly</em>, <em>however</em>, <em>for example</em>, <em>on the other hand</em>, <em>in conclusion</em>.</p>
+        <p class="note-line">⚠️ Ne olvass szóról szóra — a skimmingnél a nagy kép a cél.</p>
+        <p><strong>Gyakorlás — fusd át, majd válaszolj:</strong></p>
+        <div class="passage">The city of Venice attracts millions of tourists every year. Visitors come to admire its canals, historic bridges and beautiful old buildings. However, the huge number of tourists has created problems. Streets become overcrowded, prices rise, and many locals have moved away. The city council is now considering limits on the number of daily visitors.</div>`,
+        q:[
+          { q:"You want the general idea of a text fast. Which technique?", a:["skimming","scanning","intensive reading"], correct:0 },
+          { q:"When skimming a paragraph, the key sentence is usually the…", a:["first sentence","longest sentence","last word"], correct:0 },
+          { q:"A question asks: 'What is the text mainly about?' You should…", a:["skim the whole text","look up every word","read one line"], correct:0 },
+          { q:"(Venice) What is the passage mainly about?", a:["The problems caused by mass tourism","The history of Venetian bridges","How to book a hotel"], correct:0 },
+          { q:"(Venice) The best title would be…", a:["Too Many Tourists in Venice","Italian Cooking Classes","Learning to Row a Boat"], correct:0 },
+          { q:"(Venice) Why have many locals moved away?", a:["Overcrowding and rising prices","Bad weather","No bridges"], correct:0 }
+        ] },
+      { t:"Scanning – konkrét információ keresése (2. feladat)", c:`
+        <p><strong>Mi ez?</strong> Egy konkrét adat (név, dátum, szám, szó) gyors megkeresése anélkül, hogy mindent elolvasnál.</p>
+        <p><strong>Hogyan csináld:</strong></p>
+        <ol class="steps">
+          <li>Olvasd el előbb a kérdést, és azonosítsd a kulcsszót.</li>
+          <li>Gondolj a kulcsszó szinonimáira is.</li>
+          <li>„Pásztázd" a szöveget a kulcsszóért (számok, nagybetűs nevek könnyen kiszúrhatók).</li>
+          <li>Ha megtaláltad, a környékét olvasd el alaposan, és onnan vedd a választ.</li>
+        </ol>
+        <p>Kérdésszavak: <em>When…?</em>, <em>How many…?</em>, <em>Who…?</em>, <em>Where…?</em></p>
+        <p class="note-line">⚠️ Az első találat nem mindig a helyes — ellenőrizd a kontextust.</p>
+        <p><strong>Gyakorlás — keresd ki a konkrét infót:</strong></p>
+        <div class="passage">The museum is open from Tuesday to Sunday, from 9 a.m. to 6 p.m. Tickets cost 12 euros for adults and 6 euros for students. Children under the age of seven enter free. The museum is closed on Mondays and on 25 December.</div>`,
+        q:[
+          { q:"The question asks for a date. The fastest approach is to…", a:["scan for numbers","read every sentence","skim the title"], correct:0 },
+          { q:"In scanning, the question words usually appear in the text as…", a:["synonyms","exact copies only","never"], correct:0 },
+          { q:"Which is easiest to spot when scanning?", a:["a capitalised name","an adjective","a preposition"], correct:0 },
+          { q:"(Museum) How much is a student ticket?", a:["6 euros","12 euros","free"], correct:0 },
+          { q:"(Museum) Which day is the museum closed?", a:["Monday","Sunday","Tuesday"], correct:0 },
+          { q:"(Museum) Children enter free under the age of…", a:["seven","twelve","five"], correct:0 }
+        ] },
+      { t:"Intenzív, részletes olvasás (3. feladat)", c:`
+        <p><strong>Mi ez?</strong> Alapos olvasás a részletekért, a szerző attitűdjéért és a sorok közötti (inference) jelentésért. Ez a leghosszabb szöveg, feleletválasztós kérdésekkel.</p>
+        <p><strong>Stratégia:</strong></p>
+        <ol class="steps">
+          <li>Olvasd el a kérdést a szövegrész előtt.</li>
+          <li>A választ a szövegből vedd, ne a háttértudásodból.</li>
+          <li>A kérdések sorrendje általában követi a szöveget.</li>
+          <li>Vigyázz a csali (distractor) válaszokkal: gyakran igaz, de nem a kérdésre felel.</li>
+        </ol>
+        <p>Kérdéstípusok: <em>What does the writer suggest…?</em>, <em>The writer implies that…</em>, <em>According to the text…</em></p>
+        <p><strong>1. szöveg — olvasd el, majd válaszolj (1–3. kérdés):</strong></p>
+        <div class="passage">Many people believe that working from home is always more relaxing than commuting to an office. In reality, however, remote workers often struggle to separate their professional and personal lives. Without a clear end to the working day, some find themselves checking emails late into the evening. Experts suggest setting fixed hours and creating a dedicated workspace to avoid burnout.</div>
+        <p><strong>2. szöveg — olvasd el, majd válaszolj (4–6. kérdés):</strong></p>
+        <div class="passage">When Maria opened her small bakery five years ago, few people believed it would survive. The street already had two larger shops selling bread. Yet Maria focused on quality and on knowing her customers by name. Today, queues form outside her door every morning, while one of the larger shops has closed down.</div>`,
+        q:[
+          { q:"(1. szöveg) What is the writer's main point about working from home?", a:["It can blur work and personal life","It is always relaxing","It has no downsides"], correct:0 },
+          { q:"(1. szöveg) What do experts recommend?", a:["Setting fixed working hours","Checking emails at night","Commuting more often"], correct:0 },
+          { q:"(1. szöveg) The word 'burnout' here means…", a:["exhaustion from overwork","a power cut","a type of office"], correct:0 },
+          { q:"(2. szöveg) Why did people doubt Maria's bakery at first?", a:["There was already strong competition","She had no experience","The bread was expensive"], correct:0 },
+          { q:"(2. szöveg) What made Maria successful? (inference)", a:["Quality and a personal touch","Very low prices","A huge shop"], correct:0 },
+          { q:"(2. szöveg) What happened to one of the larger shops?", a:["It closed down","It grew bigger","It moved away"], correct:0 }
+        ] },
+      { t:"Bekezdés–cím párosítás (6 bekezdés / 8 cím, 2 kizárandó)", c:`
+        <p><strong>A feladat:</strong> 6 bekezdéshez kell a 8 cím közül a megfelelőt megtalálni — 2 cím kimarad (csali).</p>
+        <p><strong>Stratégia:</strong></p>
+        <ol class="steps">
+          <li>Olvasd el az összes címet először.</li>
+          <li>Skimmeld minden bekezdés fő gondolatát (első/utolsó mondat).</li>
+          <li>A legbiztosabb párokkal kezdj; a használt címeket húzd ki.</li>
+          <li>A bizonytalanokat hagyd a végére — kizárásos alapon könnyebb.</li>
+        </ol>
+        <p class="note-line">⚠️ A 2 plusz cím direkt félrevezet. A cím a bekezdés EGÉSZÉT foglalja össze, nem egy részletét.</p>
+        <p><strong>Gyakorlás — melyik cím illik a bekezdéshez? (6 db)</strong></p>`,
+        q:[
+          { q:"„Eating breakfast gives you energy and helps you concentrate at school or work.”", a:["The most important meal of the day","Skipping meals to lose weight","Cooking for beginners"], correct:0 },
+          { q:"„Turn off the lights, unplug devices and use less heating to lower your monthly bills.”", a:["Saving energy at home","The history of electricity","Buying new appliances"], correct:0 },
+          { q:"„Regular walks in nature can reduce stress and improve your mood.”", a:["The benefits of walking outdoors","How to train for a marathon","Dangerous mountain trails"], correct:0 },
+          { q:"„Drinking enough water keeps your body working well and helps you stay alert.”", a:["Why hydration matters","The dangers of coffee","Swimming lessons for kids"], correct:0 },
+          { q:"„Learning a new language opens doors to new cultures, friendships and jobs.”", a:["The advantages of speaking another language","Travelling on a budget","Grammar rules explained"], correct:0 },
+          { q:"„Recycling reduces waste, saves energy and protects natural resources.”", a:["The benefits of recycling","Building a new factory","The history of plastic"], correct:0 }
+        ] },
+      { t:"Szótárhasználat, időbeosztás és szókitalálás", c:`
+        <p><strong>Szótár okosan:</strong> a Euroexam írásbelin nyomtatott szótár használható, de ne nézz ki minden szót — csak amit a válaszhoz tényleg kell. A szótárazás időt visz.</p>
+        <ul>
+          <li>Először próbáld a jelentést <strong>kontextusból</strong> kitalálni (prefix/suffix, hasonló szó, mondatkörnyezet).</li>
+          <li>A megértéshez sokszor nem kell minden szót érteni — a lényeg számít.</li>
+        </ul>
+        <p><strong>Időbeosztás:</strong></p>
+        <ol class="steps">
+          <li>Oszd be az időt feladatonként, és tartsd magad hozzá.</li>
+          <li>A könnyű, biztos kérdéseket szerezd meg először.</li>
+          <li>Ha elakadsz, jelöld meg, lépj tovább, és a végén térj vissza.</li>
+        </ol>
+        <p class="note-line">⚠️ A kihagyott kérdés is rossz — inkább tippelj.</p>
+        <p><strong>Gyakorlás — találd ki a szó jelentését a mondatból:</strong></p>`,
+        q:[
+          { q:"If you get stuck on a question, you should…", a:["mark it and move on","stay until you solve it","leave it blank forever"], correct:0 },
+          { q:"Before reaching for the dictionary, first try to…", a:["guess the meaning from context","skip the whole text","translate every word"], correct:0 },
+          { q:"With limited time, answer the ___ questions first.", a:["easy, confident","hardest","longest"], correct:0 },
+          { q:"„The path was so slippery that she grabbed a branch to avoid falling.” — slippery means…", a:["easy to slip on","very long","brightly coloured"], correct:0 },
+          { q:"„He was reluctant to speak, so he stayed silent.” — reluctant means…", a:["unwilling","delighted","loud"], correct:0 },
+          { q:"„The instructions were ambiguous, so nobody knew what to do.” — ambiguous means…", a:["unclear","simple","printed"], correct:0 }
+        ] }
+    ]
+  },
+  {
+    id:"m4", num:"04", title:"Hallásértés (Listening)", sub:"3 feladat, 3 hallgatási technika",
+    intro:"A hallásrész is 3 feladat: a témafelismeréstől a jegyzetkészítésen át a részletes kérdésekig.",
+    topics:[
+      { t:"Párbeszédek témájának felismerése (1. feladat)" },
+      { t:"Jegyzetkészítés – konkrét infók lejegyzése (2. feladat)" },
+      { t:"Részletes kérdéssor (3. feladat)" },
+      { t:"Lényegértés vs. részletértés (gist vs. detail)" },
+      { t:"Helyesírás a jegyzetkészítésnél (pontozási szempont)" }
+    ]
+  },
+  {
+    id:"m5", num:"05", title:"Íráskészség (Writing)", sub:"Writing Checklist + szövegtípusok",
+    intro:"Az íráshoz kell a nyelvtan és a szókincs is, ezért jön később. Tanuld meg a típusok szerkezetét és a megfelelő stílust.",
+    topics:[
+      { t:"A Writing Checklist (2025) értékelési szempontjai" },
+      { t:"Informális e-mail / levél" },
+      { t:"Formális e-mail / levél" },
+      { t:"Véleménykifejtő / érvelő szöveg" },
+      { t:"Szerkezet, kötőelemek, regiszter" },
+      { t:"Önellenőrzés és gyakori hibák" }
+    ]
+  },
+  {
+    id:"m6", num:"06", title:"Beszédkészség (Speaking)", sub:"Egyéni vagy páros – szerepjáték, képtörténet, vita",
+    intro:"A szóbelin eldöntheted, egyénileg vagy párban vizsgázol. Gyakorolj hangosan, és tanuld meg a hasznos paneleket.",
+    topics:[
+      { t:"Egyéni vs. páros szóbeli – melyiket válaszd" },
+      { t:"Bemutatkozás és személyes interjú" },
+      { t:"Szerepjáték – 3 kártya (role play)" },
+      { t:"Történetmesélés képsorról (Picture story, ~2 perc)" },
+      { t:"Vita és megegyezés egy témáról" },
+      { t:"Hasznos panelek és folyékonyság" }
+    ]
+  },
+  {
+    id:"m7", num:"07", title:"Vizsgafelkészülés (Exam prep)", sub:"Záró szakasz – élesben",
+    intro:"Az utolsó hetek: teljes próbavizsgák időre, hibák kijavítása, magabiztosság építése.",
+    topics:[
+      { t:"Teljes próbavizsgák (mock) időre" },
+      { t:"Időgazdálkodás vizsgarészenként" },
+      { t:"Szótárhasználat okosan (mikor éri meg)" },
+      { t:"Gyakori hibák és buktatók átnézése" },
+      { t:"Záró ismétlés + vizsganapi checklist" }
+    ]
+  }
+];
+
+/* ====== ÁLLAPOT ====== */
+const STORE_KEY = "euroexam_b2_haladas_v1";
+let state = {};
+try{ const raw = localStorage.getItem(STORE_KEY); if(raw) state = JSON.parse(raw)||{}; }catch(e){ state={}; }
+/* Firebase szinkron állapot */
+let fbReady=false, fbDB=null, fbRef=null, fbApplying=false, fbSaveTimer=null, fbFirstLoad=true;
+let syncId="";
+try{ syncId = localStorage.getItem("b2_sync_id") || ""; }catch(e){}
+function save(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+  if(fbReady && fbRef && !fbApplying){
+    clearTimeout(fbSaveTimer);
+    fbSaveTimer=setTimeout(()=>{ fbRef.set(state).catch(()=>{}); }, 400);
+  }
+}
+
+/* ====== RENDER ====== */
+const road = document.getElementById("road");
+let totalTopics = 0;
+MODULES.forEach(m => totalTopics += m.topics.length);
+document.getElementById("modCount").textContent = MODULES.length;
+document.getElementById("topicCount").textContent = totalTopics;
+
+const chev = '<svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l6 5-6 5"/></svg>';
+const chevSm = '<svg class="t-expand" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l6 5-6 5"/></svg>';
+
+function buildQuiz(qs){
+  return '<div class="quiz"><div class="quiz-head">📝 Mini kvíz</div>'+
+    qs.map((item,i)=>`<div class="quiz-q" data-correct="${item.correct}">
+        <p class="qtext">${i+1}. ${item.q}</p>
+        <div class="qopts">${item.a.map((o,oi)=>`<button class="qopt" data-i="${oi}">${o}</button>`).join("")}</div>
+      </div>`).join("")+'</div>';
+}
+
+MODULES.forEach(m => {
+  const sec = document.createElement("section");
+  sec.className = "module"; sec.id = m.id;
+  sec.innerHTML = `
+    <div class="node"><span class="num">${m.num}</span></div>
+    <div class="mod-card">
+      <div class="mod-head" role="button" tabindex="0" aria-expanded="false">
+        <div class="mod-title-wrap">
+          <h2 class="mod-title">${m.title}</h2>
+          <div class="mod-sub">${m.sub}</div>
+        </div>
+        <span class="mod-count" id="count-${m.id}">0/${m.topics.length}</span>
+        ${chev}
+      </div>
+      <div class="mini-track"><div class="mini-fill" id="mini-${m.id}"></div></div>
+      <div class="mod-body">
+        <p class="mod-intro">${m.intro}</p>
+        <ul class="topics">
+          ${m.topics.map((tp,ti)=>{
+            const key = m.id+"-"+ti;
+            const has = !!(tp.c || tp.q);
+            const inner = (tp.c||'') + (tp.q?buildQuiz(tp.q):'');
+            return `<li class="topic ${state[key]?"checked":""} ${has?"has-content":""}" data-key="${key}">
+              <div class="topic-main" tabindex="0">
+                <span class="box" role="checkbox" aria-checked="${!!state[key]}" tabindex="0" aria-label="${tp.t} – kész"></span>
+                <span class="topic-label">${tp.t}</span>
+                ${has?chevSm:'<span class="soon">hamarosan</span>'}
+              </div>
+              ${has?`<div class="topic-content"><div class="tc-inner">${inner}</div></div>`:''}
+            </li>`;
+          }).join("")}
+        </ul>
+      </div>
+    </div>`;
+  road.appendChild(sec);
+
+  const head = sec.querySelector(".mod-head");
+  const toggleMod = ()=>{ const o=sec.classList.toggle("open"); head.setAttribute("aria-expanded",o); };
+  head.addEventListener("click", toggleMod);
+  head.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); toggleMod(); } });
+
+  sec.querySelectorAll(".topic").forEach(li=>{
+    const key = li.dataset.key;
+    const box = li.querySelector(".box");
+    const main = li.querySelector(".topic-main");
+    const has = li.classList.contains("has-content");
+    const check = ()=>{
+      state[key] = !state[key];
+      li.classList.toggle("checked", !!state[key]);
+      box.setAttribute("aria-checked", !!state[key]);
+      save(); refresh();
+    };
+    box.addEventListener("click", e=>{ e.stopPropagation(); check(); });
+    box.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); e.stopPropagation(); check(); } });
+    main.addEventListener("click", ()=>{ has ? li.classList.toggle("open-c") : check(); });
+    main.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); has ? li.classList.toggle("open-c") : check(); } });
+  });
+});
+
+/* ====== KVÍZ ====== */
+road.addEventListener("click", e=>{
+  const opt = e.target.closest(".qopt");
+  if(!opt) return;
+  const q = opt.closest(".quiz-q");
+  if(q.classList.contains("answered")) return;
+  const correct = +q.dataset.correct, chosen = +opt.dataset.i;
+  q.classList.add("answered");
+  q.querySelectorAll(".qopt").forEach(b=>{
+    const bi = +b.dataset.i;
+    if(bi===correct) b.classList.add("correct");
+    else if(bi===chosen) b.classList.add("wrong");
+    b.disabled = true;
+  });
+});
+
+/* ====== HALADÁS ====== */
+function refresh(){
+  let doneTotal = 0;
+  MODULES.forEach(m=>{
+    let done = 0;
+    m.topics.forEach((tp,ti)=>{ if(state[m.id+"-"+ti]) done++; });
+    doneTotal += done;
+    const sec = document.getElementById(m.id);
+    document.getElementById("count-"+m.id).textContent = done+"/"+m.topics.length;
+    document.getElementById("mini-"+m.id).style.width = (done/m.topics.length*100)+"%";
+    sec.classList.toggle("done", done===m.topics.length);
+    const navc=document.getElementById("nav-count-"+m.id);
+    if(navc){ navc.textContent=done+"/"+m.topics.length;
+      const ni=navc.closest(".nav-item"); if(ni) ni.classList.toggle("done", done===m.topics.length); }
+  });
+  const pct = Math.round(doneTotal/totalTopics*100);
+  document.getElementById("progFill").style.width = pct+"%";
+  document.getElementById("progNum").textContent = pct+"%";
+}
+
+/* ====== VEZÉRLŐK ====== */
+document.getElementById("expandAll").onclick = ()=>document.querySelectorAll(".module").forEach(s=>{
+  s.classList.add("open"); s.querySelector(".mod-head").setAttribute("aria-expanded","true"); });
+document.getElementById("collapseAll").onclick = ()=>document.querySelectorAll(".module").forEach(s=>{
+  s.classList.remove("open"); s.querySelector(".mod-head").setAttribute("aria-expanded","false"); });
+document.getElementById("resetBtn").onclick = ()=>{
+  if(confirm("Biztosan törlöd az összes kipipált tételt?")){
+    state={}; save();
+    document.querySelectorAll(".topic").forEach(li=>{ li.classList.remove("checked"); li.querySelector(".box").setAttribute("aria-checked","false"); });
+    refresh();
+  }
+};
+
+/* ====== FELOLVASÓ (Web Speech API) ====== */
+let enVoice = null;
+function pickVoice(){
+  const vs = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+  enVoice = vs.find(v=>/en[-_]GB/i.test(v.lang)) || vs.find(v=>/^en/i.test(v.lang)) || null;
+}
+if('speechSynthesis' in window){
+  pickVoice();
+  window.speechSynthesis.onvoiceschanged = pickVoice;
+}
+let speakingBtn = null;
+function speak(text, btn){
+  if(!('speechSynthesis' in window)){ alert('A böngésződ nem támogatja a felolvasást.'); return; }
+  const clean = text.replace(/→/g,', ').replace(/[*]/g,'').replace(/\s+/g,' ').trim();
+  window.speechSynthesis.cancel();
+  if(speakingBtn){ speakingBtn.classList.remove('speaking'); }
+  const u = new SpeechSynthesisUtterance(clean);
+  u.lang = 'en-GB'; u.rate = 0.92;
+  if(!enVoice) pickVoice();
+  if(enVoice) u.voice = enVoice;
+  if(btn){ btn.classList.add('speaking'); speakingBtn = btn;
+    u.onend = u.onerror = ()=>{ btn.classList.remove('speaking'); if(speakingBtn===btn) speakingBtn=null; }; }
+  window.speechSynthesis.speak(u);
+}
+document.querySelectorAll('.tc-inner em').forEach(em=>{
+  const btn = document.createElement('button');
+  btn.className = 'tts'; btn.type = 'button';
+  btn.setAttribute('aria-label','Felolvasás angolul'); btn.title = 'Felolvasás';
+  btn.textContent = '🔊';
+  btn.addEventListener('click', e=>{ e.stopPropagation(); speak(em.textContent, btn); });
+  em.after(btn);
+});
+document.querySelectorAll('.tc-inner .passage').forEach(p=>{
+  const txt = p.textContent;
+  const btn = document.createElement('button');
+  btn.className = 'tts'; btn.type = 'button';
+  btn.setAttribute('aria-label','Szöveg felolvasása angolul'); btn.title = 'Felolvasás';
+  btn.textContent = '🔊';
+  btn.addEventListener('click', e=>{ e.stopPropagation(); speak(txt, btn); });
+  p.appendChild(btn);
+});
+
+/* ====== OLDALMENÜ (drawer) ====== */
+const drawer=document.getElementById('drawer');
+const overlay=document.getElementById('overlay');
+const hamburger=document.getElementById('hamburger');
+const drawerNav=document.getElementById('drawerNav');
+function openDrawer(){drawer.classList.add('open');overlay.classList.add('open');hamburger.classList.add('open');
+  hamburger.setAttribute('aria-expanded','true');drawer.setAttribute('aria-hidden','false');}
+function closeDrawer(){drawer.classList.remove('open');overlay.classList.remove('open');hamburger.classList.remove('open');
+  hamburger.setAttribute('aria-expanded','false');drawer.setAttribute('aria-hidden','true');}
+hamburger.addEventListener('click',()=>drawer.classList.contains('open')?closeDrawer():openDrawer());
+overlay.addEventListener('click',closeDrawer);
+document.getElementById('drawerClose').addEventListener('click',closeDrawer);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+function showModule(id){
+  document.querySelectorAll('#road .module').forEach(s=>s.classList.remove('active'));
+  const sec=document.getElementById(id);
+  sec.classList.add('active','open');
+  sec.querySelector('.mod-head').setAttribute('aria-expanded','true');
+  document.body.classList.add('focus-mode');
+  drawerNav.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('current', n.dataset.target===id));
+  closeDrawer();
+  window.scrollTo({top:0,behavior:'auto'});
+}
+function showOverview(){
+  document.body.classList.remove('focus-mode');
+  document.querySelectorAll('#road .module').forEach(s=>s.classList.remove('active'));
+  drawerNav.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('current'));
+  closeDrawer();
+  window.scrollTo({top:0,behavior:'auto'});
+}
+document.getElementById('backBtn').addEventListener('click', showOverview);
+
+// "Áttekintés" (főoldal) menüpont
+const homeItem=document.createElement('button');
+homeItem.className='nav-item nav-home';
+homeItem.innerHTML='<span class="nav-num" style="background:var(--ochre)">⌂</span><span class="nav-text">Áttekintés (összes modul)</span>';
+homeItem.addEventListener('click', showOverview);
+drawerNav.appendChild(homeItem);
+
+MODULES.forEach(m=>{
+  const b=document.createElement('button');
+  b.className='nav-item';b.dataset.target=m.id;
+  b.innerHTML=`<span class="nav-num">${m.num}</span><span class="nav-text">${m.title}</span><span class="nav-count" id="nav-count-${m.id}"></span>`;
+  b.addEventListener('click',()=>showModule(m.id));
+  drawerNav.appendChild(b);
+});
+
+/* ====== FIREBASE SZINKRON (jelszó nélkül, azonosító alapján) ====== */
+// 1) Másold ide a saját Firebase web-konfigod (Firebase console → Project settings → Web app).
+// 2) Realtime Database kell hozzá (a databaseURL legyen kitöltve).
+const firebaseConfig = {
+  apiKey: "PASTE_API_KEY",
+  authDomain: "PASTE_PROJECT.firebaseapp.com",
+  databaseURL: "https://PASTE_PROJECT-default-rtdb.firebaseio.com",
+  projectId: "PASTE_PROJECT",
+  appId: "PASTE_APP_ID"
+};
+
+function applyState(){
+  document.querySelectorAll(".topic").forEach(li=>{
+    const on=!!state[li.dataset.key];
+    li.classList.toggle("checked", on);
+    const box=li.querySelector(".box"); if(box) box.setAttribute("aria-checked", on);
+  });
+  refresh();
+}
+function updateSyncUI(connected, err){
+  const d=document.getElementById("syncDisconnected"), c=document.getElementById("syncConnected");
+  if(!d||!c) return;
+  if(connected && syncId){
+    d.style.display="none"; c.style.display="block";
+    document.getElementById("syncIdShown").textContent=syncId;
+    document.getElementById("syncStatus").textContent= err ? ("Hiba: "+err) : "Szinkronizálva ✓";
+  } else {
+    d.style.display="block"; c.style.display="none";
+    if(err){ const m=document.getElementById("syncMsg"); if(m) m.textContent="Hiba: "+err; }
+  }
+}
+function connectSync(id){
+  if(!fbReady) return;
+  if(fbRef){ fbRef.off(); }
+  syncId=id;
+  try{ localStorage.setItem("b2_sync_id", id); }catch(e){}
+  fbFirstLoad=true;
+  fbRef=fbDB.ref("b2progress/"+id);
+  fbRef.on("value", snap=>{
+    const remote=snap.val()||{};
+    fbApplying=true;
+    if(fbFirstLoad){
+      // első csatlakozáskor egyesítjük a helyi és a felhős haladást (semmi nem vész el)
+      const merged=Object.assign({}, remote);
+      for(const k in state){ if(state[k]) merged[k]=true; }
+      state=merged; fbFirstLoad=false;
+      try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+      applyState();
+      fbRef.set(state).catch(()=>{});
+    } else {
+      state=remote;
+      try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+      applyState();
+    }
+    fbApplying=false;
+    updateSyncUI(true);
+  }, err=>updateSyncUI(false, err.message));
+  updateSyncUI(true);
+}
+function disconnectSync(){
+  if(fbRef){ fbRef.off(); fbRef=null; }
+  syncId=""; try{ localStorage.removeItem("b2_sync_id"); }catch(e){}
+  updateSyncUI(false);
+}
+try{
+  if(typeof firebase!=="undefined" && firebaseConfig.apiKey.indexOf("PASTE")===-1){
+    firebase.initializeApp(firebaseConfig);
+    fbDB=firebase.database(); fbReady=true;
+    document.getElementById("authNote").style.display="none";
+    document.getElementById("syncBox").style.display="block";
+    const idInput=document.getElementById("syncId");
+    if(syncId) idInput.value=syncId;
+    document.getElementById("syncConnect").onclick=()=>{
+      const raw=idInput.value.trim().toLowerCase().replace(/[^a-z0-9_-]/g,"");
+      if(!raw){ document.getElementById("syncMsg").textContent="Adj meg egy azonosítót."; return; }
+      connectSync(raw);
+    };
+    document.getElementById("syncDisconnect").onclick=disconnectSync;
+    if(syncId) connectSync(syncId);
+  }
+}catch(e){ console.warn("Firebase init:", e); }
+
+/* első modul nyitva indul */
+document.querySelector(".module").classList.add("open");
+document.querySelector(".module .mod-head").setAttribute("aria-expanded","true");
+refresh();
+</script>
+</body>
+</html>
