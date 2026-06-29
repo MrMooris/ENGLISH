@@ -539,9 +539,11 @@
   <button class="btn" id="collapseAll">Mind becsuk</button>
   <button class="btn ghost" id="examBtn">📝 Próbavizsga</button>
   <button class="btn ghost" id="statsBtn">📊 Statisztika</button>
+  <button class="btn ghost" id="backupBtn">💾 Biztonsági mentés</button>
   <button class="btn ghost" id="resetBtn">Haladás törlése</button>
 </div>
 <div class="stats-panel" id="statsPanel" hidden></div>
+<div class="stats-panel" id="backupPanel" hidden></div>
 <div class="exam-overlay" id="examOverlay" hidden></div>
 <p class="tts-hint">🔊 Kattints a hangszóró ikonra bármelyik angol példánál a kiejtés meghallgatásához.</p>
 
@@ -7477,6 +7479,51 @@ MODULES.forEach(m => {
   });
 });
 
+/* ====== BIZTONSÁGI MENTÉS (export / import) ====== */
+const BACKUP_KEYS=["euroexam_b2_haladas_v1","b2_notes_v1","b2_cards_v1","b2_stats_v1","b2_sync_id"];
+function buildBackup(){
+  const data={};
+  BACKUP_KEYS.forEach(k=>{ try{ const v=localStorage.getItem(k); if(v!=null) data[k]=v; }catch(_){} });
+  return { app:"euroexam-b2", version:1, exportedAt:new Date().toISOString(), data };
+}
+function doExport(){
+  const blob=new Blob([JSON.stringify(buildBackup(),null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob); const a=document.createElement("a");
+  const d=new Date(); const stamp=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  a.href=url; a.download="euroexam-b2-mentes-"+stamp+".json"; document.body.appendChild(a); a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); },100);
+}
+function doImport(file){
+  const reader=new FileReader();
+  reader.onload=()=>{
+    let obj=null; try{ obj=JSON.parse(reader.result); }catch(_){ alert("Hibás fájl – nem sikerült beolvasni."); return; }
+    if(!obj || !obj.data || obj.app!=="euroexam-b2"){ alert("Ez nem egy érvényes Euroexam B2 mentésfájl."); return; }
+    const keys=Object.keys(obj.data);
+    if(!confirm("Visszatöltöd a mentést? Ez felülírja a jelenlegi haladást, jegyzeteket, szókártyákat és statisztikát ezen az eszközön.\n\nA fájlban "+keys.length+" adatcsomag van.")) return;
+    keys.forEach(k=>{ if(BACKUP_KEYS.indexOf(k)>=0){ try{ localStorage.setItem(k, obj.data[k]); }catch(_){} } });
+    alert("Visszatöltve ✓ Az oldal újratöltődik.");
+    location.reload();
+  };
+  reader.readAsText(file);
+}
+function renderBackupPanel(){
+  const p=document.getElementById("backupPanel");
+  p.innerHTML=
+    '<div class="stats-head">💾 Biztonsági mentés</div>'+
+    '<p class="exam-intro">Az oldalon minden adat (haladás, jegyzetek, levelek, szókártyák, statisztika) a böngésződ helyi tárhelyén van — ezért eszközhöz/böngészőhöz kötött, és böngészőadat-törléskor elveszhet. Itt egyetlen fájlba lementheted az egészet, és bármikor, bármelyik gépen visszatöltheted.</p>'+
+    '<div class="fillrow"><button class="tl-btn" id="bkExport">⬇️ Mentés fájlba</button>'+
+    '<label class="tl-btn ghost" for="bkFile" style="cursor:pointer;">⬆️ Visszatöltés fájlból</label>'+
+    '<input type="file" id="bkFile" accept="application/json,.json" hidden></div>'+
+    '<p class="exam-intro" style="margin-top:10px;">💡 Tipp: a vizsga előtti hetekben időnként ments le egy fájlt (pl. a felhődbe vagy e-mailbe magadnak), így biztosan nem veszik el semmi. Ha beállítod a felhő-szinkront (lent a „Szinkron" panelnél), a <b>haladásod</b> automatikusan átjön másik eszközre is.</p>';
+  p.querySelector("#bkExport").onclick=doExport;
+  p.querySelector("#bkFile").onchange=e=>{ if(e.target.files&&e.target.files[0]) doImport(e.target.files[0]); };
+}
+document.getElementById("backupBtn").addEventListener("click", ()=>{
+  const p=document.getElementById("backupPanel");
+  if(p.hasAttribute("hidden")){ p.removeAttribute("hidden"); renderBackupPanel(); p.scrollIntoView({behavior:"smooth",block:"nearest"}); }
+  else p.setAttribute("hidden","");
+});
+
 /* ====== PRÓBAVIZSGA ====== */
 function examPool(){
   const pool=[];
@@ -8170,6 +8217,10 @@ function m10CollectPairs(sel){
   const root=document.getElementById("cardsTool"); if(!root) return;
   const KEY="b2_cards_v1";
   let cards=[]; try{ cards=JSON.parse(localStorage.getItem(KEY))||[]; }catch(e){ cards=[]; }
+  cards.forEach(c=>{ if(c.box==null) c.box=1; if(c.due==null) c.due=0; });
+  const DAY=86400000;
+  function srInterval(box){ return [0,0,1*DAY,3*DAY,7*DAY,14*DAY][Math.max(1,Math.min(5,box))]; }
+  function dueCards(){ const now=Date.now(); return cards.filter(c=>(c.due||0)<=now); }
   const esc=s=>(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
   root.innerHTML=
     '<p class="tl-hint">Készíts szókártyákat (előlap–hátlap), majd tanuld őket. A kártyák a böngésződben mentődnek.</p>'+
@@ -8178,7 +8229,7 @@ function m10CollectPairs(sel){
     '<button class="tl-btn" id="cAdd">+ Hozzáad</button></div>'+
     '<div class="tl-row"><select class="tl-select" id="cSrc"><option value="#m8">Nagy szókincs</option><option value="#m9">airBaltic</option><option value="#m2">Témakörök</option></select>'+
     '<button class="tl-btn ghost" id="cImport">15 véletlen szó importálása</button><span class="tl-msg" id="cMsg"></span></div>'+
-    '<div class="tl-row"><button class="tl-btn" id="cStudy">▶ Tanulás</button><button class="tl-btn ghost danger" id="cClear">Összes törlése</button></div>'+
+    '<div class="tl-row"><button class="tl-btn" id="cStudy">▶ Tanulás</button><button class="tl-btn" id="cReview">🔁 Esedékes ismétlés (<span id="cDue">0</span>)</button><button class="tl-btn ghost danger" id="cClear">Összes törlése</button></div>'+
     '<div class="tl-sub">Kártyák (<span id="cCount">0</span>)</div><div class="tl-list" id="cList"></div>'+
     '<div id="cStudyBox" style="display:none;">'+
       '<div class="tl-sub">Tanulás</div>'+
@@ -8194,6 +8245,7 @@ function m10CollectPairs(sel){
   let msgT; const flash=m=>{ msg.textContent=m; clearTimeout(msgT); msgT=setTimeout(()=>msg.textContent="",2200); };
   function renderList(){
     count.textContent=cards.length; list.innerHTML="";
+    const dueEl=root.querySelector("#cDue"); if(dueEl) dueEl.textContent=dueCards().length;
     if(!cards.length){ list.innerHTML='<div class="tl-hint">Még nincs kártya. Adj hozzá kézzel, vagy importálj a szólistából.</div>'; return; }
     cards.forEach(c=>{
       const it=document.createElement("div"); it.className="tl-item";
@@ -8206,7 +8258,7 @@ function m10CollectPairs(sel){
   root.querySelector("#cAdd").addEventListener("click",()=>{
     const f=elFront.value.trim(), b=elBack.value.trim();
     if(!f||!b){ flash("Töltsd ki mindkét oldalt"); return; }
-    cards.push({id:"c"+Date.now()+Math.random().toString(36).slice(2,6), f:f, b:b, known:false});
+    cards.push({id:"c"+Date.now()+Math.random().toString(36).slice(2,6), f:f, b:b, known:false, box:1, due:0});
     elFront.value=""; elBack.value=""; elFront.focus(); persist(); renderList(); flash("Hozzáadva ✓");
   });
   root.querySelector("#cImport").addEventListener("click",()=>{
@@ -8218,38 +8270,60 @@ function m10CollectPairs(sel){
     for(let i=fresh.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [fresh[i],fresh[j]]=[fresh[j],fresh[i]]; }
     const take=fresh.slice(0,15);
     if(!take.length){ flash("Már mind megvan"); return; }
-    take.forEach(p=>cards.push({id:"c"+Date.now()+Math.random().toString(36).slice(2,6), f:p[0], b:p[1], known:false}));
+    take.forEach(p=>cards.push({id:"c"+Date.now()+Math.random().toString(36).slice(2,6), f:p[0], b:p[1], known:false, box:1, due:0}));
     persist(); renderList(); flash(take.length+" kártya importálva ✓");
   });
   root.querySelector("#cClear").addEventListener("click",()=>{
     if(!cards.length) return;
     if(confirm("Biztosan törlöd az ÖSSZES szókártyát?")){ cards=[]; persist(); renderList(); flash("Törölve"); }
   });
-  // --- Tanulás ---
-  let order=[], pos=0, flipped=false;
+  // --- Tanulás / ismétlés ---
+  let order=[], pos=0, flipped=false, reviewMode=false;
   const faceTxt=root.querySelector("#cFaceTxt"), prog=root.querySelector("#cProg"), face=root.querySelector("#cFace");
   function showCard(){
-    if(!order.length){ faceTxt.textContent="Nincs kártya"; prog.textContent=""; return; }
+    if(!order.length){ faceTxt.textContent=reviewMode?"Kész az ismétlés ✓":"Nincs kártya"; prog.textContent=""; return; }
     const c=order[pos]; flipped=false; faceTxt.textContent=c.f;
-    prog.textContent=(pos+1)+" / "+order.length+"  ·  tudott: "+cards.filter(x=>x.known).length+"/"+cards.length;
+    prog.textContent=(pos+1)+" / "+order.length+(reviewMode?"  ·  ismétlés":"  ·  tudott: "+cards.filter(x=>x.known).length+"/"+cards.length);
   }
   face.addEventListener("click",()=>{
     if(!order.length) return; const c=order[pos]; flipped=!flipped; faceTxt.textContent=flipped?c.b:c.f;
   });
   function startStudy(){
     if(!cards.length){ flash("Előbb adj hozzá kártyát"); return; }
+    reviewMode=false;
     order=cards.slice(); for(let i=order.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [order[i],order[j]]=[order[j],order[i]]; }
+    pos=0; studyBox.style.display="block"; showCard(); studyBox.scrollIntoView({behavior:"smooth",block:"nearest"});
+  }
+  function startReview(){
+    if(!cards.length){ flash("Előbb adj hozzá kártyát"); return; }
+    const due=dueCards();
+    if(!due.length){ flash("Most nincs esedékes kártya 🎉"); return; }
+    reviewMode=true;
+    order=due.slice(); for(let i=order.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [order[i],order[j]]=[order[j],order[i]]; }
     pos=0; studyBox.style.display="block"; showCard(); studyBox.scrollIntoView({behavior:"smooth",block:"nearest"});
   }
   const next=()=>{ if(!order.length) return; pos=(pos+1)%order.length; showCard(); };
   const prev=()=>{ if(!order.length) return; pos=(pos-1+order.length)%order.length; showCard(); };
   root.querySelector("#cStudy").addEventListener("click",startStudy);
+  root.querySelector("#cReview").addEventListener("click",startReview);
   root.querySelector("#cNext").addEventListener("click",next);
   root.querySelector("#cPrev").addEventListener("click",prev);
-  root.querySelector("#cShuffle").addEventListener("click",startStudy);
+  root.querySelector("#cShuffle").addEventListener("click",()=>{ reviewMode?startReview():startStudy(); });
   root.querySelector("#cExit").addEventListener("click",()=>{ studyBox.style.display="none"; });
-  root.querySelector("#cKnown").addEventListener("click",()=>{ if(order.length){ order[pos].known=true; persist(); renderList(); next(); } });
-  root.querySelector("#cUnknown").addEventListener("click",()=>{ if(order.length){ order[pos].known=false; persist(); renderList(); next(); } });
+  root.querySelector("#cKnown").addEventListener("click",()=>{
+    if(!order.length) return; const c=order[pos];
+    c.known=true; c.box=Math.min(5,(c.box||1)+1); c.due=Date.now()+srInterval(c.box);
+    persist(); renderList();
+    if(reviewMode){ order.splice(pos,1); if(pos>=order.length) pos=Math.max(0,order.length-1); showCard(); }
+    else next();
+  });
+  root.querySelector("#cUnknown").addEventListener("click",()=>{
+    if(!order.length) return; const c=order[pos];
+    c.known=false; c.box=1; c.due=Date.now()+srInterval(1);
+    persist(); renderList();
+    if(reviewMode){ if(order.length>1){ const card=order.splice(pos,1)[0]; order.push(card); if(pos>=order.length) pos=0; } showCard(); }
+    else next();
+  });
   renderList();
 })();
 
