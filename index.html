@@ -253,6 +253,105 @@
   .bnkcheck:hover{filter:brightness(.95);}
   .bnkshow,.bnkclear{background:var(--card);color:var(--ink-soft);}
   .bnkshow:hover,.bnkclear:hover{border-color:var(--teal);}
+  .taskq{margin:0 0 16px;}
+  .taskinput{font-family:"Inter",sans-serif;font-size:.86rem;padding:7px 11px;border:1px solid var(--line);
+    border-radius:9px;background:var(--card);color:var(--ink);min-width:150px;}
+  .taskinput:focus{outline:none;border-color:var(--teal);}
+  .taskinput.ok{border-color:var(--teal);background:rgba(30,122,111,.08);color:var(--teal-dark);font-weight:600;}
+  .taskinput.bad{border-color:var(--ochre);background:rgba(217,120,58,.08);}
+  .taskcheck,.taskshow{font-family:"Inter",sans-serif;font-size:.82rem;font-weight:600;border-radius:9px;
+    padding:8px 13px;cursor:pointer;border:1px solid var(--line);}
+  .taskcheck{background:var(--teal);color:#fff;border-color:var(--teal);}
+  .taskcheck:hover{filter:brightness(.95);}
+  .taskshow{background:var(--card);color:var(--ink-soft);}
+  .taskshow:hover{border-color:var(--teal);}
+  .tf-orig{color:var(--ink-soft);}
+  .tf-line{margin:4px 0 8px;line-height:2;}
+  .tf-key{display:inline-block;font-family:"Space Mono",monospace;font-size:.72rem;font-weight:700;letter-spacing:.05em;
+    background:rgba(217,120,58,.16);color:#b05a20;padding:3px 9px;border-radius:7px;margin-right:6px;}
+  .wf-root{font-family:"Space Mono",monospace;font-size:.74rem;font-weight:700;color:var(--ochre);}
+  .mk-wrong{color:var(--ink);}
+  .mk-hint{font-size:.78rem;color:var(--muted);}
+  .taskfb{margin-top:6px;}
+  .mtrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:7px 0;}
+  .mt-left{flex:1;min-width:180px;font-size:.9rem;}
+  .mt-sel{font-family:"Inter",sans-serif;font-size:.85rem;padding:7px 9px;border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--ink);}
+  .mt-sel:focus{outline:none;border-color:var(--teal);}
+  .mt-mark{width:1.1em;font-weight:700;}
+  .mtrow.mok .mt-sel{border-color:var(--teal);background:rgba(30,122,111,.08);} .mtrow.mok .mt-mark{color:var(--teal-dark);}
+  .mtrow.mbad .mt-sel{border-color:var(--ochre);background:rgba(217,120,58,.08);} .mtrow.mbad .mt-mark{color:#b05a20;}
+  .nc-transcript{margin:10px 0;padding:11px 13px;border:1px solid var(--line-soft);border-radius:10px;background:var(--paper-2);font-size:.9rem;line-height:1.6;}
+  .nc-transcript[hidden]{display:none;}
+  .nctext{margin-top:10px;}
+  .nc-play{display:inline-flex;align-items:center;gap:7px;background:var(--teal);color:#fff;border:none;border-radius:9px;padding:9px 15px;font-family:inherit;font-weight:600;font-size:.88rem;cursor:pointer;}
+  .nc-play:hover{filter:brightness(.95);} .nc-play.speaking{background:var(--teal-dark);}
+  .nc-show{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:9px 13px;font-family:inherit;font-weight:600;font-size:.84rem;color:var(--ink-soft);cursor:pointer;}
+  .nc-show:hover{border-color:var(--teal);}
+  .ncinput{font-family:"Inter",sans-serif;font-size:.85rem;padding:3px 8px;border:1px solid var(--line);border-radius:7px;background:var(--card);color:var(--ink);width:110px;text-align:center;}
+  .ncinput:focus{outline:none;border-color:var(--teal);}
+  .ncinput.ok{border-color:var(--teal);background:rgba(30,122,111,.09);color:var(--teal-dark);font-weight:600;}
+  .ncinput.bad{border-color:var(--ochre);background:rgba(217,120,58,.09);}
+  .wp-prompt{font-weight:600;font-size:.95rem;margin:2px 0 8px;}
+  .wp-area{width:100%;box-sizing:border-box;min-height:160px;resize:vertical;font-family:"Inter",sans-serif;font-size:.92rem;line-height:1.6;padding:11px 13px;border:1px solid var(--line);border-radius:11px;background:var(--card);color:var(--ink);}
+  .wp-area:focus{outline:none;border-color:var(--teal);}
+  .wp-count{font-family:"Space Mono",monospace;font-size:.78rem;color:var(--muted);margin:6px 0;}
+  .wp-num{color:var(--teal-dark);}
+  .wp-check{display:flex;flex-direction:column;gap:6px;margin-bottom:8px;}
+  .wp-item{display:flex;gap:8px;align-items:flex-start;font-size:.88rem;cursor:pointer;}
+  .wp-model-btn{margin-top:8px;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:8px 13px;font-family:inherit;font-weight:600;font-size:.84rem;color:var(--ink-soft);cursor:pointer;}
+  .wp-model-btn:hover{border-color:var(--teal);}
+  .wp-model{margin-top:10px;padding:13px 15px;border:1px dashed var(--line);border-radius:11px;background:var(--paper-2);font-size:.9rem;line-height:1.65;}
+  .wp-model[hidden]{display:none;}
+  .stats-panel{max-width:var(--maxw);margin:6px auto 0;padding:14px 22px;}
+  .stats-panel[hidden]{display:none;}
+  .stats-head{font-size:.9rem;margin-bottom:10px;}
+  .stat-row{display:flex;align-items:center;gap:10px;margin:5px 0;}
+  .stat-row.weak .stat-name{color:#b05a20;font-weight:600;}
+  .stat-name{flex:1;min-width:150px;font-size:.85rem;}
+  .stat-bar{flex:1.4;height:8px;background:var(--paper-2);border-radius:99px;overflow:hidden;}
+  .stat-fill{display:block;height:100%;background:var(--teal);border-radius:99px;}
+  .stat-row.weak .stat-fill{background:var(--ochre);}
+  .stat-pct{font-family:"Space Mono",monospace;font-size:.74rem;color:var(--ink-soft);min-width:86px;text-align:right;}
+  .stats-tip{font-size:.84rem;color:var(--ink-soft);margin:10px 0;}
+  .speakpad .sp-prompts{margin:4px 0 12px;padding-left:20px;display:flex;flex-direction:column;gap:6px;}
+  .speakpad .sp-prompts li{font-size:.92rem;}
+  .sp-rec{background:var(--ochre);color:#fff;border:none;border-radius:9px;padding:9px 15px;font-family:inherit;font-weight:600;font-size:.88rem;cursor:pointer;}
+  .sp-rec.recording{background:#b5462f;animation:sppulse 1.2s infinite;}
+  @keyframes sppulse{0%,100%{opacity:1}50%{opacity:.6}}
+  .sp-status{font-size:.82rem;color:var(--muted);}
+  .sp-audio{display:block;margin-top:10px;width:100%;}
+  .sp-audio[hidden]{display:none;}
+  .exam-overlay{position:fixed;inset:0;z-index:200;background:var(--paper);overflow-y:auto;}
+  .exam-overlay[hidden]{display:none;}
+  .exam-top{position:sticky;top:0;background:var(--paper);border-bottom:1px solid var(--line);
+    display:flex;align-items:center;gap:14px;padding:14px 22px;max-width:var(--maxw);margin:0 auto;flex-wrap:wrap;}
+  .exam-title{font-family:"Bricolage Grotesque","Inter",sans-serif;font-weight:700;font-size:1.05rem;}
+  .exam-timer{font-family:"Space Mono",monospace;font-weight:700;font-size:1.1rem;color:var(--teal-dark);
+    background:var(--paper-2);border:1px solid var(--line);border-radius:9px;padding:5px 12px;}
+  .exam-timer.low{color:#b5462f;border-color:var(--ochre);}
+  .exam-body{max-width:var(--maxw);margin:0 auto;padding:18px 22px 90px;}
+  .exam-intro{font-size:.92rem;color:var(--ink-soft);margin-bottom:14px;}
+  .exq{padding:14px 0;border-bottom:1px solid var(--line-soft);}
+  .exq-text{font-weight:600;font-size:.95rem;margin:0 0 8px;}
+  .exq-opts{display:flex;flex-wrap:wrap;gap:7px;}
+  .exopt{font-family:"Inter",sans-serif;font-size:.85rem;background:var(--card);border:1px solid var(--line);
+    border-radius:9px;padding:8px 13px;cursor:pointer;}
+  .exopt:hover:not(:disabled){border-color:var(--teal);}
+  .exopt.selected{border-color:var(--teal);background:rgba(30,122,111,.1);font-weight:600;}
+  .exopt.correct{border-color:var(--teal);background:rgba(30,122,111,.16);color:var(--teal-dark);font-weight:600;}
+  .exopt.wrong{border-color:var(--ochre);background:rgba(217,120,58,.16);color:#b05a20;text-decoration:line-through;}
+  .exam-result{background:var(--paper-2);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px;}
+  .exam-score{font-family:"Bricolage Grotesque","Inter",sans-serif;font-weight:700;font-size:1.5rem;}
+  .exam-bar{flex:1;min-width:120px;height:8px;background:var(--paper-2);border-radius:99px;overflow:hidden;}
+  .exam-fill{display:block;height:100%;background:var(--teal);}
+  .exam-setup{max-width:520px;margin:8vh auto;background:var(--card);border:1px solid var(--line);
+    border-radius:16px;padding:24px;box-shadow:var(--shadow);}
+  .exam-setup h3{margin:0 0 6px;font-family:"Bricolage Grotesque","Inter",sans-serif;}
+  .exam-setup .tl-sub{margin-top:14px;}
+  .exam-opts-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+  .exam-pick{font-family:"Inter",sans-serif;font-size:.86rem;border:1px solid var(--line);background:var(--card);
+    border-radius:9px;padding:8px 14px;cursor:pointer;}
+  .exam-pick.on{background:var(--teal);color:#fff;border-color:var(--teal);}
 
   .tts{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-left:5px;
     width:21px;height:21px;padding:0;border:1px solid var(--line);background:var(--card);border-radius:6px;
@@ -438,8 +537,12 @@
 <div class="controls">
   <button class="btn" id="expandAll">Mind kinyit</button>
   <button class="btn" id="collapseAll">Mind becsuk</button>
+  <button class="btn ghost" id="examBtn">📝 Próbavizsga</button>
+  <button class="btn ghost" id="statsBtn">📊 Statisztika</button>
   <button class="btn ghost" id="resetBtn">Haladás törlése</button>
 </div>
+<div class="stats-panel" id="statsPanel" hidden></div>
+<div class="exam-overlay" id="examOverlay" hidden></div>
 <p class="tts-hint">🔊 Kattints a hangszóró ikonra bármelyik angol példánál a kiejtés meghallgatásához.</p>
 
 <main class="road" id="road"></main>
@@ -518,7 +621,7 @@ const MODULES = [
     id:"m1", num:"01", title:"Nyelvtan (Grammar)", sub:"A tudás gerince – itt töltsd a legtöbb időt",
     intro:"Bár a Euroexamen nincs külön nyelvtanteszt, a pontos nyelvtan minden készségben pontot ér. Haladj fentről lefelé — nyisd ki a témákat, és a magyarázat után próbáld ki a mini kvízt.",
     topics:[
-      { t:"Jelen idők (simple / continuous / perfect / perfect continuous)", cloze:[ { intro:"Egészítsd ki a megfelelő jelen idejű alakkal.", text:"My friend Anna {1} as a nurse in Riga. Every morning she {2} up at six and {3} the bus to the hospital. At the moment she {4} for an exam, so she {5} much free time. She {6} in the city for five years and she really {7} it.", blanks:[ {a:["works"],hint:"work – Pres. Simple"}, {a:["gets"],hint:"get"}, {a:["takes"],hint:"take"}, {a:["is studying","'s studying"],hint:"study – folyamatos"}, {a:["doesn't have","does not have"],hint:"not have"}, {a:["has lived"],hint:"live – Pres. Perfect"}, {a:["loves"],hint:"love"} ] } ], fill:[ { q:"Every day she ___ (go) to work by bus.", a:["goes"] }, { q:"Right now I ___ (read) an interesting book.", a:["am reading","'m reading"] }, { q:"He ___ (live) in Riga since 2010.", a:["has lived"] }, { q:"Listen! The baby ___ (cry).", a:["is crying","'s crying"] } ], c:`
+      { t:"Jelen idők (simple / continuous / perfect / perfect continuous)", mistake:[ { q:"She go to school every day.", a:["she goes to school every day"] }, { q:"I am knowing him for years.", a:["i have known him for years"] }, { q:"He don't have a car.", a:["he doesn't have a car","he does not have a car"] } ], cloze:[ { intro:"Egészítsd ki a megfelelő jelen idejű alakkal.", text:"My friend Anna {1} as a nurse in Riga. Every morning she {2} up at six and {3} the bus to the hospital. At the moment she {4} for an exam, so she {5} much free time. She {6} in the city for five years and she really {7} it.", blanks:[ {a:["works"],hint:"work – Pres. Simple"}, {a:["gets"],hint:"get"}, {a:["takes"],hint:"take"}, {a:["is studying","'s studying"],hint:"study – folyamatos"}, {a:["doesn't have","does not have"],hint:"not have"}, {a:["has lived"],hint:"live – Pres. Perfect"}, {a:["loves"],hint:"love"} ] } ], fill:[ { q:"Every day she ___ (go) to work by bus.", a:["goes"] }, { q:"Right now I ___ (read) an interesting book.", a:["am reading","'m reading"] }, { q:"He ___ (live) in Riga since 2010.", a:["has lived"] }, { q:"Listen! The baby ___ (cry).", a:["is crying","'s crying"] } ], c:`
         <p>A magyarban egy jelen idő van, az angolban négy — a kulcs a jelszavak és a beszélő szándéka.</p>
         <ul>
           <li><strong>Present Simple</strong> — szokás, általános igazság, menetrend. Képzés: alany + ige (E/3-ban +s/es); tagadás/kérdés <em>do/does</em>. Jelszavak: always, usually, often, never, every day. <em>She works in a bank.</em> <em>Water boils at 100 degrees.</em></li>
@@ -566,7 +669,7 @@ const MODULES = [
           { q:"Hurry up! The film ___ at 8 and it's already 7:55.", a:["starts","will start","would start"], correct:0 },
           { q:"I think our team ___ tonight.", a:["will win","wins","is winning"], correct:0 }
         ] },
-      { t:"Feltételes mondatok (0–3. típus + kevert)", cloze:[ { intro:"Egészítsd ki a megfelelő feltételes alakkal.", text:"If you {1} water to 100 degrees, it {2}. If it {3} tomorrow, we {4} at home. If I {5} rich, I {6} a big house. If she {7} harder, she {8} the exam last year.", blanks:[ {a:["heat"],hint:"heat – 0. típus"}, {a:["boils"],hint:"boil"}, {a:["rains"],hint:"rain – 1. típus"}, {a:["will stay","'ll stay"],hint:"stay"}, {a:["were","was"],hint:"be – 2. típus"}, {a:["would buy","'d buy"],hint:"buy"}, {a:["had studied"],hint:"study – 3. típus"}, {a:["would have passed"],hint:"pass"} ] } ], fill:[ { q:"If it rains, we ___ (stay) at home. (1. típus)", a:["will stay","'ll stay"] }, { q:"If I ___ (be) you, I would apologise. (2. típus)", a:["were","was"] }, { q:"If she had studied, she ___ (pass) the exam. (3. típus)", a:["would have passed"] } ], c:`
+      { t:"Feltételes mondatok (0–3. típus + kevert)", match:[ { intro:"Párosítsd a mondatok két felét.", pairs:[{l:"If you heat ice,",a:"it melts."},{l:"If it rains tomorrow,",a:"we will stay at home."},{l:"If I were rich,",a:"I would travel the world."},{l:"If she had studied,",a:"she would have passed."}], options:["it melts.","we will stay at home.","I would travel the world.","she would have passed.","I will buy a car.","they were late."] } ], transform:[ { orig:"Study harder or you will fail.", key:"UNLESS", before:"You will fail", after:".", a:["unless you study harder"] }, { orig:"Without your help, I would have failed.", key:"HADN'T", before:"If you", after:"me, I would have failed.", a:["hadn't helped","had not helped"] } ], cloze:[ { intro:"Egészítsd ki a megfelelő feltételes alakkal.", text:"If you {1} water to 100 degrees, it {2}. If it {3} tomorrow, we {4} at home. If I {5} rich, I {6} a big house. If she {7} harder, she {8} the exam last year.", blanks:[ {a:["heat"],hint:"heat – 0. típus"}, {a:["boils"],hint:"boil"}, {a:["rains"],hint:"rain – 1. típus"}, {a:["will stay","'ll stay"],hint:"stay"}, {a:["were","was"],hint:"be – 2. típus"}, {a:["would buy","'d buy"],hint:"buy"}, {a:["had studied"],hint:"study – 3. típus"}, {a:["would have passed"],hint:"pass"} ] } ], fill:[ { q:"If it rains, we ___ (stay) at home. (1. típus)", a:["will stay","'ll stay"] }, { q:"If I ___ (be) you, I would apologise. (2. típus)", a:["were","was"] }, { q:"If she had studied, she ___ (pass) the exam. (3. típus)", a:["would have passed"] } ], c:`
         <ul>
           <li><strong>0. típus</strong> (általános igazság): If/When + Present, Present. <em>If you heat ice, it melts.</em></li>
           <li><strong>1. típus</strong> (reális jövő): If + Present, will + ige. <em>If it rains, I'll stay home.</em> ⚠️ Az <em>if</em> utáni tagmondatban nincs will.</li>
@@ -583,7 +686,7 @@ const MODULES = [
           { q:"I would have helped you if you ___ me.", a:["asked","had asked","would ask"], correct:1 },
           { q:"I won't pass ___ I study harder.", a:["unless","if","when"], correct:0 }
         ] },
-      { t:"Szenvedő szerkezet (passive voice)", fill:[ { q:"English ___ (speak) all over the world.", a:["is spoken"] }, { q:"The letter ___ (write) last week.", a:["was written"] }, { q:"The work ___ (finish) by tomorrow.", a:["will be finished"] } ], c:`
+      { t:"Szenvedő szerkezet (passive voice)", transform:[ { orig:"Someone stole my bike.", key:"WAS", before:"My bike", after:".", a:["was stolen"] }, { orig:"They are building a new bridge.", key:"BEING", before:"A new bridge", after:".", a:["is being built"] }, { orig:"People speak English here.", key:"SPOKEN", before:"English", after:"here.", a:["is spoken"] }, { orig:"They have cancelled the flight.", key:"BEEN", before:"The flight", after:"cancelled.", a:["has been"] } ], fill:[ { q:"English ___ (speak) all over the world.", a:["is spoken"] }, { q:"The letter ___ (write) last week.", a:["was written"] }, { q:"The work ___ (finish) by tomorrow.", a:["will be finished"] } ], c:`
         <ul>
           <li><strong>Mikor</strong>: ha a cselekvő ismeretlen, lényegtelen, magától értetődő, vagy a tárgyra/eredményre tesszük a hangsúlyt.</li>
           <li><strong>Képzés</strong>: a tárgyból lesz az alany + megfelelő idejű <em>be</em> + past participle (3. alak). <em>They built the house in 1990.</em> → <em>The house was built in 1990.</em></li>
@@ -599,7 +702,7 @@ const MODULES = [
           { q:"The window ___ by the storm last night.", a:["broke","was broken","is breaking"], correct:1 },
           { q:"A new hospital ___ next year.", a:["will be built","will build","is building"], correct:0 }
         ] },
-      { t:"Függő beszéd (reported speech)", fill:[ { q:"He said he ___ (be) tired. (eredeti: I am tired)", a:["was"] }, { q:"She told me she ___ (finish) the report. (eredeti: I have finished)", a:["had finished"] }, { q:"They asked where I ___ (live). (eredeti: Where do you live?)", a:["lived"] } ], c:`
+      { t:"Függő beszéd (reported speech)", transform:[ { orig:"'I will call you tomorrow,' he said.", key:"WOULD", before:"He said he", after:"me the next day.", a:["would call"] }, { orig:"'Where do you live?' she asked.", key:"LIVED", before:"She asked where I", after:".", a:["lived"] }, { orig:"'I have finished the report,' he said.", key:"HAD", before:"He said he", after:"the report.", a:["had finished"] } ], fill:[ { q:"He said he ___ (be) tired. (eredeti: I am tired)", a:["was"] }, { q:"She told me she ___ (finish) the report. (eredeti: I have finished)", a:["had finished"] }, { q:"They asked where I ___ (live). (eredeti: Where do you live?)", a:["lived"] } ], c:`
         <ul>
           <li><strong>Időeltolás (backshift)</strong> egy lépés „hátra": present simple→past simple, present continuous→past continuous, present perfect/past simple→past perfect, will→would, can→could, may→might, must→had to. <em>I am tired.</em> → <em>He said he was tired.</em></li>
           <li><strong>Idő/hely cseréje</strong>: now→then, today→that day, tomorrow→the next day, yesterday→the day before, here→there, this→that.</li>
@@ -615,7 +718,7 @@ const MODULES = [
           { q:'"I am leaving," he said. → He said he ___ leaving.', a:["is","was","will be"], correct:1 },
           { q:"She ___ me that she was tired.", a:["told","said","asked"], correct:0 }
         ] },
-      { t:"Módbeli segédigék + perfect modals", fill:[ { q:"You ___ wear a seat belt. It is the law. (kötelezettség)", a:["must","have to"] }, { q:"She ___ have forgotten — she never forgets. (lehetetlenség a múltban)", a:["can't","cannot"] }, { q:"I ___ have called you earlier, sorry. (megbánás)", a:["should"] } ], c:`
+      { t:"Módbeli segédigék + perfect modals", transform:[ { orig:"It isn't necessary to book a ticket.", key:"HAVE", before:"You", after:"book a ticket.", a:["don't have to","do not have to"] }, { orig:"I'm sure she has forgotten.", key:"MUST", before:"She", after:"forgotten.", a:["must have"] }, { orig:"It was a mistake to leave so early.", key:"HAVE", before:"We shouldn't", after:"so early.", a:["left"] } ], fill:[ { q:"You ___ wear a seat belt. It is the law. (kötelezettség)", a:["must","have to"] }, { q:"She ___ have forgotten — she never forgets. (lehetetlenség a múltban)", a:["can't","cannot"] }, { q:"I ___ have called you earlier, sorry. (megbánás)", a:["should"] } ], c:`
         <ul>
           <li><strong>Alak</strong>: modal + alapige (to nélkül), nincs E/3 -s, a kérdés/tagadás segédige nélkül megy.</li>
           <li><strong>must</strong> — erős (belső) kötelesség vagy erős logikai következtetés. <em>You must wear a helmet.</em> <em>She's not here — she must be ill.</em></li>
@@ -631,7 +734,7 @@ const MODULES = [
           { q:"Everything is fine, you ___ worry.", a:["don't have to","mustn't","can't"], correct:0 },
           { q:"He ___ have left already; his car is gone.", a:["must","can","should"], correct:0 }
         ] },
-      { t:"Vonatkozó mellékmondatok (relative clauses)", fill:[ { q:"The man ___ lives next door is a doctor.", a:["who","that"] }, { q:"This is the book ___ I told you about.", a:["which","that"] }, { q:"That is the house ___ I was born.", a:["where"] } ], c:`
+      { t:"Vonatkozó mellékmondatok (relative clauses)", mistake:[ { q:"The man which lives next door is nice.", a:["the man who lives next door is nice","the man that lives next door is nice"] }, { q:"That's the house where I was born in.", a:["that's the house where i was born","that is the house where i was born"] } ], fill:[ { q:"The man ___ lives next door is a doctor.", a:["who","that"] }, { q:"This is the book ___ I told you about.", a:["which","that"] }, { q:"That is the house ___ I was born.", a:["where"] } ], c:`
         <ul>
           <li><strong>Névmások</strong>: who (személy), which (dolog/állat), that (személy v. dolog, csak defining), whose (birtokos), where (hely), when (idő), why (ok).</li>
           <li><strong>Defining</strong> (meghatározó): a főnevet azonosítja, nélküle hiányos a mondat — nincs vessző; <em>that</em> használható; tárgyként a névmás elhagyható. <em>The man who called is my boss.</em> <em>The book (that) I read was great.</em></li>
@@ -661,7 +764,7 @@ const MODULES = [
           { q:"I'd like ___ you something.", a:["ask","asking","to ask"], correct:2 },
           { q:"On the way home I stopped ___ some milk.", a:["to buy","buying","buy"], correct:0 }
         ] },
-      { t:"Fokozás és összehasonlítás", fill:[ { q:"This box is ___ (heavy) than that one.", a:["heavier"] }, { q:"It is the ___ (good) film I have ever seen.", a:["best"] }, { q:"She runs ___ (fast) than me.", a:["faster"] } ], c:`
+      { t:"Fokozás és összehasonlítás", transform:[ { orig:"No other city in Latvia is bigger than Riga.", key:"BIGGEST", before:"Riga is the", after:"city in Latvia.", a:["biggest"] }, { orig:"This exam is more difficult than the last one.", key:"AS", before:"The last exam", after:"as this one.", a:["wasn't as difficult","was not as difficult"] }, { orig:"My new phone is faster than my old one.", key:"NOT", before:"My old phone", after:"as my new one.", a:["is not as fast","isn't as fast"] } ], fill:[ { q:"This box is ___ (heavy) than that one.", a:["heavier"] }, { q:"It is the ___ (good) film I have ever seen.", a:["best"] }, { q:"She runs ___ (fast) than me.", a:["faster"] } ], c:`
         <ul>
           <li><strong>1 szótag</strong>: -er / -est. <em>big → bigger → biggest.</em> Rövid magánhangzó után a mássalhangzó kettőződik (hot → hotter).</li>
           <li><strong>2 szótag -y végződéssel</strong>: y → i + er/est. <em>happy → happier → happiest.</em></li>
@@ -702,7 +805,7 @@ const MODULES = [
     id:"m2", num:"02", title:"Szókincs (Vocabulary)", sub:"Euroexam témakörök + szóképzés",
     intro:"A Euroexam megadott témakörökből dolgozik. Egyszerre egy téma: tanuld a szavakat kollokációkkal együtt, és a 🔊 gombbal hallgasd meg a kiejtést.",
     topics:[
-      { t:"Család és kapcsolatok", c:`
+      { t:"Család és kapcsolatok", banked:[ { intro:"Tedd a szavakat a helyükre a családról szóló szövegben.", text:"Family plays an important {1} in everyone's life. Most children grow up with their {2}, who look after them and teach them important {3}. As they get older, brothers and {4} often become close friends. In many countries, several {5} live together in the same house, including grandparents. Getting {6} and starting a family is still a common {7} for many adults. However, modern relationships can be {8}: some couples decide not to have {9} at all. When problems appear, good {10} is the key to solving them. It is important to {11} each other and spend quality {12} together. A strong family gives us {13} and makes us feel that we always {14}.", bank:["belong","children","communication","different","generations","goal","married","parents","respect","role","sisters","support","time","values"], answers:["role","parents","values","sisters","generations","married","goal","different","children","communication","respect","time","support","belong"] } ], c:`
         <p><strong>Emberek, főnevek:</strong></p>
         <ul>
           <li><em>relative</em> — rokon</li>
@@ -829,7 +932,7 @@ const MODULES = [
           { q:"My grandparents ___ me when my parents worked abroad.", a:["brought up","fell out","took after"], correct:0 },
           { q:"They got ___ last June in a small church.", a:["married","divorced","engaged"], correct:0 }
         ] },
-      { t:"Munka és karrier", banked:[ { intro:"Tedd a 10 szót a megfelelő helyre a munkáról szóló szövegben.", text:"Choosing the right {1} is one of the most important decisions in life. Some people look for a high {2}, while others prefer an interesting {3} with friendly colleagues. To get a good position, you usually need the right {4} and some work {5}. The first step is to send your {6} and a cover letter. If the company is interested, they will invite you to an {7}. During it, try to stay {8} and answer the questions clearly. After a few years, many employees hope to get a {9} and earn more {10}.", bank:["salary","experience","interview","career","calm","CV","job","promotion","money","qualifications"], answers:["career","salary","job","qualifications","experience","CV","interview","calm","promotion","money"] } ], c:`
+      { t:"Munka és karrier", wordform:[ { q:"He is a very {} worker.", root:"SUCCESS", a:["successful"] }, { q:"I need to improve my computer {}.", root:"KNOW", a:["knowledge"] }, { q:"She gave a clear {} of the plan.", root:"EXPLAIN", a:["explanation"] }, { q:"The new manager is very {}.", root:"PROFESSION", a:["professional"] } ], banked:[ { intro:"Tedd a 10 szót a megfelelő helyre a munkáról szóló szövegben.", text:"Choosing the right {1} is one of the most important decisions in life. Some people look for a high {2}, while others prefer an interesting {3} with friendly colleagues. To get a good position, you usually need the right {4} and some work {5}. The first step is to send your {6} and a cover letter. If the company is interested, they will invite you to an {7}. During it, try to stay {8} and answer the questions clearly. After a few years, many employees hope to get a {9} and earn more {10}.", bank:["salary","experience","interview","career","calm","CV","job","promotion","money","qualifications"], answers:["career","salary","job","qualifications","experience","CV","interview","calm","promotion","money"] } ], c:`
         <p><strong>Főnevek:</strong></p>
         <ul>
           <li><em>employee</em> — alkalmazott</li>
@@ -956,7 +1059,7 @@ const MODULES = [
           { q:"A ___ contract gives you more security than a temporary one.", a:["permanent","part-time","redundant"], correct:0 },
           { q:"She works for herself as a ___.", a:["freelancer","trainee","candidate"], correct:0 }
         ] },
-      { t:"Oktatás és tanulás", c:`
+      { t:"Oktatás és tanulás", wordform:[ { q:"University {} can be very expensive.", root:"EDUCATE", a:["education"] }, { q:"She made a quick {} to study abroad.", root:"DECIDE", a:["decision"] }, { q:"Reading is very {} for children.", root:"BENEFIT", a:["beneficial"] }, { q:"He answered all the questions {}.", root:"CORRECT", a:["correctly"] } ], c:`
         <p><strong>Főnevek:</strong></p>
         <ul>
           <li><em>degree</em> — diploma</li>
@@ -1077,7 +1180,7 @@ const MODULES = [
           { q:"He won a ___ that covers his tuition fees.", a:["scholarship","deadline","lecture"], correct:0 },
           { q:"If you fail, you can ___ the exam in autumn.", a:["resit","graduate","enrol"], correct:0 }
         ] },
-      { t:"Egészség és életmód", c:`
+      { t:"Egészség és életmód", wordform:[ { q:"Regular exercise is good for your {}.", root:"HEALTHY", a:["health"] }, { q:"Smoking is very {} to your lungs.", root:"HARM", a:["harmful"] }, { q:"He made a full {} after the illness.", root:"RECOVER", a:["recovery"] }, { q:"A balanced diet is {} for everyone.", root:"IMPORTANCE", a:["important"] } ], banked:[ { intro:"Tedd a szavakat a helyükre az egészséges életmódról szóló szövegben.", text:"Staying healthy is something we all {1} about. A balanced {2} with plenty of fruit and vegetables gives the body the {3} it needs. Regular {4}, such as running or swimming, keeps the heart {5} and helps us control our {6}. It is also important to get enough {7}, because the body recovers during the {8}. Too much {9} can damage our health, so it is good to learn how to {10}. Many people give up bad {11} like smoking in order to live {12}. Of course, if you feel {13}, you should always see a {14}.", bank:["care","diet","doctor","exercise","habits","ill","longer","night","relax","sleep","stress","strong","vitamins","weight"], answers:["care","diet","vitamins","exercise","strong","weight","sleep","night","stress","relax","habits","longer","ill","doctor"] } ], c:`
         <p><strong>Főnevek:</strong></p>
         <ul>
           <li><em>well-being</em> — jóllét</li>
@@ -1197,7 +1300,7 @@ const MODULES = [
           { q:"I think I'm ___ a cold; my throat hurts.", a:["coming down with","recovering from","keeping fit"], correct:0 },
           { q:"A ___ diet includes fruit, vegetables and protein.", a:["balanced","sedentary","contagious"], correct:0 }
         ] },
-      { t:"Környezet és természet", c:`
+      { t:"Környezet és természet", banked:[ { intro:"Tedd a szavakat a helyükre. Figyelem: 3 szó kakukktojás, az nem kell sehova!", text:"Climate change is one of the biggest {1} facing our planet today. Burning fossil fuels releases harmful {2} into the air, which causes global {3}. As a result, the ice at the poles is starting to {4}, and sea levels are {5}. Many species are losing their natural {6} and are in danger of {7}. To protect the {8}, we need to reduce {9} and use renewable {10} such as solar and wind. Everyone can help by {11} more and wasting {12}.", bank:["pollution","holiday","energy","less","gases","expensive","extinction","habitat","environment","melt","swimming","problems","warming","recycling","rising"], answers:["problems","gases","warming","melt","rising","habitat","extinction","environment","pollution","energy","recycling","less"] } ], c:`
         <p><strong>Főnevek:</strong></p>
         <ul>
           <li><em>climate change</em> — éghajlatváltozás</li>
@@ -1318,7 +1421,7 @@ const MODULES = [
           { q:"We can ___ energy by switching off the lights.", a:["save","pollute","waste"], correct:0 },
           { q:"Plastic bottles are ___, so use the right bin.", a:["recyclable","toxic","extinct"], correct:0 }
         ] },
-      { t:"Tudomány és technológia", c:`
+      { t:"Tudomány és technológia", wordform:[ { q:"This new phone is very {}.", root:"TECHNOLOGY", a:["technological"] }, { q:"Scientists made an important {}.", root:"DISCOVER", a:["discovery"] }, { q:"Air {} is a serious problem.", root:"POLLUTE", a:["pollution"] }, { q:"Robots can work very {}.", root:"EFFICIENT", a:["efficiently"] } ], banked:[ { intro:"Tedd a szavakat a helyükre a technológiáról szóló szövegben.", text:"Technology has changed the way we {1} every day. Most people now own a {2} that they use to communicate, work and have {3}. The {4} gives us access to almost unlimited {5}, but we must be careful about our {6} online. Scientists continue to make new {7} that improve our lives, from medicine to clean {8}. Artificial {9} can already perform many tasks faster than humans. However, some people {10} that machines may one day replace human {11}. Whatever happens, it is important to use technology in a {12} way. We should also protect the {13} by reducing waste and saving {14}.", bank:["discoveries","electricity","energy","environment","fun","information","intelligence","internet","jobs","live","privacy","responsible","smartphone","worry"], answers:["live","smartphone","fun","internet","information","privacy","discoveries","energy","intelligence","worry","jobs","responsible","environment","electricity"] } ], c:`
         <p><strong>Főnevek:</strong></p>
         <ul>
           <li><em>device</em> — eszköz</li>
@@ -1439,7 +1542,7 @@ const MODULES = [
           { q:"You have to ___ before you can see your account.", a:["log in","back up","switch off"], correct:0 },
           { q:"This software is ___; it's three versions old.", a:["outdated","wireless","user-friendly"], correct:0 }
         ] },
-      { t:"Utazás és turizmus", c:`
+      { t:"Utazás és turizmus", banked:[ { intro:"Tedd a szavakat a helyükre az utazásról szóló szövegben.", text:"Travelling abroad is one of the best ways to learn about other {1}. Before you leave, you should book your {2} and find a good place to {3}. Don't forget to pack your {4} and check that your {5} is still valid. At the {6}, you go through security and wait at the {7} for your flight. Once you {8} at your destination, you can start exploring. Many tourists like to visit famous {9} and take lots of {10}. A local {11} can show you places that are not in the guidebook. Trying the local {12} is also part of the {13}. Of course, travelling can be expensive, so it helps to plan your {14} carefully. In the end, the memories and {15} you bring home are often worth more than any {16}.", bank:["airport","arrive","budget","cultures","experience","flights","food","gate","guide","landmarks","luggage","money","passport","photos","souvenirs","stay"], answers:["cultures","flights","stay","luggage","passport","airport","gate","arrive","landmarks","photos","guide","food","experience","budget","souvenirs","money"] } ], c:`
         <p><strong>Főnevek:</strong></p>
         <ul>
           <li><em>destination</em> — úti cél</li>
@@ -1681,7 +1784,7 @@ const MODULES = [
           { q:"I don't trust that paper; its reporting is ___.", a:["biased","live","interactive"], correct:0 },
           { q:"He spends hours ___ social media every day.", a:["scrolling through","going viral","broadcasting"], correct:0 }
         ] },
-      { t:"Pénz és vásárlás", c:`
+      { t:"Pénz és vásárlás", banked:[ { intro:"Tedd a szavakat a helyükre. 3 szó kakukktojás!", text:"Managing your {1} well is an important life skill. Every month you should make a {2} so you know how much you can {3}. It is wise to {4} a little for the future instead of spending everything. When you go {5}, compare prices and look for a good {6}. Paying by {7} is convenient, but be careful not to get into {8}. Some shops offer a {9} if you are not happy with a product. Expensive does not always mean good {10}; sometimes a cheaper {11} is just as good. In the end, being careful with money gives you more {12}.", bank:["shopping","budget","salary","bargain","card","product","debt","spend","money","borrow","quality","refund","save","freedom","expensive"], answers:["money","budget","spend","save","shopping","bargain","card","debt","refund","quality","product","freedom"] } ], c:`
         <p><strong>Főnevek:</strong></p>
         <ul>
           <li><em>income</em> — jövedelem</li>
@@ -2023,7 +2126,7 @@ const MODULES = [
     id:"m3", num:"03", title:"Olvasásértés (Reading)", sub:"3 feladat, 3 olvasási technika",
     intro:"A Euroexam olvasásrésze 3 feladatból áll, mindegyik más technikát kíván. Szótár használható — de okosan. A 🔊 gombbal a gyakorló szövegeket is meghallgathatod.",
     topics:[
-      { t:"Skimming – áttekintő olvasás (1. feladat)", c:`
+      { t:"Skimming – áttekintő olvasás (1. feladat)", banked:[ { intro:"Tedd a szavakat a helyükre a skimmingről szóló szövegben.", text:"When you read quickly to get the general {1} of a text, you are skimming. This skill is very {2} in exams, where you don't have much {3}. First, read the {4} and any subheadings. Then look at the first {5} of each paragraph, because it often contains the main {6}. Pay attention to words in bold or {7}. You don't need to understand every single {8}; the goal is to get the overall {9}. After skimming, you will know what the text is {10} and where to find specific {11}. With regular {12}, skimming becomes faster and easier.", bank:["about","details","idea","italics","meaning","point","practice","sentence","time","title","useful","word"], answers:["idea","useful","time","title","sentence","point","italics","word","meaning","about","details","practice"] } ], c:`
         <p><strong>Mi ez?</strong> Gyors átfutás a fő gondolatért — nem minden szóért. Cél: 1–2 perc alatt megérteni, miről szól a szöveg és hogyan épül fel.</p>
         <p><strong>Hogyan csináld:</strong></p>
         <ol class="steps">
@@ -2045,7 +2148,7 @@ const MODULES = [
           { q:"(Venice) The best title would be…", a:["Too Many Tourists in Venice","Italian Cooking Classes","Learning to Row a Boat"], correct:0 },
           { q:"(Venice) Why have many locals moved away?", a:["Overcrowding and rising prices","Bad weather","No bridges"], correct:0 }
         ] },
-      { t:"Scanning – konkrét információ keresése (2. feladat)", c:`
+      { t:"Scanning – konkrét információ keresése (2. feladat)", banked:[ { intro:"Tedd a szavakat a helyükre. 2 szó kakukktojás!", text:"Scanning is a reading {1} that helps you find specific {2} quickly. Unlike skimming, you are not interested in the general {3}; you are looking for one particular {4}, such as a name, a date or a {5}. Move your eyes quickly over the {6} until you find the {7} word. For example, if you need a price, look only for {8}. Scanning saves a lot of {9} in an exam, so it is worth {10} it regularly.", bank:["text","time","number","skill","key","idea","information","slowly","fact","grammar","numbers","practising"], answers:["skill","information","idea","fact","number","text","key","numbers","time","practising"] } ], c:`
         <p><strong>Mi ez?</strong> Egy konkrét adat (név, dátum, szám, szó) gyors megkeresése anélkül, hogy mindent elolvasnál.</p>
         <p><strong>Hogyan csináld:</strong></p>
         <ol class="steps">
@@ -2088,7 +2191,7 @@ const MODULES = [
           { q:"(2. szöveg) What made Maria successful? (inference)", a:["Quality and a personal touch","Very low prices","A huge shop"], correct:0 },
           { q:"(2. szöveg) What happened to one of the larger shops?", a:["It closed down","It grew bigger","It moved away"], correct:0 }
         ] },
-      { t:"Bekezdés–cím párosítás (6 bekezdés / 8 cím, 2 kizárandó)", c:`
+      { t:"Bekezdés–cím párosítás (6 bekezdés / 8 cím, 2 kizárandó)", match:[ { intro:"Párosítsd a bekezdéseket a megfelelő címmel. Két cím fölösleges!", pairs:[{l:"More and more people choose to work from home, saving time and money on commuting.",a:"The rise of remote work"},{l:"A good night's sleep helps you concentrate and stay healthy; adults need seven to eight hours.",a:"Why sleep matters"},{l:"Learning a foreign language opens doors to new jobs and friendships around the world.",a:"The benefits of languages"},{l:"Reducing plastic and recycling more can protect our oceans and wildlife.",a:"Protecting the environment"}], options:["The rise of remote work","Why sleep matters","The benefits of languages","Protecting the environment","The history of travel","How to cook healthy meals"] } ], c:`
         <p><strong>A feladat:</strong> 6 bekezdéshez kell a 8 cím közül a megfelelőt megtalálni — 2 cím kimarad (csali).</p>
         <p><strong>Stratégia:</strong></p>
         <ol class="steps">
@@ -2159,7 +2262,7 @@ const MODULES = [
           { q:"(Hang) What is the problem?", a:["The flight is delayed","The food is cold","The room is booked"], correct:0 },
           { q:"(Hang) Where is gate 12?", a:["Straight ahead, on the left","Behind the lounge","Upstairs on the right"], correct:0 }
         ] },
-      { t:"Jegyzetkészítés – konkrét infók lejegyzése (2. feladat)", c:`
+      { t:"Jegyzetkészítés – konkrét infók lejegyzése (2. feladat)", note:[ { intro:"Hallgasd meg az üzenetet, és töltsd ki a jegyzetet.", audio:"Good afternoon. Here is some information about the school trip. The trip to the science museum will take place on Friday the twelfth of May. The bus leaves at half past eight from the main gate. Please bring ten euros for the ticket and a packed lunch. Don't forget a warm jacket, because the museum can be cold.", text:"School trip notes — Destination: science {1}. Date: Friday the {2} of May. Bus leaves at {3} from the main {4}. Bring {5} euros and a packed {6}. Also bring a warm {7}.", blanks:[{a:["museum"],hint:"hely"},{a:["twelfth","12th"],hint:"dátum"},{a:["half past eight","8:30","8.30","eight thirty"],hint:"idő"},{a:["gate"],hint:"hely"},{a:["ten","10"],hint:"összeg"},{a:["lunch"],hint:"étel"},{a:["jacket"],hint:"ruha"}] } ], c:`
         <p><strong>Mi ez?</strong> Egy hosszabb szöveget (bejelentés, üzenet) hallasz, és konkrét adatokat — név, idő, szám, hely — kell egy űrlapra/táblázatba lejegyezned.</p>
         <p><strong>Stratégia:</strong></p>
         <ol class="steps">
@@ -2226,7 +2329,7 @@ const MODULES = [
           { q:"(Hang – gist) What is the main idea?", a:["Small habits lead to big results","Reading is boring","Change must be huge"], correct:0 },
           { q:"(Hang – detail) How many pages a day is the example?", a:["Ten","Twenty","Fifty"], correct:0 }
         ] },
-      { t:"Helyesírás a jegyzetkészítésnél (pontozási szempont)", c:`
+      { t:"Helyesírás a jegyzetkészítésnél (pontozási szempont)", note:[ { intro:"Hallgasd meg a foglalási visszaigazolást. Figyelj a számokra és a betűzésre!", audio:"Here is your booking confirmation. The guest name is Baker, that's B-A-K-E-R. The room number is fifteen. Check-in is on the third of June at two o'clock. The total price is ninety euros.", text:"Booking — Name: {1}. Room number: {2}. Check-in date: {3} of June. Check-in time: {4}. Total price: {5} euros.", blanks:[{a:["Baker"],hint:"név"},{a:["fifteen","15"],hint:"szám"},{a:["third","3rd"],hint:"dátum"},{a:["two o'clock","two","2","2 o'clock"],hint:"idő"},{a:["ninety","90"],hint:"ár"}] } ], c:`
         <p>A 2. feladatban (jegyzetkészítés) a <strong>helyesírás is számít</strong> — egy rosszul leírt szó vagy szám pontba kerülhet.</p>
         <p><strong>Mire figyelj:</strong></p>
         <ul>
@@ -2278,7 +2381,7 @@ const MODULES = [
           { q:"'Register' refers to…", a:["the level of formality","the page number","your handwriting"], correct:0 },
           { q:"Good organisation means using…", a:["paragraphs and linkers","one long sentence","no structure"], correct:0 }
         ] },
-      { t:"Informális e-mail / levél", cloze:[ { intro:"Egészítsd ki a baráti e-mailt a hiányzó szavakkal.", text:"Hi Tom, {1} for your email! I would {2} to come to your party on Saturday. Could you {3} me what time it starts? I will {4} some snacks. Can't {5} to see you! {6} care, Marci", blanks:[ {a:["Thanks","Thank you"],hint:"köszönet"}, {a:["love"],hint:"szeretnék (would ___)"}, {a:["tell"],hint:"megmondani"}, {a:["bring"],hint:"hozni"}, {a:["wait"],hint:"alig várom (can't ___ to)"}, {a:["Take"],hint:"vigyázz (___ care)"} ] } ], c:`
+      { t:"Informális e-mail / levél", writepad:[ { prompt:"Írj egy kb. 100 szavas baráti e-mailt: meghívod a barátodat egy hétvégi programra. Térj ki arra, mi a program, mikor és hol lesz, és mit hozzon.", min:90, max:120, checklist:["Megszólítás (Hi …,)","Nyitó mondat","A program leírása","Mikor és hol","Mit hozzon / kérdés","Elköszönés (Take care, / Best wishes,)","Informális stílus (I'm, don't)","Megfelelő hossz (~100 szó)"], model:"Hi Anna, Thanks for your message! I'm writing to invite you to a barbecue at my place this Saturday. We'll start around 4 p.m. in my garden, and a few friends from school are coming too. Could you bring some music and maybe a salad? Let me know if you can make it. Can't wait to see you! Take care, Marci" } ], cloze:[ { intro:"Egészítsd ki a baráti e-mailt a hiányzó szavakkal.", text:"Hi Tom, {1} for your email! I would {2} to come to your party on Saturday. Could you {3} me what time it starts? I will {4} some snacks. Can't {5} to see you! {6} care, Marci", blanks:[ {a:["Thanks","Thank you"],hint:"köszönet"}, {a:["love"],hint:"szeretnék (would ___)"}, {a:["tell"],hint:"megmondani"}, {a:["bring"],hint:"hozni"}, {a:["wait"],hint:"alig várom (can't ___ to)"}, {a:["Take"],hint:"vigyázz (___ care)"} ] } ], c:`
         <p><strong>Mikor?</strong> Barátnak, ismerősnek. Közvetlen, könnyed hangnem, rövidítések megengedettek (<em>I'm</em>, <em>don't</em>).</p>
         <p><strong>Szerkezet:</strong> megszólítás → nyitás → törzs (a kért pontok) → zárás → elköszönés.</p>
         <p><strong>Hasznos panelek:</strong></p>
@@ -2296,7 +2399,7 @@ const MODULES = [
           { q:"Which phrase is a friendly opening?", a:["It was great to hear from you.","I am writing to complain.","I would be grateful if…"], correct:0 },
           { q:"Which is a suitable informal suggestion?", a:["How about Saturday?","I would be grateful if you could attend.","Kindly confirm your attendance."], correct:0 }
         ] },
-      { t:"Formális e-mail / levél", c:`
+      { t:"Formális e-mail / levél", writepad:[ { prompt:"Írj egy kb. 120 szavas formális érdeklődő levelet egy nyári angol nyelvtanfolyamról. Kérdezz rá a kezdési dátumra, az árra és arra, hogy adnak-e bizonyítványt.", min:110, max:140, checklist:["Megszólítás (Dear Sir or Madam,)","A levél célja (I am writing to enquire…)","Konkrét kérdések (dátum, ár, bizonyítvány)","Udvarias kérés (I would be grateful…)","Záró mondat (I look forward to…)","Elköszönés (Yours faithfully,)","Nincs rövidítés (I am, do not)","Megfelelő hossz (~120 szó)"], model:"Dear Sir or Madam, I am writing to enquire about the summer English course advertised on your website. I would be grateful if you could tell me the exact starting date and the total cost of the course. I would also like to know whether a certificate is provided at the end. Furthermore, could you let me know if accommodation is available for international students? Thank you in advance for your assistance. I look forward to hearing from you. Yours faithfully, Marcell Moor" } ], banked:[ { intro:"Tedd a szavakat a helyükre a panaszos levélben.", text:"Dear Sir or {1}, I am writing to {2} about a laptop I {3} from your online shop last week. Unfortunately, when the package {4}, the screen was already {5}. I have attached a {6} of the damage to this email. I would be {7} if you could either send me a {8} product or give me a full {9}. I have been a loyal {10} for many years and I am very {11} with this situation. I look {12} to hearing from you as soon as {13}. Yours {14}, Marcell Moor", bank:["arrived","broken","complain","customer","disappointed","faithfully","forward","grateful","Madam","ordered","photo","possible","refund","replacement"], answers:["Madam","complain","ordered","arrived","broken","photo","grateful","replacement","refund","customer","disappointed","forward","possible","faithfully"] } ], c:`
         <p><strong>Mikor?</strong> Hivatalos kérés, panasz, érdeklődés, jelentkezés. Udvarias, személytelen, <strong>nincs rövidítés</strong> (<em>I am</em>, <em>do not</em>).</p>
         <p><strong>Hasznos panelek:</strong></p>
         <ul>
@@ -2314,7 +2417,7 @@ const MODULES = [
           { q:"You end with 'Yours sincerely,' when you…", a:["know the person's name","don't know the name","are writing to a friend"], correct:0 },
           { q:"Which is a polite formal request?", a:["Could you please send me the details?","Send me the details now.","Gimme the info."], correct:0 }
         ] },
-      { t:"Véleménykifejtő / érvelő szöveg", c:`
+      { t:"Véleménykifejtő / érvelő szöveg", writepad:[ { prompt:"Írj egy kb. 150 szavas véleményt: Több haszna vagy kára van a közösségi médiának? Indokold a véleményed példákkal.", min:130, max:180, checklist:["Bevezetés + a véleményed","1. érv + példa","2. érv vagy ellenérv","Kötőelemek (Firstly, However, …)","Összegzés (To sum up,)","Egységes stílus","Megfelelő hossz (~150 szó)"], model:"Social media is a part of everyday life for most people today. In my opinion, it brings more benefits than problems, although it must be used carefully. Firstly, it helps us stay in touch with friends and family, even when they live far away. For example, we can share photos and messages instantly. Secondly, it is a useful tool for learning and finding information. On the other hand, spending too much time online can affect our sleep and concentration, and not everything we read is true. To sum up, social media is a powerful tool. If we use it responsibly, its advantages clearly outweigh its disadvantages." } ], c:`
         <p><strong>Típusok:</strong> <em>opinion essay</em> (saját vélemény) és <em>for-and-against</em> (mellette–ellene).</p>
         <p><strong>Szerkezet:</strong></p>
         <ol class="steps">
@@ -2356,7 +2459,7 @@ const MODULES = [
           { q:"'In addition' is used to…", a:["add information","show contrast","give a result"], correct:0 },
           { q:"One paragraph should usually cover…", a:["one main idea","every idea","no idea"], correct:0 }
         ] },
-      { t:"Önellenőrzés és gyakori hibák", c:`
+      { t:"Önellenőrzés és gyakori hibák", mistake:[ { q:"She don't like coffee.", a:["she doesn't like coffee","she does not like coffee"] }, { q:"I have been here since five years.", a:["i have been here for five years"] }, { q:"He is more taller than me.", a:["he is taller than me"] }, { q:"I like very much this film.", a:["i like this film very much"] }, { q:"People is friendly here.", a:["people are friendly here"] }, { q:"The life is hard sometimes.", a:["life is hard sometimes"] } ], c:`
         <p>Az utolsó 2–3 percben mindig olvasd át, amit írtál. Ellenőrzőlista:</p>
         <ul>
           <li>Minden kért pontra kitértem?</li>
@@ -2399,7 +2502,7 @@ const MODULES = [
           { q:"An advantage of the individual exam is…", a:["you don't depend on a partner","someone else answers","it is half as long"], correct:0 },
           { q:"A disadvantage of the paired exam is…", a:["you depend on your partner","you can't speak","there is no topic"], correct:0 }
         ] },
-      { t:"Bemutatkozás és személyes interjú", c:`
+      { t:"Bemutatkozás és személyes interjú", speakpad:[ { intro:"Válaszolj hangosan, bővített mondatokban.", prompts:["Tell me about yourself and your family.","What do you do in your free time, and why do you enjoy it?","Describe your hometown. What do you like about it?","What are your plans for the future?","Why are you learning English?"] } ], c:`
         <p>Az első részben a vizsgáztató személyes kérdéseket tesz fel: magadról, családodról, munkádról/tanulásodról, hobbidról, terveidről.</p>
         <p><strong>Stratégia:</strong> ne adj egyszavas válaszokat — bővítsd ki indokkal, példával, részlettel.</p>
         <p><strong>Hasznos panelek:</strong></p>
@@ -2416,7 +2519,7 @@ const MODULES = [
           { q:"Which phrase talks about future plans?", a:["I'm planning to…","I used to…","Yesterday I…"], correct:0 },
           { q:"Which is a good way to extend an answer?", a:["…because… / For example,…","Yes.","No comment."], correct:0 }
         ] },
-      { t:"Szerepjáték – 3 kártya (role play)", c:`
+      { t:"Szerepjáték – 3 kártya (role play)", speakpad:[ { intro:"Játszd el a helyzetet hangosan – te kezded a párbeszédet.", prompts:["You are at a hotel reception. Book a room for two nights and ask about breakfast.","You are in a shop. You want to return a jacket that is too small. Explain the problem and ask for a refund.","You are calling a language school. Ask about course dates, prices and class size."] } ], c:`
         <p><strong>A feladat:</strong> szerepkártyákat kapsz — megadják, ki vagy, hol vagy és mit szeretnél elintézni. Minden kártyánál <strong>te indítod</strong> a párbeszédet, majd a vizsgáztató reakciójára is reagálsz (kétszer szólalsz meg).</p>
         <p><strong>Stratégia:</strong></p>
         <ol class="steps">
@@ -2439,7 +2542,7 @@ const MODULES = [
           { q:"If the answer isn't what you wanted, you can say…", a:["Actually, I'd prefer…","Goodbye.","Nothing."], correct:0 },
           { q:"At each card you speak…", a:["twice (start, then react)","once only","never"], correct:0 }
         ] },
-      { t:"Történetmesélés képsorról (Picture story, ~2 perc)", c:`
+      { t:"Történetmesélés képsorról (Picture story, ~2 perc)", speakpad:[ { intro:"Mesélj el egy kb. 2 perces történetet múlt időben, kötőszavakkal (then, after that, suddenly, in the end).", prompts:["Tell a story about a day when everything went wrong.","Tell a story about an unexpected meeting with an old friend.","Tell a story about a journey that did not go as planned."] } ], c:`
         <p><strong>A feladat:</strong> kapsz egy képsort, és kb. 2 percben el kell mesélned a történetet.</p>
         <p><strong>Stratégia:</strong></p>
         <ol class="steps">
@@ -2461,7 +2564,7 @@ const MODULES = [
           { q:"Before you start, you should…", a:["look at all the pictures","read a book","ask for the answers"], correct:0 },
           { q:"A picture story should be told…", a:["in order, beginning to end","in random order","backwards only"], correct:0 }
         ] },
-      { t:"Vita és megegyezés egy témáról", c:`
+      { t:"Vita és megegyezés egy témáról", speakpad:[ { intro:"Fejtsd ki a véleményed, indokold példával, és juss el egy következtetésig.", prompts:["Is it better to live in a city or in the countryside?","Should students wear school uniforms?","What is the best way to spend a holiday: relaxing or being active?","Are smartphones making us less social?"] } ], c:`
         <p><strong>A feladat</strong> (jellemzően páros): egy témáról kb. 3 percig beszéltek felkészülés nélkül, és gyakran közös döntésre kell jutni.</p>
         <p><strong>Stratégia:</strong> mondd el és indokold a véleményed, figyelj a partnerre és reagálj rá, tegyél javaslatot, a végén foglaljátok össze a közös döntést.</p>
         <p><strong>Hasznos panelek:</strong></p>
@@ -2479,7 +2582,7 @@ const MODULES = [
           { q:"At the end of a discussion task you should…", a:["reach an agreement","leave the room","start again"], correct:0 },
           { q:"To agree you can say…", a:["That's a good point.","Absolutely not.","I won't talk."], correct:0 }
         ] },
-      { t:"Hasznos panelek és folyékonyság", c:`
+      { t:"Hasznos panelek és folyékonyság", banked:[ { intro:"Tedd a szavakat a helyükre. 2 szó kakukktojás!", text:"In the speaking exam, {1} is more important than being perfect. If you forget a {2}, don't panic; try to {3} it in another way. Use fillers like 'well' or 'let me {4}' to gain {5}. Speak clearly and not too {6}. If you make a {7}, just correct yourself and carry {8}. Listen to the {9} and answer what is asked. With regular {10}, you will sound more natural and confident.", bank:["dictionary","fast","practice","on","describe","mistake","time","question","think","silent","word","fluency"], answers:["fluency","word","describe","think","time","fast","mistake","on","question","practice"] } ], c:`
         <p><strong>Folyékonyság (fluency) &gt; tökéletesség.</strong> Jobb folyamatosan, apró hibákkal beszélni, mint akadozni.</p>
         <ul>
           <li><strong>Töltelékek</strong> (gondolkodási idő): <em>Well,…</em> / <em>Let me think…</em> / <em>That's a good question.</em> / <em>How can I put it…</em></li>
@@ -6711,7 +6814,7 @@ const MODULES = [
           { q:"What arm reach must junior cabin crew meet (on tiptoes)?", a:["210 cm","150 cm","250 cm"], correct:0 },
           { q:"Which English level is expected for junior cabin crew?", a:["B2 or higher","A1","none"], correct:0 }
         ] },
-      { t:"Cabin crew alapszókincs – gép és felszerelés", fill:[ { q:"Store your bag in the overhead ___. (tároló)", a:["bin","locker"] }, { q:"The crew prepare food and drinks in the ___. (fedélzeti konyha)", a:["galley"] }, { q:"Please walk along the ___ to your seat. (folyosó)", a:["aisle"] } ], c:`
+      { t:"Cabin crew alapszókincs – gép és felszerelés", banked:[ { intro:"Tedd a szavakat a helyükre a repülőgépről szóló szövegben.", text:"Before passengers board, the cabin crew check the whole {1}. They make sure the emergency {2} are ready and the {3} are properly closed. Passengers store their bags in the overhead {4} or under the {5} in front of them. The crew prepare drinks and meals in the {6}, using a {7} to move along the {8}. During the flight, the {9} flies the aircraft from the flight {10}, while the cabin crew look after the {11}. If a passenger needs help, they can press the call {12}. Before landing, everyone must return their seat to the upright {13} and fasten their seat {14}.", bank:["aisle","belt","button","cabin","captain","deck","doors","equipment","galley","lockers","passengers","position","seat","trolley"], answers:["cabin","equipment","doors","lockers","seat","galley","trolley","aisle","captain","deck","passengers","button","position","belt"] } ], fill:[ { q:"Store your bag in the overhead ___. (tároló)", a:["bin","locker"] }, { q:"The crew prepare food and drinks in the ___. (fedélzeti konyha)", a:["galley"] }, { q:"Please walk along the ___ to your seat. (folyosó)", a:["aisle"] } ], c:`
         <p>A repülőgép és a kabin alapszókincse. Minden szóhoz tartozik 🔊 felolvasó.</p>        <ul class="vocab">
           <li><em>aircraft</em> — repülőgép</li>
           <li><em>cabin</em> — utastér</li>
@@ -6807,7 +6910,7 @@ const MODULES = [
           { q:"What is a 'jump seat'?", a:["a crew seat","a passenger toilet","a luggage cart"], correct:0 },
           { q:"What connects the terminal to the aircraft door?", a:["the jet bridge","the runway","the bulkhead"], correct:0 }
         ] },
-      { t:"Bővített szakmai szókincs (cabin crew)", c:`
+      { t:"Bővített szakmai szókincs (cabin crew)", match:[ { intro:"Párosítsd a szakszavakat a jelentésükkel. Két jelentés fölösleges!", pairs:[{l:"galley",a:"where food is prepared"},{l:"aisle",a:"the walkway between seats"},{l:"purser",a:"the senior cabin crew member"},{l:"jump seat",a:"a folding seat for crew"},{l:"overhead bin",a:"storage above the seats"}], options:["where food is prepared","the walkway between seats","the senior cabin crew member","a folding seat for crew","storage above the seats","the pilot's cabin","the emergency exit"] } ], c:`
         <p>Tematikus bővített szókincs a légiutas-kísérő munkához — minden szóhoz 🔊 felolvasó. Tanuld csoportonként.</p>
         <p><strong>Repülőtér és földi kiszolgálás</strong></p>        <ul class="vocab">
           <li><em>check-in desk</em> — utasfelvételi pult</li>
@@ -6928,7 +7031,7 @@ const MODULES = [
           { q:"What does 'to stow' mean?", a:["to put away/secure","to throw away","to open"], correct:0 },
           { q:"Before take-off the crew confirm…", a:["cabin secure","duty-free totals","passenger names"], correct:0 }
         ] },
-      { t:"Fedélzeti bejelentések (PA announcements)", cloze:[ { intro:"Egészítsd ki az üdvözlő bejelentést.", text:"Good morning, dear guests, and {1} aboard this airBaltic flight to Riga. Please {2} your cabin baggage in the overhead locker, take your {3}, and {4} your seat belt. We will be ready for {5} shortly. Thank you.", blanks:[ {a:["welcome"],hint:"ige – üdvözöl"}, {a:["store","stow"],hint:"elhelyez"}, {a:["seat"],hint:"főnév – ülés"}, {a:["fasten"],hint:"becsatol"}, {a:["departure"],hint:"főnév – indulás"} ] } ], fill:[ { q:"Please ___ your seat belt. (becsatol)", a:["fasten"] }, { q:"Please ___ your tray table. (felhajt/elpakol)", a:["stow"] }, { q:"Welcome ___. (a fedélzeten)", a:["aboard","on board"] } ], c:`
+      { t:"Fedélzeti bejelentések (PA announcements)", banked:[ { intro:"Tedd a szavakat a helyükre a fedélzeti bejelentésben.", text:"Good evening, dear {1}, and welcome {2} this airBaltic flight to Tallinn. Our flight {3} today is approximately one hour and ten {4}. Please make sure your seat {5} is fastened and your tray {6} is stowed. The captain has switched on the seat belt {7} because we are expecting some {8}. For your own {9}, please remain {10} during this time. Our cabin {11} will be happy to {12} you throughout the flight. We will be landing in Tallinn shortly, where the local {13} is nine o'clock. Thank you for {14} with airBaltic.", bank:["aboard","assist","belt","crew","duration","flying","guests","minutes","safety","seated","sign","table","time","turbulence"], answers:["guests","aboard","duration","minutes","belt","table","sign","turbulence","safety","seated","crew","assist","time","flying"] } ], cloze:[ { intro:"Egészítsd ki az üdvözlő bejelentést.", text:"Good morning, dear guests, and {1} aboard this airBaltic flight to Riga. Please {2} your cabin baggage in the overhead locker, take your {3}, and {4} your seat belt. We will be ready for {5} shortly. Thank you.", blanks:[ {a:["welcome"],hint:"ige – üdvözöl"}, {a:["store","stow"],hint:"elhelyez"}, {a:["seat"],hint:"főnév – ülés"}, {a:["fasten"],hint:"becsatol"}, {a:["departure"],hint:"főnév – indulás"} ] } ], fill:[ { q:"Please ___ your seat belt. (becsatol)", a:["fasten"] }, { q:"Please ___ your tray table. (felhajt/elpakol)", a:["stow"] }, { q:"Welcome ___. (a fedélzeten)", a:["aboard","on board"] } ], c:`
         <p>A fedélzeti bejelentéseket (<em>PA – public address</em>) világosan, nyugodtan és udvariasan kell mondani. Tanuld meg a tipikus paneleket helyzetenként.</p>
         <p><strong>Hasznos panelek:</strong></p>
         <ul>
@@ -6966,7 +7069,7 @@ const MODULES = [
           { q:"When do you say 'We have begun our descent'?", a:["before landing","during boarding","at the gate"], correct:0 },
           { q:"After landing, passengers should stay seated until…", a:["the seat belt sign is switched off","the engines start","the meal is served"], correct:0 }
         ] },
-      { t:"Biztonság és vészhelyzeti eljárások", fill:[ { q:"In an emergency, leave everything ___. (hátra)", a:["behind"] }, { q:"Before impact we shout: ___, brace!", a:["brace"] }, { q:"A water landing is called a ___. (kényszerleszállás vízre)", a:["ditching"] } ], c:`
+      { t:"Biztonság és vészhelyzeti eljárások", banked:[ { intro:"Tedd a szavakat a helyükre. 3 szó kakukktojás!", text:"Safety is always the cabin crew's first {1}. Before take-off, they demonstrate how to use the seat {2}, the oxygen {3} and the life {4}. In an {5}, it is important to stay {6} and follow the crew's {7}. If the cabin loses {8}, oxygen masks will drop down automatically. During an {9}, passengers must leave everything {10} and move quickly to the nearest {11}. At the door, they jump and {12}. The crew are trained to handle these situations.", bank:["priority","mask","evacuation","window","emergency","belt","vest","exit","slide","instructions","comfortable","behind","pressure","meal","calm"], answers:["priority","belt","mask","vest","emergency","calm","instructions","pressure","evacuation","behind","exit","slide"] } ], fill:[ { q:"In an emergency, leave everything ___. (hátra)", a:["behind"] }, { q:"Before impact we shout: ___, brace!", a:["brace"] }, { q:"A water landing is called a ___. (kényszerleszállás vízre)", a:["ditching"] } ], c:`
         <p>A biztonság az első. Ismerned kell a felszerelést, a vészhelyzettípusokat és a határozott parancsszavakat.</p>
         <p><strong>Vészhelyzeti felszerelés:</strong></p>        <ul class="vocab">
           <li><em>life vest</em> — mentőmellény</li>
@@ -7018,7 +7121,7 @@ const MODULES = [
           { q:"What is a 'life vest' used for?", a:["a water landing","turbulence","serving food"], correct:0 },
           { q:"If the cabin loses pressure, what drops automatically?", a:["oxygen masks","tray tables","life rafts"], correct:0 }
         ] },
-      { t:"Utasok kiszolgálása (service) és értékesítés", cloze:[ { intro:"Egészítsd ki a fedélzeti párbeszédet.", text:"FA: Good evening. Would you {1} something to drink? Passenger: Yes, {2}. Could I have a coffee? FA: Of course. Here you {3}. Would you like to see our duty-free {4}? Passenger: No, thank you. FA: Is there anything {5} I can do for you?", blanks:[ {a:["like","care for"],hint:"szeretne (would ___)"}, {a:["please"],hint:"udvariasság"}, {a:["are"],hint:"here you ___"}, {a:["menu","catalogue","catalog"],hint:"főnév – étlap"}, {a:["else"],hint:"más (anything ___)"} ] } ], c:`
+      { t:"Utasok kiszolgálása (service) és értékesítés", banked:[ { intro:"Tedd a szavakat a helyükre. 2 szó kakukktojás!", text:"Good {1} is an important part of the cabin crew's job. The crew {2} drinks and meals, always with a friendly {3}. They offer special {4} for passengers with allergies or dietary needs. During the flight, they also sell {5}-free products from a {6}. When a passenger has a {7}, the crew listen carefully and try to find a {8}. They must stay {9} and professional, even when they are {10}. Happy passengers are more likely to fly with the airline again.", bank:["meals","duty","serve","captain","polite","complaint","runway","trolley","solution","smile","tired","service"], answers:["service","serve","smile","meals","duty","trolley","complaint","solution","polite","tired"] } ], cloze:[ { intro:"Egészítsd ki a fedélzeti párbeszédet.", text:"FA: Good evening. Would you {1} something to drink? Passenger: Yes, {2}. Could I have a coffee? FA: Of course. Here you {3}. Would you like to see our duty-free {4}? Passenger: No, thank you. FA: Is there anything {5} I can do for you?", blanks:[ {a:["like","care for"],hint:"szeretne (would ___)"}, {a:["please"],hint:"udvariasság"}, {a:["are"],hint:"here you ___"}, {a:["menu","catalogue","catalog"],hint:"főnév – étlap"}, {a:["else"],hint:"más (anything ___)"} ] } ], c:`
         <p>Az airBaltic ügyfélközpontú és értékesítés-orientált, ezért a szerviz és az udvarias kommunikáció kulcsfontosságú. Mindig mosolyogj, légy figyelmes és proaktív.</p>
         <p><strong>Hasznos panelek:</strong></p>
         <ul>
@@ -7099,7 +7202,7 @@ const MODULES = [
           { q:"If a passenger feels unwell, you should…", a:["stay calm and inform the purser","do nothing","tell them to be quiet"], correct:0 },
           { q:"Enforcing a safety rule, you say…", a:["For your safety, I must ask you to fasten your seat belt.","Do what you want.","It doesn't matter."], correct:0 }
         ] },
-      { t:"Az állásinterjú – airBaltic open day", fill:[ { q:"The interview method is called ___ (Situation, Task, Action, Result).", a:["STAR"] }, { q:"To an open day you should wear ___ attire. (üzleti)", a:["business"] } ], c:`
+      { t:"Az állásinterjú – airBaltic open day", banked:[ { intro:"Tedd a szavakat a helyükre az interjúról szóló szövegben.", text:"If you want to become cabin {1}, you first apply on the airBaltic careers {2}. If your CV is {3}, you are invited to an open {4}. You should arrive on {5}, wearing business {6}, with a friendly {7} on your face. During the day there are group {8}, an English {9} and a personal {10}. The recruiters look at your communication {11} and your professional {12}. If you are {13}, you start a two-month training {14} in Riga. Good luck!", bank:["appearance","attire","course","crew","day","exercises","interview","shortlisted","skills","smile","successful","test","time","website"], answers:["crew","website","shortlisted","day","time","attire","smile","exercises","test","interview","skills","appearance","successful","course"] } ], fill:[ { q:"The interview method is called ___ (Situation, Task, Action, Result).", a:["STAR"] }, { q:"To an open day you should wear ___ attire. (üzleti)", a:["business"] } ], c:`
         <p><strong>A kiválasztási folyamat (jellemzően):</strong></p>
         <ol class="steps">
           <li>Online jelentkezés a careers.airbaltic.com oldalon + önéletrajz.</li>
@@ -7227,6 +7330,94 @@ function buildBanked(items){
   }).join("");
 }
 
+function buildTransform(items){
+  return '<div class="quiz"><div class="quiz-head">🔁 Mondatátalakítás – írd át a megadott szóval úgy, hogy a jelentés ne változzon</div>'+
+    items.map((it,i)=>{
+      const data=encodeURIComponent(JSON.stringify(it.a||[]));
+      return `<div class="taskq" data-ans="${data}">
+        <p class="qtext">${i+1}. <em class="tf-orig">${it.orig}</em></p>
+        <p class="tf-line"><span class="tf-key">${it.key}</span> ${it.before||''} <input class="taskinput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="..."> ${it.after||''}</p>
+        <div class="fillrow"><button class="taskcheck" type="button">Ellenőrzés</button><button class="taskshow" type="button">Megoldás</button><span class="fillfb taskfb"></span></div>
+      </div>`;
+    }).join("")+'</div>';
+}
+function buildWordform(items){
+  return '<div class="quiz"><div class="quiz-head">🔧 Szóképzés – írd be a zárójeles szó helyes alakját</div>'+
+    items.map((it,i)=>{
+      const data=encodeURIComponent(JSON.stringify(it.a||[]));
+      const body=(it.q||'').replace('{}', `<input class="taskinput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="..."> <span class="wf-root">(${it.root})</span>`);
+      return `<div class="taskq" data-ans="${data}"><p class="qtext">${i+1}. ${body}</p>
+        <div class="fillrow"><button class="taskcheck" type="button">Ellenőrzés</button><button class="taskshow" type="button">Megoldás</button><span class="fillfb taskfb"></span></div></div>`;
+    }).join("")+'</div>';
+}
+function buildMistake(items){
+  return '<div class="quiz"><div class="quiz-head">🔍 Hibajavítás – írd le a mondat helyes változatát</div>'+
+    items.map((it,i)=>{
+      const data=encodeURIComponent(JSON.stringify(it.a||[]));
+      return `<div class="taskq" data-ans="${data}"><p class="qtext">${i+1}. <span class="mk-wrong">${it.q}</span>${it.hint?' <span class="mk-hint">('+it.hint+')</span>':''}</p>
+        <div class="fillrow"><input class="taskinput" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="helyes mondat..." style="flex:1;min-width:200px;"><button class="taskcheck" type="button">Ellenőrzés</button><button class="taskshow" type="button">Megoldás</button></div>
+        <span class="fillfb taskfb"></span></div>`;
+    }).join("")+'</div>';
+}
+
+function buildMatch(items){
+  return items.map(it=>{
+    const opts=it.options||[];
+    const optHTML='<option value="">— válassz —</option>'+opts.map(o=>`<option value="${o}">${o}</option>`).join("");
+    const rows=(it.pairs||[]).map((p,i)=>`<div class="mtrow" data-ans="${encodeURIComponent(p.a)}">
+        <span class="mt-left">${i+1}. ${p.l}</span>
+        <select class="mt-sel">${optHTML}</select><span class="mt-mark"></span>
+      </div>`).join("");
+    return `<div class="quiz matchblock"><div class="quiz-head">🔗 Párosítás${it.intro?' – '+it.intro:''}</div>
+      ${rows}
+      <div class="fillrow"><button class="mtcheck" type="button">Ellenőrzés</button><button class="mtshow" type="button">Megoldás</button><span class="fillfb mtfb"></span></div></div>`;
+  }).join("");
+}
+function buildNote(items){
+  return items.map(it=>{
+    const blanks=it.blanks||[];
+    const body=(it.text||'').replace(/\{(\d+)\}/g,(mm,n)=>{
+      const b=blanks[(+n)-1]; if(!b) return mm;
+      const data=encodeURIComponent(JSON.stringify(b.a||[]));
+      const hint=b.hint?`<span class="clz-hint">${b.hint}</span>`:'';
+      return `<span class="clz"><input class="ncinput" data-ans="${data}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false">${hint}</span>`;
+    });
+    const audio=encodeURIComponent(it.audio||'');
+    return `<div class="quiz ncblock" data-audio="${audio}"><div class="quiz-head">🎧 Jegyzetelős hallásértés${it.intro?' – '+it.intro:''}</div>
+      <div class="listen-controls"><button class="nc-play" type="button">🔊 Lejátszás</button><button class="nc-show" type="button">Szöveg megmutatása</button></div>
+      <div class="nc-transcript" hidden></div>
+      <p class="clztext nctext">${body}</p>
+      <div class="fillrow"><button class="nccheck" type="button">Ellenőrzés</button><button class="ncshow" type="button">Megoldás</button><span class="fillfb ncfb"></span></div></div>`;
+  }).join("");
+}
+function buildWritepad(items){
+  return items.map(it=>{
+    const cl=(it.checklist||[]).map(c=>`<label class="wp-item"><input type="checkbox"> <span>${c}</span></label>`).join("");
+    const rng=(it.min?` (cél: ${it.min}–${it.max} szó)`:'');
+    const model=it.model?`<button class="wp-model-btn" type="button">Mintaválasz megmutatása</button><div class="wp-model" hidden>${it.model}</div>`:'';
+    return `<div class="quiz writepad"><div class="quiz-head">✍️ Írásgyakorlat</div>
+      <p class="wp-prompt">${it.prompt||''}</p>
+      <textarea class="wp-area" placeholder="Ide írd a választ..."></textarea>
+      <div class="wp-count"><b class="wp-num">0</b> szó${rng}</div>
+      <div class="tl-sub">Writing Checklist – pipáld, amit teljesítettél</div>
+      <div class="wp-check">${cl}</div>
+      <div class="fillrow"><button class="wp-copy" type="button">Másolás</button>${model?'<span></span>':''}</div>
+      ${model}
+    </div>`;
+  }).join("");
+}
+
+function buildSpeakpad(items){
+  return items.map(it=>{
+    const pr=(it.prompts||[]).map(p=>`<li>${p}</li>`).join("");
+    return `<div class="quiz speakpad"><div class="quiz-head">🎙️ Beszédgyakorlat${it.intro?' – '+it.intro:''}</div>
+      <ul class="sp-prompts">${pr}</ul>
+      <div class="fillrow"><button class="sp-rec" type="button">🎙️ Felvétel indítása</button><span class="sp-status"></span></div>
+      <audio class="sp-audio" controls hidden></audio>
+      <p class="tl-hint">Válassz egy promptot, vedd fel a válaszod (kb. 1–2 perc), majd hallgasd vissza. A felvétel nem mentődik, csak itt játszható le.</p></div>`;
+  }).join("");
+}
+
 MODULES.forEach(m => {
   const sec = document.createElement("section");
   sec.className = "module"; sec.id = m.id;
@@ -7248,7 +7439,7 @@ MODULES.forEach(m => {
           ${m.topics.map((tp,ti)=>{
             const key = m.id+"-"+ti;
             const has = !!(tp.c || tp.q);
-            const inner = (tp.c||'') + (tp.q?buildQuiz(tp.q):'') + (tp.fill?buildFill(tp.fill):'') + (tp.cloze?buildCloze(tp.cloze):'') + (tp.banked?buildBanked(tp.banked):'');
+            const inner = (tp.c||'') + (tp.q?buildQuiz(tp.q):'') + (tp.fill?buildFill(tp.fill):'') + (tp.cloze?buildCloze(tp.cloze):'') + (tp.banked?buildBanked(tp.banked):'') + (tp.transform?buildTransform(tp.transform):'') + (tp.wordform?buildWordform(tp.wordform):'') + (tp.mistake?buildMistake(tp.mistake):'') + (tp.match?buildMatch(tp.match):'') + (tp.note?buildNote(tp.note):'') + (tp.writepad?buildWritepad(tp.writepad):'') + (tp.speakpad?buildSpeakpad(tp.speakpad):'');
             return `<li class="topic ${state[key]?"checked":""} ${has?"has-content":""}" data-key="${key}">
               <div class="topic-main" tabindex="0">
                 <span class="box" role="checkbox" aria-checked="${!!state[key]}" tabindex="0" aria-label="${tp.t} – kész"></span>
@@ -7286,6 +7477,157 @@ MODULES.forEach(m => {
   });
 });
 
+/* ====== PRÓBAVIZSGA ====== */
+function examPool(){
+  const pool=[];
+  MODULES.forEach(m=>{ (m.topics||[]).forEach(tp=>{ (tp.q||[]).forEach(it=>{ if(it&&it.a&&it.a.length) pool.push({mod:m.id, q:it.q, a:it.a, correct:it.correct}); }); }); });
+  return pool;
+}
+let examTimer=null;
+const examOverlay=document.getElementById("examOverlay");
+function examClose(){ if(examTimer){ clearInterval(examTimer); examTimer=null; } examOverlay.setAttribute("hidden",""); examOverlay.innerHTML=""; }
+function examSetup(){
+  examOverlay.innerHTML=
+    '<div class="exam-setup"><h3>📝 Próbavizsga</h3>'+
+    '<p class="exam-intro">Véletlenszerű feleletválasztós kérdések az összes modulból, időre. A végén pontszámot és modulonkénti bontást kapsz (és bekerül a statisztikádba).</p>'+
+    '<div class="tl-sub">Kérdések száma</div><div class="exam-opts-row" id="exN">'+
+      '<button class="exam-pick on" data-v="10">10</button><button class="exam-pick" data-v="20">20</button><button class="exam-pick" data-v="30">30</button></div>'+
+    '<div class="tl-sub">Idő</div><div class="exam-opts-row" id="exT">'+
+      '<button class="exam-pick on" data-v="10">10 perc</button><button class="exam-pick" data-v="15">15 perc</button><button class="exam-pick" data-v="25">25 perc</button></div>'+
+    '<div class="fillrow" style="margin-top:18px;"><button class="tl-btn" id="exStart">Indítás</button><button class="tl-btn ghost" id="exCancel">Mégse</button></div></div>';
+  examOverlay.removeAttribute("hidden");
+  let nVal=10, tVal=10;
+  examOverlay.querySelectorAll("#exN .exam-pick").forEach(b=>b.onclick=()=>{ examOverlay.querySelectorAll("#exN .exam-pick").forEach(x=>x.classList.remove("on")); b.classList.add("on"); nVal=+b.dataset.v; });
+  examOverlay.querySelectorAll("#exT .exam-pick").forEach(b=>b.onclick=()=>{ examOverlay.querySelectorAll("#exT .exam-pick").forEach(x=>x.classList.remove("on")); b.classList.add("on"); tVal=+b.dataset.v; });
+  examOverlay.querySelector("#exCancel").onclick=examClose;
+  examOverlay.querySelector("#exStart").onclick=()=>examRun(nVal, tVal);
+}
+function examRun(n, minutes){
+  let pool=examPool();
+  for(let i=pool.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); const t=pool[i];pool[i]=pool[j];pool[j]=t; }
+  const qs=pool.slice(0, Math.min(n, pool.length));
+  const body=qs.map((it,i)=>{
+    const opts=it.a.map((o,oi)=>({t:o,c:oi===it.correct}));
+    for(let k=opts.length-1;k>0;k--){ const j=Math.floor(Math.random()*(k+1)); const t=opts[k];opts[k]=opts[j];opts[j]=t; }
+    const ci=opts.findIndex(o=>o.c);
+    return `<div class="exq" data-correct="${ci}" data-mod="${it.mod}" data-sel="-1">
+      <p class="exq-text">${i+1}. ${it.q}</p>
+      <div class="exq-opts">${opts.map((o,oi)=>`<button class="exopt" data-i="${oi}">${o.t}</button>`).join("")}</div></div>`;
+  }).join("");
+  examOverlay.innerHTML=
+    '<div class="exam-top"><span class="exam-title">📝 Próbavizsga</span><span class="exam-timer" id="exTimer">--:--</span>'+
+    '<span style="flex:1"></span><button class="tl-btn" id="exSubmit">Beküldés</button><button class="tl-btn ghost" id="exQuit">Kilépés</button></div>'+
+    '<div class="exam-body"><div id="exResult"></div>'+body+
+    '<div class="fillrow" style="margin-top:18px;"><button class="tl-btn" id="exSubmit2">Beküldés és kiértékelés</button></div></div>';
+  // option select
+  examOverlay.querySelectorAll(".exq").forEach(q=>{
+    q.querySelectorAll(".exopt").forEach(b=>b.addEventListener("click",()=>{
+      if(q.classList.contains("done")) return;
+      q.querySelectorAll(".exopt").forEach(x=>x.classList.remove("selected"));
+      b.classList.add("selected"); q.dataset.sel=b.dataset.i;
+    }));
+  });
+  examOverlay.querySelector("#exQuit").onclick=examClose;
+  const submit=()=>examGrade();
+  examOverlay.querySelector("#exSubmit").onclick=submit;
+  examOverlay.querySelector("#exSubmit2").onclick=submit;
+  examOverlay.removeAttribute("hidden"); examOverlay.scrollTop=0;
+  // timer
+  let remaining=minutes*60; const tEl=examOverlay.querySelector("#exTimer");
+  const draw=()=>{ tEl.textContent=String(Math.floor(remaining/60)).padStart(2,"0")+":"+String(remaining%60).padStart(2,"0"); tEl.classList.toggle("low", remaining<=30); };
+  draw();
+  examTimer=setInterval(()=>{ remaining--; if(remaining<=0){ clearInterval(examTimer); examTimer=null; examGrade(true); } draw(); },1000);
+}
+function examGrade(timeUp){
+  if(examTimer){ clearInterval(examTimer); examTimer=null; }
+  let total=0, correct=0; const perMod={};
+  examOverlay.querySelectorAll(".exq").forEach(q=>{
+    total++; const ci=+q.dataset.correct, sel=+q.dataset.sel, mod=q.dataset.mod;
+    const ok=sel===ci; if(ok) correct++;
+    if(!perMod[mod]) perMod[mod]={c:0,t:0}; perMod[mod].t++; if(ok) perMod[mod].c++;
+    q.classList.add("done");
+    q.querySelectorAll(".exopt").forEach(b=>{ const bi=+b.dataset.i; if(bi===ci) b.classList.add("correct"); else if(bi===sel) b.classList.add("wrong"); b.disabled=true; });
+    recordStat(mod, ok);
+  });
+  const pct=total?Math.round(correct/total*100):0;
+  const rows=Object.keys(perMod).map(id=>{ const m=MODULES.find(x=>x.id===id); const s=perMod[id]; return (m?m.num:id)+' – '+(m?m.title:id)+': <b>'+s.c+'/'+s.t+'</b>'; }).join(" · ");
+  const res=examOverlay.querySelector("#exResult");
+  res.innerHTML='<div class="exam-result"><div class="exam-score">'+correct+'/'+total+' &nbsp;('+pct+'%)</div>'+
+    (timeUp?'<p class="exam-intro">Lejárt az idő – a kitöltetlen kérdések hibásnak számítanak.</p>':'')+
+    '<div class="fillrow" style="margin:8px 0;"><span class="exam-bar"><span class="exam-fill" style="width:'+pct+'%"></span></span></div>'+
+    '<p class="exam-intro">'+rows+'</p>'+
+    '<div class="fillrow"><button class="tl-btn" id="exAgain">Új próbavizsga</button><button class="tl-btn ghost" id="exDone">Bezárás</button></div></div>';
+  res.querySelector("#exAgain").onclick=examSetup;
+  res.querySelector("#exDone").onclick=examClose;
+  examOverlay.scrollTop=0; res.scrollIntoView({behavior:"smooth",block:"start"});
+}
+document.getElementById("examBtn").addEventListener("click", examSetup);
+
+/* ====== BESZÉDGYAKORLAT (felvétel) ====== */
+const spState=new WeakMap();
+road.addEventListener("click", async e=>{
+  const btn=e.target.closest(".sp-rec"); if(!btn) return;
+  const pad=btn.closest(".speakpad");
+  const status=pad.querySelector(".sp-status"), audio=pad.querySelector(".sp-audio");
+  let st=spState.get(pad);
+  if(st && st.rec && st.rec.state==="recording"){
+    st.rec.stop(); return;
+  }
+  if(!navigator.mediaDevices || !window.MediaRecorder){ status.textContent="A böngésződ nem támogatja a felvételt."; return; }
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    const rec=new MediaRecorder(stream); const chunks=[];
+    rec.ondataavailable=ev=>{ if(ev.data.size) chunks.push(ev.data); };
+    rec.onstop=()=>{
+      const blob=new Blob(chunks,{type:rec.mimeType||"audio/webm"});
+      audio.src=URL.createObjectURL(blob); audio.removeAttribute("hidden");
+      btn.classList.remove("recording"); btn.textContent="🎙️ Új felvétel"; status.textContent="Kész – hallgasd vissza lent.";
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    rec.start(); spState.set(pad,{rec});
+    btn.classList.add("recording"); btn.textContent="⏹ Leállítás"; status.textContent="Felvétel folyamatban...";
+  }catch(err){ status.textContent="Nincs mikrofon-hozzáférés (engedélyezd a böngészőben)."; }
+});
+const STATS_KEY="b2_stats_v1";
+function modTitle(id){ const m=MODULES.find(x=>x.id===id); return m?(m.num+" – "+m.title):id; }
+function recordStat(mod, ok){
+  if(!mod) return;
+  let st={}; try{ st=JSON.parse(localStorage.getItem(STATS_KEY))||{}; }catch(_){}
+  if(!st[mod]) st[mod]={c:0,t:0};
+  st[mod].t++; if(ok) st[mod].c++;
+  try{ localStorage.setItem(STATS_KEY, JSON.stringify(st)); }catch(_){}
+  if(!document.getElementById("statsPanel").hasAttribute("hidden")) renderStats();
+}
+function scoreOnce(el, mod, ok){ if(el.dataset.scored) return; el.dataset.scored="1"; recordStat(mod, ok); }
+function modOf(el){ const s=el.closest(".module"); return s?s.id:null; }
+function renderStats(){
+  const panel=document.getElementById("statsPanel");
+  let st={}; try{ st=JSON.parse(localStorage.getItem(STATS_KEY))||{}; }catch(_){}
+  const rows=MODULES.filter(m=>st[m.id]&&st[m.id].t>0).map(m=>{
+    const s=st[m.id], pct=Math.round(s.c/s.t*100);
+    return {id:m.id, title:m.num+" – "+m.title, c:s.c, t:s.t, pct};
+  });
+  if(!rows.length){ panel.innerHTML='<div class="tl-hint">Még nincs adat. Oldj meg pár feladatot (kvíz, kiegészítés, szókirakó stb.), és itt megjelenik, hol állsz és hol érdemes gyakorolni.</div><div class="fillrow"><button class="btn ghost" id="statsReset">Statisztika törlése</button></div>'; wireStatsReset(); return; }
+  const weakest=rows.slice().sort((a,b)=>a.pct-b.pct)[0];
+  const totC=rows.reduce((s,r)=>s+r.c,0), totT=rows.reduce((s,r)=>s+r.t,0);
+  let html='<div class="stats-head">Eddigi teljesítményed (első próbálkozások): <b>'+totC+'/'+totT+'</b> ('+Math.round(totC/totT*100)+'%)</div>';
+  html+=rows.map(r=>'<div class="stat-row'+(r.id===weakest.id&&rows.length>1?' weak':'')+'"><span class="stat-name">'+r.title+'</span>'+
+    '<span class="stat-bar"><span class="stat-fill" style="width:'+r.pct+'%"></span></span>'+
+    '<span class="stat-pct">'+r.pct+'% ('+r.c+'/'+r.t+')</span></div>').join("");
+  if(rows.length>1) html+='<div class="stats-tip">💡 A leggyengébb terület most: <b>'+weakest.title+'</b> – itt érdemes többet gyakorolni.</div>';
+  html+='<div class="fillrow"><button class="btn ghost" id="statsReset">Statisztika törlése</button></div>';
+  panel.innerHTML=html; wireStatsReset();
+}
+function wireStatsReset(){
+  const b=document.getElementById("statsReset");
+  if(b) b.onclick=()=>{ if(confirm("Biztosan törlöd a statisztikát?")){ try{localStorage.removeItem(STATS_KEY);}catch(_){}; renderStats(); } };
+}
+document.getElementById("statsBtn").addEventListener("click", ()=>{
+  const p=document.getElementById("statsPanel");
+  if(p.hasAttribute("hidden")){ p.removeAttribute("hidden"); renderStats(); p.scrollIntoView({behavior:"smooth",block:"nearest"}); }
+  else p.setAttribute("hidden","");
+});
+
 /* ====== KVÍZ ====== */
 road.addEventListener("click", e=>{
   const opt = e.target.closest(".qopt");
@@ -7300,6 +7642,7 @@ road.addEventListener("click", e=>{
     else if(bi===chosen) b.classList.add("wrong");
     b.disabled = true;
   });
+  recordStat(modOf(q), chosen===correct);
 });
 
 /* ====== KIEGÉSZÍTŐ FELADAT (gap-fill) ====== */
@@ -7318,6 +7661,7 @@ road.addEventListener("click", e=>{
     fb.textContent= ok ? "Helyes ✓" : "Nem stimmel — próbáld újra, vagy nézd meg a megoldást.";
     fb.className="fillfb "+(ok?"ok":"bad");
     input.classList.toggle("ok", ok); input.classList.toggle("bad", !ok);
+    scoreOnce(card, modOf(card), ok);
   }
 });
 road.addEventListener("keydown", e=>{
@@ -7349,6 +7693,7 @@ road.addEventListener("click", e=>{
     });
     fb.textContent=ok+"/"+total+" helyes"+(ok===total?" ✓":" — javítsd a pirosakat vagy nézd meg a megoldást.");
     fb.className="fillfb clzfb "+(ok===total?"ok":"bad");
+    scoreOnce(block, modOf(block), ok===total);
   }
 });
 road.addEventListener("keydown", e=>{
@@ -7398,12 +7743,101 @@ road.addEventListener("click", e=>{
     const fb=block.querySelector(".bnkfb");
     fb.textContent=ok+"/"+total+" helyes"+(ok===total?" ✓":" — javítsd a pirosakat.");
     fb.className="fillfb bnkfb "+(ok===total?"ok":"bad");
+    scoreOnce(block, modOf(block), ok===total);
   }
 });
 road.addEventListener("keydown", e=>{
   if(e.key!=="Enter") return;
   const bi=e.target.closest(".bnkinput"); if(!bi) return;
   const b=bi.closest(".bankedblock").querySelector(".bnkcheck"); if(b) b.click();
+});
+
+/* ====== BEÍRÓS FELADATOK (átalakítás / szóképzés / hibajavítás) ====== */
+road.addEventListener("click", e=>{
+  const card=e.target.closest(".taskq"); if(!card) return;
+  let ans=[]; try{ ans=JSON.parse(decodeURIComponent(card.dataset.ans))||[]; }catch(_){}
+  const input=card.querySelector(".taskinput"), fb=card.querySelector(".taskfb");
+  if(e.target.closest(".taskshow")){ fb.textContent="Megoldás: "+ans.join(" / "); fb.className="fillfb taskfb show"; return; }
+  if(e.target.closest(".taskcheck")){
+    const val=normFill(input.value);
+    if(!val){ fb.textContent="Írj be valamit."; fb.className="fillfb taskfb"; return; }
+    const ok=ans.some(a=>normFill(a)===val);
+    fb.textContent= ok ? "Helyes ✓" : "Nem stimmel — próbáld újra, vagy nézd meg a megoldást.";
+    fb.className="fillfb taskfb "+(ok?"ok":"bad");
+    input.classList.toggle("ok", ok); input.classList.toggle("bad", !ok);
+    scoreOnce(card, modOf(card), ok);
+  }
+});
+road.addEventListener("keydown", e=>{
+  if(e.key!=="Enter") return;
+  const ti=e.target.closest(".taskinput"); if(!ti) return;
+  const b=ti.closest(".taskq").querySelector(".taskcheck"); if(b) b.click();
+});
+
+/* ====== PÁROSÍTÁS ====== */
+road.addEventListener("click", e=>{
+  const block=e.target.closest(".matchblock"); if(!block) return;
+  const fb=block.querySelector(".mtfb");
+  if(e.target.closest(".mtshow")){
+    block.querySelectorAll(".mtrow").forEach(r=>{ const a=decodeURIComponent(r.dataset.ans||""); const sel=r.querySelector(".mt-sel"); sel.value=a; r.querySelector(".mt-mark").textContent="✓"; r.classList.add("mok"); r.classList.remove("mbad"); });
+    fb.textContent="Megoldás kitöltve."; fb.className="fillfb mtfb show"; return;
+  }
+  if(e.target.closest(".mtcheck")){
+    let total=0, ok=0;
+    block.querySelectorAll(".mtrow").forEach(r=>{ total++; const a=decodeURIComponent(r.dataset.ans||""); const sel=r.querySelector(".mt-sel"); const good=normFill(sel.value)===normFill(a); r.classList.toggle("mok",good); r.classList.toggle("mbad",!good && sel.value!==""); r.querySelector(".mt-mark").textContent= good?"✓":(sel.value?"✗":""); if(good) ok++; });
+    fb.textContent=ok+"/"+total+" helyes"+(ok===total?" ✓":""); fb.className="fillfb mtfb "+(ok===total?"ok":"bad");
+    scoreOnce(block, modOf(block), ok===total);
+  }
+});
+
+/* ====== JEGYZETELŐS HALLÁSÉRTÉS ====== */
+road.addEventListener("click", e=>{
+  const block=e.target.closest(".ncblock"); if(!block) return;
+  const audio=decodeURIComponent(block.dataset.audio||"");
+  if(e.target.closest(".nc-play")){ if(typeof speak==="function") speak(audio, e.target.closest(".nc-play")); return; }
+  if(e.target.closest(".nc-show")){
+    const tr=block.querySelector(".nc-transcript"), btn=e.target.closest(".nc-show");
+    if(tr.hasAttribute("hidden")){ tr.textContent=audio; tr.removeAttribute("hidden"); btn.textContent="Szöveg elrejtése"; }
+    else { tr.setAttribute("hidden",""); btn.textContent="Szöveg megmutatása"; }
+    return;
+  }
+  const fb=block.querySelector(".ncfb");
+  if(e.target.closest(".ncshow")){
+    block.querySelectorAll(".ncinput").forEach(i=>{ let a=[]; try{a=JSON.parse(decodeURIComponent(i.dataset.ans))||[];}catch(_){}; if(a[0]!=null){ i.value=a[0]; i.classList.add("ok"); i.classList.remove("bad"); } });
+    fb.textContent="Megoldás kitöltve."; fb.className="fillfb ncfb show"; return;
+  }
+  if(e.target.closest(".nccheck")){
+    let total=0, ok=0;
+    block.querySelectorAll(".ncinput").forEach(i=>{ total++; let a=[]; try{a=JSON.parse(decodeURIComponent(i.dataset.ans))||[];}catch(_){}; const good=a.some(x=>normFill(x)===normFill(i.value)); i.classList.toggle("ok",good); i.classList.toggle("bad",!good && i.value.trim()!==""); if(good) ok++; });
+    fb.textContent=ok+"/"+total+" helyes"+(ok===total?" ✓":""); fb.className="fillfb ncfb "+(ok===total?"ok":"bad");
+    scoreOnce(block, modOf(block), ok===total);
+  }
+});
+road.addEventListener("keydown", e=>{
+  if(e.key!=="Enter") return;
+  const ni=e.target.closest(".ncinput"); if(!ni) return;
+  const b=ni.closest(".ncblock").querySelector(".nccheck"); if(b) b.click();
+});
+
+/* ====== ÍRÁSGYAKORLAT ====== */
+road.addEventListener("input", e=>{
+  if(!e.target.classList || !e.target.classList.contains("wp-area")) return;
+  const pad=e.target.closest(".writepad"); const num=pad.querySelector(".wp-num");
+  const words=(e.target.value.trim().match(/\S+/g)||[]).length;
+  num.textContent=words;
+});
+road.addEventListener("click", e=>{
+  const pad=e.target.closest(".writepad"); if(!pad) return;
+  if(e.target.closest(".wp-copy")){
+    const t=pad.querySelector(".wp-area").value;
+    if(navigator.clipboard) navigator.clipboard.writeText(t).catch(()=>{});
+    const btn=e.target.closest(".wp-copy"); const old=btn.textContent; btn.textContent="Másolva ✓"; setTimeout(()=>btn.textContent=old,1500);
+  }
+  if(e.target.closest(".wp-model-btn")){
+    const m=pad.querySelector(".wp-model"), btn=e.target.closest(".wp-model-btn");
+    if(m.hasAttribute("hidden")){ m.removeAttribute("hidden"); btn.textContent="Mintaválasz elrejtése"; }
+    else { m.setAttribute("hidden",""); btn.textContent="Mintaválasz megmutatása"; }
+  }
 });
 
 /* ====== HALADÁS ====== */
