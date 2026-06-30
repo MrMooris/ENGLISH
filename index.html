@@ -16,6 +16,24 @@
     --radius:14px; --shadow:0 1px 2px rgba(27,42,51,.05), 0 8px 24px -16px rgba(27,42,51,.28);
     --maxw:1180px;
   }
+  html[data-theme="dark"]{
+    color-scheme:dark;
+    --paper:#15191e; --paper-2:#1e242b; --ink:#E8E6E0; --ink-soft:#C3C9CF;
+    --muted:#8B939B; --teal:#3FA99B; --teal-dark:#7FD4C6; --ochre:#E2935C;
+    --line:#2C333B; --line-soft:#242a31; --card:#1F262D;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.7);
+  }
+  /* sötét módban a beégetett narancs szövegszínek olvashatóbb árnyalata */
+  html[data-theme="dark"] .fillfb.bad,
+  html[data-theme="dark"] .qopt.wrong,
+  html[data-theme="dark"] .exopt.wrong,
+  html[data-theme="dark"] .mtrow.mbad .mt-mark,
+  html[data-theme="dark"] .stat-row.weak .stat-name,
+  html[data-theme="dark"] .ti-badge.letter{ color:#E9A06E; }
+  html[data-theme="dark"] .topbar{ background:rgba(21,25,30,.85); }
+  .theme-btn{margin-left:8px;flex:none;width:38px;height:38px;border-radius:10px;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);font-size:1.05rem;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;}
+  .theme-btn:hover{border-color:var(--teal);}
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
@@ -185,10 +203,16 @@
   .tc-inner p{margin:6px 0;}
   .tc-inner ul{margin:6px 0;padding-left:18px;}
   .tc-inner li{margin:5px 0;}
-  .tc-inner strong{color:var(--ink);}
+  .tc-inner strong{color:var(--ink);font-weight:700;
+    background:linear-gradient(transparent 60%, rgba(30,122,111,.22) 60%);
+    padding:0 2px;border-radius:2px;}
+  .tc-inner mark{background:rgba(217,120,58,.28);color:var(--ink);padding:0 3px;border-radius:3px;}
+  html[data-theme="dark"] .tc-inner strong{background:linear-gradient(transparent 58%, rgba(63,169,155,.34) 58%);}
+  html[data-theme="dark"] .tc-inner mark{background:rgba(226,147,92,.34);}
   .tc-inner em{color:var(--teal-dark);font-style:normal;font-family:"Space Mono",monospace;font-size:.85em;}
-  .note-line{background:var(--paper-2);border-left:3px solid var(--ochre);border-radius:0 8px 8px 0;
-    padding:8px 12px;margin:10px 0 2px !important;font-size:.86rem;}
+  .note-line{background:rgba(217,120,58,.11);border-left:4px solid var(--ochre);border-radius:0 9px 9px 0;
+    padding:10px 13px;margin:10px 0 2px !important;font-size:.88rem;color:var(--ink);}
+  .note-line strong{background:none;padding:0;}
 
   .quiz{margin-top:12px;padding:12px 13px;background:var(--paper-2);border-radius:10px;border:1px solid var(--line-soft);}
   .quiz-head{font-family:"Space Mono",monospace;font-size:.66rem;font-weight:700;letter-spacing:.1em;
@@ -352,6 +376,49 @@
   .exam-pick{font-family:"Inter",sans-serif;font-size:.86rem;border:1px solid var(--line);background:var(--card);
     border-radius:9px;padding:8px 14px;cursor:pointer;}
   .exam-pick.on{background:var(--teal);color:#fff;border-color:var(--teal);}
+  .plan-top{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:14px;}
+  .plan-date{font-family:"Inter",sans-serif;font-size:.88rem;padding:8px 11px;border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--ink);}
+  .plan-date:focus{outline:none;border-color:var(--teal);}
+  .plan-count{font-family:"Space Mono",monospace;font-size:.84rem;color:var(--teal-dark);background:var(--paper-2);border:1px solid var(--line);border-radius:9px;padding:6px 12px;}
+  .plan-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+  .plan-week{border:1px solid var(--line);border-radius:13px;background:var(--card);padding:14px;}
+  .plan-week.done-week{border-color:var(--teal);}
+  .plan-wtitle{font-family:"Bricolage Grotesque","Inter",sans-serif;font-weight:700;font-size:.98rem;margin:0 0 3px;}
+  .plan-wsub{font-size:.78rem;color:var(--muted);margin:0 0 10px;}
+  .plan-item{display:flex;gap:9px;align-items:flex-start;font-size:.86rem;padding:5px 0;cursor:pointer;line-height:1.4;}
+  .plan-item input{margin-top:2px;flex:none;width:16px;height:16px;accent-color:var(--teal);}
+  .plan-item.done span{text-decoration:line-through;color:var(--muted);}
+  .plan-wbar{height:6px;background:var(--paper-2);border-radius:99px;overflow:hidden;margin-top:9px;}
+  .plan-wfill{height:100%;background:var(--teal);width:0;border-radius:99px;}
+  .plan-note{font-size:.84rem;color:var(--ink-soft);margin:4px 0 14px;}
+  .assess-intro{font-size:.9rem;color:var(--ink-soft);margin-bottom:12px;}
+  .assess-q{padding:12px 0;border-bottom:1px solid var(--line-soft);}
+  .assess-q .qtext{font-weight:600;font-size:.92rem;margin:0 0 8px;}
+  .assess-opts{display:flex;flex-wrap:wrap;gap:7px;}
+  .assess-opt{font-family:"Inter",sans-serif;font-size:.85rem;background:var(--card);border:1px solid var(--line);border-radius:9px;padding:8px 13px;cursor:pointer;}
+  .assess-opt:hover:not(:disabled){border-color:var(--teal);}
+  .assess-opt.selected{border-color:var(--teal);background:rgba(30,122,111,.1);font-weight:600;}
+  .assess-opt.correct{border-color:var(--teal);background:rgba(30,122,111,.16);color:var(--teal-dark);font-weight:600;}
+  .assess-opt.wrong{border-color:var(--ochre);background:rgba(217,120,58,.16);color:#b05a20;text-decoration:line-through;}
+  .assess-submit{background:var(--teal);color:#fff;border:none;border-radius:10px;padding:11px 20px;font-family:inherit;font-weight:700;font-size:.95rem;cursor:pointer;margin-top:14px;}
+  .assess-input{font-family:"Inter",sans-serif;font-size:.86rem;padding:8px 11px;border:1px solid var(--line);border-radius:9px;background:var(--card);color:var(--ink);min-width:150px;}
+  .assess-input:focus{outline:none;border-color:var(--teal);}
+  .assess-input.ok{border-color:var(--teal);background:rgba(30,122,111,.08);color:var(--teal-dark);font-weight:600;}
+  .assess-input.bad{border-color:var(--ochre);background:rgba(217,120,58,.08);}
+  .assess-text{background:var(--paper-2);border:1px solid var(--line-soft);border-radius:10px;padding:11px 13px;margin:0 0 8px;font-size:.9rem;line-height:1.6;color:var(--ink);}
+  .assess-result{background:var(--paper-2);border:1px solid var(--line);border-radius:13px;padding:16px;margin-bottom:16px;}
+  .assess-level{font-family:"Bricolage Grotesque","Inter",sans-serif;font-weight:700;font-size:1.3rem;}
+  .aw-item{border-left:4px solid var(--ochre);background:rgba(217,120,58,.08);border-radius:0 9px 9px 0;padding:10px 13px;margin:10px 0;}
+  .aw-q{font-weight:600;font-size:.9rem;margin:0 0 4px;}
+  .aw-line{font-size:.85rem;margin:2px 0;}
+  .aw-good{color:var(--teal-dark);font-weight:600;}
+  .aw-bad{color:#b05a20;}
+  .aw-exp{font-size:.85rem;color:var(--ink-soft);margin:5px 0;}
+  .aw-jump{display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:#fff;border:none;border-radius:8px;padding:7px 12px;font-family:inherit;font-weight:600;font-size:.82rem;cursor:pointer;margin-top:4px;}
+  .aw-jump:hover{filter:brightness(.95);}
+  .jump-flash{animation:jflash 1.5s ease;}
+  @keyframes jflash{0%,100%{background:transparent}30%{background:rgba(30,122,111,.14)}}
+  html[data-theme="dark"] .assess-opt.wrong,html[data-theme="dark"] .aw-bad{color:#E9A06E;}
 
   .tts{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-left:5px;
     width:21px;height:21px;padding:0;border:1px solid var(--line);background:var(--card);border-radius:6px;
@@ -478,6 +545,7 @@
     #m2 .tc-inner > ul > li, #m8 .tc-inner > ul > li, #m9 .tc-inner > ul.vocab > li{break-inside:avoid;}
   }
 </style>
+<script>try{if(localStorage.getItem("b2_theme")==="dark")document.documentElement.setAttribute("data-theme","dark");}catch(e){}</script>
 </head>
 <body>
 
@@ -492,6 +560,7 @@
       <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
       <span class="prog-num" id="progNum">0%</span>
     </div>
+    <button class="theme-btn" id="themeBtn" aria-label="Sötét / világos mód" title="Sötét / világos mód">🌙</button>
   </div>
 </div>
 
@@ -538,11 +607,13 @@
   <button class="btn" id="expandAll">Mind kinyit</button>
   <button class="btn" id="collapseAll">Mind becsuk</button>
   <button class="btn ghost" id="examBtn">📝 Próbavizsga</button>
+  <button class="btn ghost" id="planBtn">🗓️ Tanterv</button>
   <button class="btn ghost" id="statsBtn">📊 Statisztika</button>
   <button class="btn ghost" id="backupBtn">💾 Biztonsági mentés</button>
   <button class="btn ghost" id="resetBtn">Haladás törlése</button>
 </div>
 <div class="stats-panel" id="statsPanel" hidden></div>
+<div class="stats-panel" id="planPanel" hidden></div>
 <div class="stats-panel" id="backupPanel" hidden></div>
 <div class="exam-overlay" id="examOverlay" hidden></div>
 <p class="tts-hint">🔊 Kattints a hangszóró ikonra bármelyik angol példánál a kiejtés meghallgatásához.</p>
@@ -7233,17 +7304,42 @@ const MODULES = [
     ]
   },
   {
-    id:"m10", num:"10", title:"Tanuló-eszközök", sub:"Jegyzetek, levelek, szókártyák, stopper",
+    id:"m11", num:"09", title:"Tanuló-eszközök", sub:"Jegyzetek, levelek, szókártyák, stopper",
     intro:"Saját munkafelület a tanuláshoz: írj és ments jegyzeteket vagy gyakorló leveleket, készíts és tanulj szókártyákat, használd a tanuló-stoppert, és gyakorolj véletlen szavakkal a meglévő szólistákból. Minden a böngésződben mentődik.",
     topics:[
       { t:"Jegyzetek és levelek", c:`<div class="tool" id="notesTool"></div>` },
       { t:"Szókártyák (flashcards)", c:`<div class="tool" id="cardsTool"></div>` },
       { t:"Tanuló-stopper és véletlen szó", c:`<div class="tool" id="extraTool"></div>` }
     ]
+  },
+  {
+    id:"m10", num:"10", title:"Szintfelmérő", sub:"Nagy szintfelmérő – hol tartasz?",
+    intro:"Mérd fel, hol tartasz: a nagy szintfelmérő nyelvtanból és szókincsből kérdez, megbecsüli a szinted, és kiírja, mit nem tudtál – teljes magyarázattal és egy nyíllal, ami átdob a megfelelő anyagra.",
+    topics:[
+      { t:"Nagy szintfelmérő – hol tartok?", c:`<div id="assessTool"></div>` }
+    ]
   }
 ];
+/* airBaltic (m9) a teljes anyag legvégére, 000 sorszámmal */
+(function(){
+  const i=MODULES.findIndex(m=>m.id==="m9");
+  if(i>=0){ MODULES[i].num="000"; const m=MODULES.splice(i,1)[0]; MODULES.push(m); }
+})();
 
 /* ====== ÁLLAPOT ====== */
+/* ====== SÖTÉT / VILÁGOS MÓD ====== */
+(function(){
+  const btn=document.getElementById("themeBtn"); if(!btn) return;
+  const setIcon=()=>{ btn.textContent = document.documentElement.getAttribute("data-theme")==="dark" ? "☀️" : "🌙"; };
+  setIcon();
+  btn.addEventListener("click", ()=>{
+    const dark = document.documentElement.getAttribute("data-theme")==="dark";
+    if(dark){ document.documentElement.removeAttribute("data-theme"); try{localStorage.setItem("b2_theme","light");}catch(e){} }
+    else { document.documentElement.setAttribute("data-theme","dark"); try{localStorage.setItem("b2_theme","dark");}catch(e){} }
+    setIcon();
+  });
+})();
+
 const STORE_KEY = "euroexam_b2_haladas_v1";
 let state = {};
 try{ const raw = localStorage.getItem(STORE_KEY); if(raw) state = JSON.parse(raw)||{}; }catch(e){ state={}; }
@@ -7479,8 +7575,107 @@ MODULES.forEach(m => {
   });
 });
 
+/* ====== TANULÁSI TERV (naptár) ====== */
+const PLAN_KEY="b2_plan_v1";
+const CURRICULUM=[
+ {t:"Alapozás + jelen idők", s:"00 + 01 modul", items:["00 Felmérés és alapozás átnézése","01 Nyelvtan: jelen idők (simple/continuous/perfect)","Napi 10 új szó (08 Nagy szókincs)"]},
+ {t:"Múlt idők I", s:"01 Nyelvtan", items:["01: egyszerű és folyamatos múlt, used to","Hibajavítás feladatok","Napi 10 szó"]},
+ {t:"Múlt idők II + perfect", s:"01 Nyelvtan", items:["01: present perfect (since/for), past perfect","Kiegészítés és szövegkiegészítés feladatok","Napi 10 szó"]},
+ {t:"Jövő idő + alapszókincs", s:"01 + 02 modul", items:["01: will / going to / present forms","02 Szókincs: Család, Egészség","Napi 10 szó"]},
+ {t:"Feltételes mondatok", s:"01 Nyelvtan", items:["01: feltételes 0–3. típus + kevert","Mondatátalakítás feladatok","Napi 10 szó"]},
+ {t:"Szenvedő + függő beszéd", s:"01 Nyelvtan", items:["01: szenvedő szerkezet","01: függő beszéd","Napi 10 szó"]},
+ {t:"Módbeliek + vonatkozó", s:"01 Nyelvtan", items:["01: módbeli segédigék + perfect modals","01: vonatkozó mellékmondatok","Napi 10 szó"]},
+ {t:"Gerund/inf + fokozás + kötőszók", s:"01 Nyelvtan lezárás", items:["01: gerund/infinitive, fokozás, kötőszavak","Szóképzés feladatok","1. próbavizsga (20 kérdés)"]},
+ {t:"Szókincs I", s:"02 Szókincs", items:["02: Munka, Oktatás, Tudomány, Környezet","Szókirakó (banked) feladatok","Napi 15 szó"]},
+ {t:"Szókincs II + phrasal verbs", s:"02 + 08 modul", items:["02: Utazás, Pénz, Média","08 Nagy szókincs: napi adag + phrasal verbök","Napi 15 szó"]},
+ {t:"Olvasásértés", s:"03 modul", items:["03: skimming, scanning, részletes olvasás","Bekezdés–cím párosítás","Szókirakók olvasott szövegben"]},
+ {t:"Hallásértés", s:"04 modul", items:["04: mind az 5 téma","Jegyzetelős hallásértés feladatok","Számok és betűzés gyakorlása"]},
+ {t:"Íráskészség I", s:"05 modul", items:["05: informális + formális levél","2 levél megírása (mintával összevetni)","Writing checklist használata"]},
+ {t:"Íráskészség II + Beszéd", s:"05 + 06 modul", items:["05: véleményesszé + önellenőrzés","06: beszédgyakorlat (vedd fel magad)","1 esszé megírása"]},
+ {t:"airBaltic (ha cabin crew a cél)", s:"000 modul", items:["000 airBaltic: szakmai szókincs, biztonság, szerviz, interjú","Bejelentések és párbeszédek gyakorlása","2. próbavizsga (30 kérdés)"]},
+ {t:"Vizsgafelkészülés + stratégia", s:"07 modul", items:["07: stratégiák és időbeosztás","Statisztika: a gyenge pontok célzott ismétlése","Teljes feladatsor időre"]}
+];
+const REVIEW=[
+ {t:"Ismétlés – Nyelvtan", s:"A leggyengébb területek", items:["A Statisztika szerinti 2 leggyengébb modul újra","Próbavizsga (20 kérdés)","A hibák átnézése a magyarázatokkal"]},
+ {t:"Ismétlés – Szókincs", s:"Bevésés", items:["08 Nagy szókincs: szókártyák – esedékes ismétlés","2–3 szókirakó újra","Napi 15 szó"]},
+ {t:"Ismétlés – Készségek", s:"Olvasás / hallás / írás", items:["1 olvasásértés + 1 hallásértés feladat","1 levél vagy esszé időre","Beszédgyakorlat: 1 felvétel"]},
+ {t:"Ismétlés – Vegyes", s:"Vizsgaszimuláció", items:["Próbavizsga (30 kérdés, időre)","A gyenge pontok célzott gyakorlása","Szókártyák átfutása"]}
+];
+const MOCK_WEEK={t:"Záró próbavizsga hét", s:"Élesben, időre", items:["Teljes próbavizsga (30 kérdés, időre)","1 levél + 1 esszé vizsgakörülmények közt","A gyenge pontok utolsó átnézése","Szókártyák: az összes nehéz szó"]};
+const EXAM_WEEK={t:"Vizsgahét 🎯", s:"Pihenés + ráhangolódás", items:["Könnyű ismétlés, szókártyák átfutása","Korai lefekvés, ne tanulj túl sokat","Készítsd elő: igazolvány, toll, behívó adatai","Vizsga – sok sikert!"]};
+
+function planLoad(){ try{ return JSON.parse(localStorage.getItem(PLAN_KEY))||{done:{},examDate:"",startDate:""}; }catch(_){ return {done:{},examDate:"",startDate:""}; } }
+function planSave(p){ try{ localStorage.setItem(PLAN_KEY, JSON.stringify(p)); }catch(_){} }
+function planAddDays(d,n){ const x=new Date(d); x.setDate(x.getDate()+n); return x; }
+function planFmt(d){ return String(d.getMonth()+1).padStart(2,"0")+"."+String(d.getDate()).padStart(2,"0"); }
+function planMerge(blocks){ const items=[]; blocks.forEach(b=>b.items.forEach(x=>items.push(x))); return {t:blocks.map(b=>b.t).join(" + "), s:"összevont (kevés idő)", items:items}; }
+function buildSchedule(weeks){
+  const out=[]; const Nc=CURRICULUM.length;
+  const examIdx=weeks-1; const mockIdx=weeks>=3?weeks-2:-1;
+  const coreSlots=weeks-(mockIdx>=0?2:1);
+  let ri=0;
+  for(let i=0;i<weeks;i++){
+    if(i===examIdx){ out.push(EXAM_WEEK); continue; }
+    if(i===mockIdx){ out.push(MOCK_WEEK); continue; }
+    if(coreSlots>=Nc){
+      if(i<Nc) out.push(CURRICULUM[i]);
+      else { out.push(REVIEW[ri%REVIEW.length]); ri++; }
+    } else {
+      const per=Math.ceil(Nc/coreSlots);
+      out.push(planMerge(CURRICULUM.slice(i*per, Math.min(Nc,(i+1)*per))));
+    }
+  }
+  return out;
+}
+function renderPlan(){
+  const panel=document.getElementById("planPanel"); const p=planLoad();
+  const today=new Date(); today.setHours(0,0,0,0);
+  const start = p.startDate ? new Date(p.startDate+"T00:00:00") : today;
+  let weeks=null, countdown="", applyNote="";
+  if(p.examDate){
+    const exam=new Date(p.examDate+"T00:00:00");
+    const days=Math.ceil((exam-today)/86400000);
+    countdown = days>=0 ? ("⏳ "+days+" nap a vizsgáig") : "A megadott vizsganap elmúlt";
+    weeks=Math.max(2, Math.min(30, Math.ceil((exam-start)/(7*86400000))));
+    applyNote='📌 Jelentkezési határidő: kb. '+planFmt(planAddDays(exam,-20))+'-ig – a pontos dátumot nézd meg a Euroexam oldalán, és ne maradj le róla!';
+  }
+  const sched = weeks ? buildSchedule(weeks) : CURRICULUM.concat([MOCK_WEEK,EXAM_WEEK]);
+  const totalItems=sched.reduce((s,w)=>s+w.items.length,0);
+  const doneCount=Object.values(p.done||{}).filter(Boolean).length;
+  const todayStr=today.getFullYear()+"-"+String(today.getMonth()+1).padStart(2,"0")+"-"+String(today.getDate()).padStart(2,"0");
+  let html='<div class="stats-head">🗓️ Tanulási terv – '+sched.length+' hét</div>'+
+    '<p class="plan-note">Add meg a vizsga napját (és ha akarod, a kezdés dátumát), és a terv automatikusan elosztja a hátralévő hetekre, valódi dátumokkal. Pipáld ki, amivel végeztél. Napi 20–30 perc is sokat számít.</p>'+
+    '<div class="plan-top"><label style="font-size:.85rem;">Vizsga napja: <input type="date" class="plan-date" id="planDate" value="'+(p.examDate||"")+'"></label>'+
+    '<label style="font-size:.85rem;">Kezdés: <input type="date" class="plan-date" id="planStart" value="'+(p.startDate||todayStr)+'"></label>'+
+    (countdown?'<span class="plan-count">'+countdown+'</span>':'')+
+    '<span class="plan-count">Kész: '+doneCount+'/'+totalItems+'</span></div>'+
+    (applyNote?'<p class="plan-note" style="color:#b05a20;">'+applyNote+'</p>':'')+
+    (weeks?'':'<p class="plan-note">Állítsd be a vizsga napját a dátumokhoz és a pontos heti elosztáshoz.</p>')+
+    '<div class="plan-grid">';
+  sched.forEach((w,wi)=>{
+    let dateLabel="";
+    if(weeks){ const ws=planAddDays(start, wi*7); const we=planAddDays(ws,6); dateLabel=' · '+planFmt(ws)+'–'+planFmt(we); }
+    const total=w.items.length; let wdone=0;
+    const items=w.items.map((it,ii)=>{ const key="w"+wi+"-"+ii; const on=!!(p.done&&p.done[key]); if(on) wdone++;
+      return '<label class="plan-item'+(on?' done':'')+'"><input type="checkbox" data-k="'+key+'"'+(on?' checked':'')+'><span>'+it+'</span></label>'; }).join("");
+    const pct=Math.round(wdone/total*100);
+    html+='<div class="plan-week'+(wdone===total?' done-week':'')+'"><p class="plan-wtitle">'+(wi+1)+'. hét'+dateLabel+'</p><p class="plan-wsub">'+w.t+' — '+w.s+'</p>'+items+
+      '<div class="plan-wbar"><div class="plan-wfill" style="width:'+pct+'%"></div></div></div>';
+  });
+  html+='</div>';
+  panel.innerHTML=html;
+  panel.querySelector("#planDate").onchange=e=>{ const pp=planLoad(); pp.examDate=e.target.value; planSave(pp); renderPlan(); };
+  panel.querySelector("#planStart").onchange=e=>{ const pp=planLoad(); pp.startDate=e.target.value; planSave(pp); renderPlan(); };
+  panel.querySelectorAll('.plan-item input').forEach(cb=>cb.onchange=()=>{ const pp=planLoad(); if(!pp.done)pp.done={}; pp.done[cb.dataset.k]=cb.checked; planSave(pp); renderPlan(); });
+}
+document.getElementById("planBtn").addEventListener("click", ()=>{
+  const p=document.getElementById("planPanel");
+  if(p.hasAttribute("hidden")){ p.removeAttribute("hidden"); renderPlan(); p.scrollIntoView({behavior:"smooth",block:"nearest"}); }
+  else p.setAttribute("hidden","");
+});
+
 /* ====== BIZTONSÁGI MENTÉS (export / import) ====== */
-const BACKUP_KEYS=["euroexam_b2_haladas_v1","b2_notes_v1","b2_cards_v1","b2_stats_v1","b2_sync_id"];
+const BACKUP_KEYS=["euroexam_b2_haladas_v1","b2_notes_v1","b2_cards_v1","b2_stats_v1","b2_sync_id","b2_theme","b2_plan_v1","b2_assess_v1"];
 function buildBackup(){
   const data={};
   BACKUP_KEYS.forEach(k=>{ try{ const v=localStorage.getItem(k); if(v!=null) data[k]=v; }catch(_){} });
@@ -8026,6 +8221,16 @@ function showOverview(){
 }
 document.getElementById('backBtn').addEventListener('click', showOverview);
 
+/* Ugrás egy konkrét témára (pl. szintfelmérő → nyelvtan/múlt idők) */
+function jumpTo(modId, topicKey){
+  if(typeof showModule==="function") showModule(modId);
+  setTimeout(()=>{
+    const li=document.querySelector('.topic[data-key="'+topicKey+'"]');
+    if(li){ li.classList.add('open-c'); li.scrollIntoView({behavior:'smooth',block:'center'}); li.classList.add('jump-flash'); setTimeout(()=>li.classList.remove('jump-flash'),1600); }
+    else { const sec=document.getElementById(modId); if(sec) sec.scrollIntoView({behavior:'smooth',block:'start'}); }
+  }, 80);
+}
+
 // "Áttekintés" (főoldal) menüpont
 const homeItem=document.createElement('button');
 homeItem.className='nav-item nav-home';
@@ -8414,6 +8619,140 @@ function m10CollectPairs(sel){
     });
     m8WordKeys[ti] = keys;
   });
+})();
+
+/* ====== NAGY SZINTFELMÉRŐ ====== */
+(function assessTool(){
+  const root=document.getElementById("assessTool"); if(!root) return;
+  const KEY="b2_assess_v1";
+  const esc=s=>(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+  const norm=(typeof normFill==="function")?normFill:(s=>(s||"").toLowerCase().trim().replace(/\s+/g," ").replace(/[.!?,;:]+$/,""));
+  // type: mc (feleletválasztós), reading (szöveg+mc), gap/correct/transform (beírós)
+  const Q=[
+    {type:"mc",q:"I usually ___ to work by bus.",a:["go","goes","going","am go"],c:0,exp:"Egyszerű jelen: I után alapalak.",mod:"m1",key:"m1-0",label:"Jelen idők"},
+    {type:"mc",q:"Be quiet! The baby ___.",a:["sleeps","is sleeping","sleep","slept"],c:1,exp:"Épp most zajlik → folyamatos jelen.",mod:"m1",key:"m1-0",label:"Jelen idők"},
+    {type:"gap",q:"We ___ (visit) the museum yesterday.",a:["visited"],exp:"yesterday → egyszerű múlt.",mod:"m1",key:"m1-1",label:"Múlt idők"},
+    {type:"mc",q:"I ___ this film before.",a:["saw","have seen","see","seeing"],c:1,exp:"Tapasztalat idő nélkül → present perfect.",mod:"m1",key:"m1-0",label:"Jelen idők (perfect)"},
+    {type:"mc",q:"She ___ in Riga for ten years.",a:["lives","has lived","is living","lived"],c:1,exp:"for + present perfect (eddig tartó).",mod:"m1",key:"m1-0",label:"Jelen idők (perfect)"},
+    {type:"gap",q:"I have known him ___ 2010.",a:["since"],exp:"időpont → since.",mod:"m1",key:"m1-0",label:"Jelen idők (perfect)"},
+    {type:"mc",q:"While I ___, the phone rang.",a:["cooked","was cooking","cook","have cooked"],c:1,exp:"Megszakított folyamat → folyamatos múlt.",mod:"m1",key:"m1-1",label:"Múlt idők"},
+    {type:"mc",q:"When we arrived, the film ___.",a:["already started","had already started","has already started","starts"],c:1,exp:"Előidejűség → past perfect.",mod:"m1",key:"m1-1",label:"Múlt idők"},
+    {type:"mc",q:"Look at the clouds! It ___.",a:["will rain","is going to rain","rains","rained"],c:1,exp:"Jelenbeli jel → going to.",mod:"m1",key:"m1-2",label:"Jövő idő"},
+    {type:"mc",q:"The train ___ at 6 p.m. (menetrend).",a:["leaves","will leave","is leaving","left"],c:0,exp:"Menetrend → egyszerű jelen.",mod:"m1",key:"m1-2",label:"Jövő idő"},
+    {type:"mc",q:"If you heat ice, it ___.",a:["melt","melts","will melt","melted"],c:1,exp:"0. típus: általános igazság, jelen–jelen.",mod:"m1",key:"m1-3",label:"Feltételes mondatok"},
+    {type:"mc",q:"If it rains, we ___ at home.",a:["stay","will stay","would stay","stayed"],c:1,exp:"1. típus: if + jelen, fő mondat will.",mod:"m1",key:"m1-3",label:"Feltételes mondatok"},
+    {type:"mc",q:"If I were rich, I ___ a house.",a:["buy","will buy","would buy","bought"],c:2,exp:"2. típus: would + alapalak.",mod:"m1",key:"m1-3",label:"Feltételes mondatok"},
+    {type:"mc",q:"If she had studied, she ___.",a:["would pass","would have passed","passed","will pass"],c:1,exp:"3. típus: would have + 3. alak.",mod:"m1",key:"m1-3",label:"Feltételes mondatok"},
+    {type:"mc",q:"___ you study, you will fail.",a:["If","Unless","When","Although"],c:1,exp:"Unless = hacsak nem.",mod:"m1",key:"m1-3",label:"Feltételes mondatok"},
+    {type:"gap",q:"If I ___ you, I would apologise.",a:["were","was"],exp:"2. típusú feltételes: were (vagy was).",mod:"m1",key:"m1-3",label:"Feltételes mondatok"},
+    {type:"mc",q:"This song ___ by millions.",a:["hears","is heard","heard","hearing"],c:1,exp:"Szenvedő jelen: is + 3. alak.",mod:"m1",key:"m1-4",label:"Szenvedő szerkezet"},
+    {type:"mc",q:"The bridge ___ last year.",a:["built","was built","is built","has built"],c:1,exp:"Szenvedő múlt: was + 3. alak.",mod:"m1",key:"m1-4",label:"Szenvedő szerkezet"},
+    {type:"gap",q:"English is ___ (speak) worldwide.",a:["spoken"],exp:"is spoken (szenvedő).",mod:"m1",key:"m1-4",label:"Szenvedő szerkezet"},
+    {type:"mc",q:"He said he ___ busy.",a:["is","was","has been","will be"],c:1,exp:"Függő beszéd: is → was.",mod:"m1",key:"m1-5",label:"Függő beszéd"},
+    {type:"mc",q:"She asked me where I ___.",a:["live","lived","living","do live"],c:1,exp:"Függő kérdés: kijelentő szórend, múlt.",mod:"m1",key:"m1-5",label:"Függő beszéd"},
+    {type:"mc",q:"You ___ smoke here; it's forbidden.",a:["mustn't","don't have to","shouldn't","needn't"],c:0,exp:"Tiltás → mustn't.",mod:"m1",key:"m1-6",label:"Módbeli segédigék"},
+    {type:"mc",q:"He isn't here; he ___ have left.",a:["must","can","should","would"],c:0,exp:"Logikus következtetés → must have.",mod:"m1",key:"m1-6",label:"Módbeli segédigék"},
+    {type:"mc",q:"This is the man ___ called you.",a:["which","who","what","whose"],c:1,exp:"Személy → who.",mod:"m1",key:"m1-7",label:"Vonatkozó mellékmondatok"},
+    {type:"mc",q:"That's the house ___ I grew up.",a:["which","that","where","who"],c:2,exp:"Hely → where.",mod:"m1",key:"m1-7",label:"Vonatkozó mellékmondatok"},
+    {type:"mc",q:"I enjoy ___ to music.",a:["listen","to listen","listening","listened"],c:2,exp:"enjoy + -ing.",mod:"m1",key:"m1-8",label:"Gerund és infinitive"},
+    {type:"mc",q:"She decided ___ abroad.",a:["study","to study","studying","studied"],c:1,exp:"decide + to + alapalak.",mod:"m1",key:"m1-8",label:"Gerund és infinitive"},
+    {type:"gap",q:"I'm looking forward ___ meeting you.",a:["to"],exp:"look forward to + -ing.",mod:"m1",key:"m1-8",label:"Gerund és infinitive"},
+    {type:"mc",q:"Today is ___ than yesterday.",a:["hot","hotter","hottest","more hot"],c:1,exp:"Rövid melléknév: -er.",mod:"m1",key:"m1-9",label:"Fokozás és összehasonlítás"},
+    {type:"mc",q:"It's the ___ film I've ever seen.",a:["good","better","best","well"],c:2,exp:"Felsőfok: the best.",mod:"m1",key:"m1-9",label:"Fokozás és összehasonlítás"},
+    {type:"mc",q:"He isn't ___ tall as his brother.",a:["so","as","more","than"],c:1,exp:"as ... as szerkezet.",mod:"m1",key:"m1-9",label:"Fokozás és összehasonlítás"},
+    {type:"mc",q:"___ the rain, we went out.",a:["Although","Despite","However","Because"],c:1,exp:"Despite + főnév.",mod:"m1",key:"m1-10",label:"Kötőszavak"},
+    {type:"mc",q:"It was ___ a good film that I cried.",a:["so","such","very","too"],c:1,exp:"such + (a) + melléknév + főnév.",mod:"m1",key:"m1-10",label:"Kötőszavak"},
+    {type:"mc",q:"They reached an ___ after talks.",a:["agreement","achievement","argument","arrangement"],c:0,exp:"reach an agreement = megegyezésre jut.",mod:"m8",key:"m8-0",label:"Szókincs / kollokációk"},
+    {type:"mc",q:"I can't ___ his rudeness.",a:["put off","put up with","put down","put away"],c:1,exp:"put up with = elviselni.",mod:"m8",key:"m8-0",label:"Szókincs / phrasal verbök"},
+    {type:"mc",q:"She ___ smoking last year.",a:["gave up","gave in","gave away","gave off"],c:0,exp:"give up = leszokni.",mod:"m8",key:"m8-0",label:"Szókincs / phrasal verbök"},
+    {type:"mc",q:"Please ___ a decision soon.",a:["do","make","take","have"],c:1,exp:"make a decision (kollokáció).",mod:"m8",key:"m8-0",label:"Szókincs / kollokációk"},
+    {type:"mc",q:"I'm interested ___ history.",a:["on","in","at","for"],c:1,exp:"interested in.",mod:"m8",key:"m8-0",label:"Szókincs / elöljárók"},
+    {type:"mc",q:"The weather will ___ our plans.",a:["affect","effect","afford","offer"],c:0,exp:"affect (ige) = befolyásol.",mod:"m8",key:"m8-0",label:"Szókincs (zavaró szavak)"},
+    {type:"gap",q:"He made an important ___ (decide).",a:["decision"],exp:"decide → decision (szóképzés).",mod:"m8",key:"m8-0",label:"Szókincs / szóképzés"},
+    {type:"mc",q:"The instructions were ___; nobody understood.",a:["ambitious","ambiguous","amicable","ambient"],c:1,exp:"ambiguous = kétértelmű.",mod:"m8",key:"m8-0",label:"Szókincs (precíz szóértés)"},
+    {type:"mc",q:"Melyik mondat helyes?",a:["She don't like tea.","She doesn't likes tea.","She doesn't like tea.","She not like tea."],c:2,exp:"E/3: doesn't + alapalak.",mod:"m1",key:"m1-0",label:"Jelen idők"},
+    {type:"mc",q:"Melyik helyes?",a:["I live here since 2010.","I have lived here since 2010.","I living here since 2010.","I am live here since 2010."],c:1,exp:"since + present perfect.",mod:"m1",key:"m1-0",label:"Jelen idők (perfect)"},
+    {type:"mc",q:"Melyik helyes?",a:["He is more taller.","He is most tall.","He is taller than me.","He is tallest."],c:2,exp:"Rövid melléknév: taller.",mod:"m1",key:"m1-9",label:"Fokozás és összehasonlítás"},
+    {type:"reading",text:"A small café in the old town serves breakfast until 11 a.m. and lunch from noon. It is closed on Sundays.",q:"Can you get breakfast there at 11:30 a.m.?",a:["Yes","No","Only on Sunday","Only at noon"],c:1,exp:"Reggeli csak 11-ig → 11:30-kor már nem.",mod:"m3",key:"m3-1",label:"Olvasásértés (scanning)"},
+    {type:"reading",text:"Sarah moved to London for a job in marketing. At first she felt lonely, but after joining a running club she made several friends.",q:"How did Sarah make friends?",a:["Through her job","By joining a running club","She already knew them","Online"],c:1,exp:"A futóklub révén.",mod:"m3",key:"m3-2",label:"Olvasásértés"},
+    {type:"reading",text:"The library will be closed next week for repairs. Books borrowed this week can be returned the following Monday without a fine.",q:"What if you return a book the Monday after the closure?",a:["You pay a fine","No fine","The library stays closed","The books are lost"],c:1,exp:"Bírság nélkül visszavihető.",mod:"m3",key:"m3-1",label:"Olvasásértés (scanning)"},
+    {type:"reading",text:"Although the new phone is expensive, it has an excellent camera and long battery life. However, some users complain that it is too big.",q:"What is a disadvantage of the phone?",a:["The camera","The battery","Its size","Nothing"],c:2,exp:"A panasz: túl nagy (size).",mod:"m3",key:"m3-2",label:"Olvasásértés"},
+    {type:"mc",q:"___ I known, I would have helped.",a:["If","Had","Have","Did"],c:1,exp:"Inverzió: Had I known (= If I had known).",mod:"m1",key:"m1-3",label:"Feltételes mondatok"},
+    {type:"mc",q:"I wish I ___ more time.",a:["have","had","will have","having"],c:1,exp:"wish + past (jelenbeli vágy): had.",mod:"m1",key:"m1-3",label:"Feltételes / wish"}
+  ];
+  function level(score,total){ const p=score/total; if(p<0.35)return "A2 körül"; if(p<0.58)return "A2–B1 (B1 felé)"; if(p<0.76)return "B1–B2"; if(p<0.93)return "B2 körül"; return "B2–C1"; }
+  function load(){ try{ return JSON.parse(localStorage.getItem(KEY)); }catch(_){ return null; } }
+  function save(o){ try{ localStorage.setItem(KEY, JSON.stringify(o)); }catch(_){} }
+  const isMC=t=>(t==="mc"||t==="reading");
+
+  function renderTest(){
+    const counts={};
+    Q.forEach(it=>{ const lab=it.type==="mc"?"feleletválasztós":it.type==="reading"?"szövegértés":it.type==="gap"?"kiegészítés":it.type==="correct"?"hibajavítás":"átalakítás"; counts[lab]=(counts[lab]||0)+1; });
+    const mix=Object.keys(counts).map(k=>counts[k]+" "+k).join(" · ");
+    let html='<p class="assess-intro">'+Q.length+' feladat, többféle módon (' +mix+ '), növekvő nehézséggel. A feleletválasztósnál kattints; a beírósnál gépeld be a választ. A végén <b>Kiértékelés</b>: megkapod a becsült szinted, és amit nem tudtál, azt kiírja magyarázattal és egy nyíllal, ami átdob a megfelelő anyagra.</p>';
+    html+=Q.map((it,i)=>{
+      let inner='';
+      if(it.type==="reading"){ inner+='<div class="assess-text">'+esc(it.text)+'</div>'; }
+      if(isMC(it.type)){
+        const opts=it.a.map((o,oi)=>({t:o,ci:oi===it.c}));
+        for(let k=opts.length-1;k>0;k--){ const j=Math.floor(Math.random()*(k+1)); const t=opts[k];opts[k]=opts[j];opts[j]=t; }
+        const ci=opts.findIndex(o=>o.ci);
+        inner+='<div class="assess-opts">'+opts.map((o,oi)=>'<button class="assess-opt" data-i="'+oi+'">'+esc(o.t)+'</button>').join("")+'</div>';
+        return '<div class="assess-q" data-type="mc" data-correct="'+ci+'" data-sel="-1" data-i="'+i+'"><p class="qtext">'+(i+1)+'. '+esc(it.q)+'</p>'+inner+'</div>';
+      } else {
+        const wide=it.type==="correct"?' style="flex:1;min-width:240px;"':'';
+        inner+='<div class="fillrow" style="margin-top:6px;"><input class="assess-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="'+(it.type==="correct"?"helyes mondat...":"válasz...")+'"'+wide+'></div>';
+        return '<div class="assess-q" data-type="text" data-i="'+i+'"><p class="qtext">'+(i+1)+'. '+esc(it.q)+'</p>'+inner+'</div>';
+      }
+    }).join("");
+    html+='<button class="assess-submit" id="aSubmit">Kiértékelés</button>';
+    root.innerHTML=html;
+    root.querySelectorAll('.assess-q[data-type="mc"]').forEach(q=>{
+      q.querySelectorAll(".assess-opt").forEach(b=>b.addEventListener("click",()=>{
+        if(q.classList.contains("done")) return;
+        q.querySelectorAll(".assess-opt").forEach(x=>x.classList.remove("selected"));
+        b.classList.add("selected"); q.dataset.sel=b.dataset.i;
+      }));
+    });
+    root.querySelector("#aSubmit").addEventListener("click", grade);
+  }
+  function grade(){
+    let score=0; const wrong=[];
+    root.querySelectorAll(".assess-q").forEach(q=>{
+      const i=+q.dataset.i, it=Q[i]; let ok=false, your="(nincs válasz)", correct="";
+      q.classList.add("done");
+      if(q.dataset.type==="mc"){
+        const ci=+q.dataset.correct, sel=+q.dataset.sel; ok=sel===ci; correct=it.a[it.c];
+        const yb=sel>=0?q.querySelector('.assess-opt[data-i="'+sel+'"]'):null; if(yb) your=yb.textContent;
+        q.querySelectorAll(".assess-opt").forEach(b=>{ const bi=+b.dataset.i; if(bi===ci) b.classList.add("correct"); else if(bi===sel) b.classList.add("wrong"); b.disabled=true; });
+      } else {
+        const inp=q.querySelector(".assess-input"); const val=norm(inp.value);
+        ok=it.a.some(x=>norm(x)===val); correct=it.a[0]; if(inp.value.trim()) your=inp.value.trim();
+        inp.disabled=true; inp.classList.add(ok?"ok":"bad");
+      }
+      if(ok) score++; else wrong.push({q:it.q, your, correct, exp:it.exp, mod:it.mod, key:it.key, label:it.label});
+    });
+    const res={score, total:Q.length, lvl:level(score,Q.length), wrong, date:new Date().toISOString()};
+    save(res); renderResult(res, true);
+  }
+  function renderResult(res, justDone){
+    let html='<div class="assess-result"><div class="assess-level">Becsült szint: '+res.lvl+'</div>'+
+      '<p class="assess-intro" style="margin:6px 0;">Eredmény: <b>'+res.score+'/'+res.total+'</b>'+(justDone?'':' · legutóbbi felmérés')+'</p>';
+    if(res.wrong.length){
+      html+='<p class="assess-intro" style="margin:8px 0;">Amit érdemes átnézned (kattints a nyílra, és odaugrik az anyaghoz):</p>';
+      html+=res.wrong.map(w=>'<div class="aw-item"><p class="aw-q">'+esc(w.q)+'</p>'+
+        '<p class="aw-line aw-bad">A te válaszod: '+esc(w.your)+'</p>'+
+        '<p class="aw-line aw-good">Helyes: '+esc(w.correct)+'</p>'+
+        '<p class="aw-exp">'+esc(w.exp)+'</p>'+
+        '<button class="aw-jump" data-mod="'+w.mod+'" data-key="'+w.key+'">→ '+esc(w.label)+'</button></div>').join("");
+    } else { html+='<p class="assess-intro">Hibátlan – nincs mit átnézni. 🎉</p>'; }
+    html+='<button class="assess-submit" id="aRetry" style="margin-top:14px;">Új felmérés</button></div>';
+    root.innerHTML=html;
+    root.querySelectorAll(".aw-jump").forEach(b=>b.addEventListener("click",()=>{ if(typeof jumpTo==="function") jumpTo(b.dataset.mod, b.dataset.key); }));
+    root.querySelector("#aRetry").addEventListener("click", renderTest);
+  }
+  const saved=load();
+  if(saved && saved.wrong) renderResult(saved, false); else renderTest();
 })();
 
 /* minden modul zárva indul – a felhasználó kattintásra nyitja */
